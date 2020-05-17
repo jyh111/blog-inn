@@ -1,0 +1,9 @@
+sping:
+  datasource:
+    url: jdbc:mysql://localhost:3306/Blog?serverTimezone=CTT&characterEncoding=UTF-8
+    username: root
+    password: 123753951@Hr
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:dataImpl/*Mapper.xml
