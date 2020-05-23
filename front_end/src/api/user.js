@@ -1,4 +1,4 @@
-import { axios } from '@/utils/request'
+import { axios } from '@/src/utils/request.js'
 
 const api = {
     userPre: '/api/user'

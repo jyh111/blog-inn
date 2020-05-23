@@ -1,6 +1,6 @@
-# blog-inn
+# front_end
 
-> Internet Computing Project
+> A Vue.js project
 
 ## Build Setup
 
