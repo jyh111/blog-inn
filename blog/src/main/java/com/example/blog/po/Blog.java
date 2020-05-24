@@ -6,11 +6,11 @@ package com.example.blog.po;
  * @Date: 2020-05-16
  */
 public class Blog {
-    private int blogID;
+    private Integer blogID;
     /*作者的userID*/
-    private int writer;
+    private Integer writerID;
     /*浏览量*/
-    private int page_view;
+    private Integer page_view;
 
     public int getBlogID() {
         return blogID;
@@ -20,12 +20,12 @@ public class Blog {
         this.blogID = blogID;
     }
 
-    public int getWriter() {
-        return writer;
+    public int getWriterID() {
+        return writerID;
     }
 
-    public void setWriter(int writer) {
-        this.writer = writer;
+    public void setWriterID(int writerID) {
+        this.writerID = writerID;
     }
 
     public int getPage_view() {

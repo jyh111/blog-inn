@@ -8,7 +8,7 @@ package com.example.blog.vo;
 public class UserInfoVO {
     private int userID;
     private String username;
-    private String userimg;
+    private String userImg;
 
     public int getUserID() {
         return userID;
@@ -26,12 +26,12 @@ public class UserInfoVO {
         this.username = username;
     }
 
-    public String getUserimg() {
-        return userimg;
+    public String getUserImg() {
+        return userImg;
     }
 
-    public void setUserimg(String userimg) {
-        this.userimg = userimg;
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
     }
 
 }

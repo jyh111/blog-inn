@@ -8,17 +8,49 @@ import java.util.ArrayList;
  * @Date: 2020-05-16
  */
 public class BlogVO {
-    private UserInfoVO writer;
+    private Integer blogID;
+    private Integer writerID;
     private ArrayList<CommentVO> comment_list;
-    private boolean is_in_favor;
+    private Boolean inFavor;
     private int page_view;
+    private String content;
 
-    public UserInfoVO getWriter() {
-        return writer;
+    public Boolean getInFavor() {
+        return inFavor;
     }
 
-    public void setWriter(UserInfoVO writer) {
-        this.writer = writer;
+    public Integer getBlogID() {
+        return blogID;
+    }
+
+    public void setBlogID(Integer blogID) {
+        this.blogID = blogID;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
+    }
+
+    private String classification = "";
+
+    public Integer getWriterID() {
+        return writerID;
+    }
+
+    public void setWriterID(Integer writerID) {
+        this.writerID = writerID;
     }
 
     public ArrayList<CommentVO> getComment_list() {
@@ -29,12 +61,8 @@ public class BlogVO {
         this.comment_list = comment_list;
     }
 
-    public boolean getIs_in_favor(){
-        return is_in_favor;
-    }
-
-    public void setIs_in_favor(boolean is_in_favor) {
-        this.is_in_favor = is_in_favor;
+    public void setInFavor(boolean inFavor) {
+        this.inFavor = inFavor;
     }
 
     public int getPage_view() {

@@ -9,7 +9,7 @@ public class Comment {
     private int commentID;
     private String content;
     /*评论者的userID*/
-    private int commentor;
+    private int reviewer;
     /*被答复者的userID*/
     private int replied_user;
 
@@ -29,12 +29,12 @@ public class Comment {
         this.content = content;
     }
 
-    public int getCommentor() {
-        return commentor;
+    public int getReviewer() {
+        return reviewer;
     }
 
-    public void setCommentor(int commentor) {
-        this.commentor = commentor;
+    public void setReviewer(int reviewer) {
+        this.reviewer = reviewer;
     }
 
     public int getReplied_user() {

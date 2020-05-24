@@ -3,7 +3,7 @@ SET NAMES utf8mb4;
 CREATE TABLE IF NOT EXISTS `User`(
     `userID` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `username` VARCHAR(16) NOT NULL,
-    `userimg` VARCHAR(255) DEFAULT NULL,
+    `userImg` VARCHAR(255) DEFAULT NULL,
     `password` VARCHAR(32) DEFAULT '123456',
     `self_introduction` VARCHAR(1024) DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -23,13 +23,13 @@ CREATE TABLE IF NOT EXISTS `Favor`(
 CREATE TABLE IF NOT EXISTS `Comment`(
     `commentID` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `content` VARCHAR(1024) DEFAULT NULL,
-    `commentor` INTEGER,
-    `replied_user` INTEGER
+    `reviewer` INTEGER,
+    `recipient` INTEGER
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `Message`(
     `commentID` INTEGER,
-    `messager` INTEGER,
-    `replied_user` INTEGER,
+    `sender` INTEGER,
+    `recipient` INTEGER,
     CONSTRAINT Fk2 FOREIGN KEY(`commentID`) REFERENCES `Comment`(commentID) ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

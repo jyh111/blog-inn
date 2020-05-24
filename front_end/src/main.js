@@ -11,10 +11,12 @@ import 'ant-design-vue/dist/antd.css'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(ant)
+// Vue.use(VueRouter)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
 })

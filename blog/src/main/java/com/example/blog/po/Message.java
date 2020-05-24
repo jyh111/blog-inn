@@ -8,9 +8,9 @@ package com.example.blog.po;
 public class Message {
     private int commentID;
     /*发信人的userID*/
-    private int messager;
+    private int sender;
     /*收信人的userID*/
-    private int replied_user;
+    private int recipient;
 
     public int getCommentID() {
         return commentID;
@@ -20,19 +20,19 @@ public class Message {
         this.commentID = commentID;
     }
 
-    public int getMessager() {
-        return messager;
+    public int getSender() {
+        return sender;
     }
 
-    public void setMessager(int messager) {
-        this.messager = messager;
+    public void setSender(int sender) {
+        this.sender = sender;
     }
 
-    public int getReplied_user() {
-        return replied_user;
+    public int getRecipient() {
+        return recipient;
     }
 
-    public void setReplied_user(int replied_user) {
-        this.replied_user = replied_user;
+    public void setRecipient(int recipient) {
+        this.recipient = recipient;
     }
 }

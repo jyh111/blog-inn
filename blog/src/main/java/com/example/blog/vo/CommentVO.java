@@ -7,8 +7,17 @@ package com.example.blog.vo;
  */
 public class CommentVO {
     private String content;
-    private UserInfoVO commentor;
-    private UserInfoVO reply_user;
+    private UserInfoVO reviewer;
+    private UserInfoVO recipient;
+    private Integer commentID;
+
+    public Integer getCommentID() {
+        return commentID;
+    }
+
+    public void setCommentID(Integer commentID) {
+        this.commentID = commentID;
+    }
 
     public String getContent() {
         return content;
@@ -18,19 +27,19 @@ public class CommentVO {
         this.content = content;
     }
 
-    public UserInfoVO getCommentor() {
-        return commentor;
+    public UserInfoVO getReviewer() {
+        return reviewer;
     }
 
-    public void setCommentor(UserInfoVO commentor) {
-        this.commentor = commentor;
+    public void setReviewer(UserInfoVO reviewer) {
+        this.reviewer = reviewer;
     }
 
-    public UserInfoVO getReply_user() {
-        return reply_user;
+    public UserInfoVO getRecipient() {
+        return recipient;
     }
 
-    public void setReply_user(UserInfoVO reply_user) {
-        this.reply_user = reply_user;
+    public void setRecipient(UserInfoVO recipient) {
+        this.recipient = recipient;
     }
 }
