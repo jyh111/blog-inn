@@ -141,6 +141,8 @@ const blog = {
 					userID:'',
 				})
 			}
+			// this.$router.push({name:'DisplayBlog'})
+			this.$router.push('/displayBlog')
 		},
 		writeBlog:async({state,commit,dispatch})=>{
 			const res = await putBlogAPI(state.blogParams)

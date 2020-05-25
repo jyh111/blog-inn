@@ -1,4 +1,4 @@
-import { axios } from '@/utils/request'
+
 const api = {
     blog: '/api/blogs'
 }
@@ -13,6 +13,7 @@ export function getBlogByBlogIdAPI(param) {
 
 // POST 搜索文章, 传入一个字符串(搜索内容)
 // data.query, data.userID
+// 返回值 blogVO[]
 export function getBlogsByQueryAPI(data){
 	return axios({
 		url:`$(api.blog)/query`,
