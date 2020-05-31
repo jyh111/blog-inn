@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/favors")
 public class FavorController {
 
-    @PostMapping("/{userID}/putFavor")
-    public ResponseVO putFavor(@PathVariable int userID){
+    @PostMapping("/putFavor")
+    public ResponseVO putFavor(){
         return ResponseVO.buildFailure("");
     }
 
