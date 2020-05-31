@@ -7,7 +7,7 @@ const api = {
 export function putFavorAPI(params){
 	return axios({
 		url:`${api.favor}/putFavor`,
-		method:'POST',
+		method:'GET',
 		params,
 	})
 }
