@@ -1,4 +1,4 @@
-import { axios } from '@/utils/request'
+import { axios } from '@/utils/request.js'
 const api = {
     commment: '/api/comments'
 };
@@ -14,6 +14,8 @@ const api = {
 //         method: 'POST',
 //         data
 //     })
+
+
 
 // POST 添加评论
  //评论内容:string data.content
