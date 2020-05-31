@@ -1,10 +1,6 @@
 package com.example.blog.po;
 
 
-/**
- * @Author: hou rui
- * @Date: 2020-05-16
- */
 public class Message {
     private int commentID;
     /*发信人的userID*/

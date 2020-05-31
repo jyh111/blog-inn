@@ -1,10 +1,5 @@
 package com.example.blog.vo;
 
-
-/**
- * @Author: hou rui
- * @Date: 2020-05-16
- */
 public class CommentVO {
     private String content;
     private UserInfoVO reviewer;
