@@ -1,21 +1,65 @@
 <!-- 搜索文章界面,显示文章列表 -->
 <template>
-	<div id="gh">
-		<h1>{{msg}}</h1>
+	<div>
+		<a-input-search
+		      placeholder="input search text"
+		      enter-button="Search"
+		      size="large"
+		      @search="onSearch"
+			  class="search"
+		    />
 	</div>
 </template>
 
 <script>
-	import Vue from 'vue'
+	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
 		name:'SearchBlog',
 		data(){
 				return{
-					msg:'gh大佬'
+					
 				}
+			},
+		computed:{
+			...mapGetters([
+				'blogList',
+				'blogListParams',
+				'blogListLoading',
+				'blogParams',
+				'queryParams',
+				'userId',
+				'userInfo'
+			])
+		},
+		methods:{
+			...mapMutations([
+				'set_blogList',
+				'set_currentBlogInfo',
+				'set_pageView',
+				'set_blogListParams',
+				'set_blogParams',
+				'set_queryParams'
+			]),
+			...mapActions([
+				'getBlogListByQuery',
+				'getBlogList',
+			]),
+			onSearch(value){
+				this.set_queryParams({
+					keyword:value,
+					userID:userId
+				})
+				this.getBlogListByQuery()
+				// this.$router.push('/blogList')
 			}
+		}
 	}
 </script>
 
 <style>
+	.search{
+		padding-top: 150px;
+		border-radius: 15px;
+		width: 40%;
+	}
 </style>

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import router from '@/router'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { resetRouter } from '@/router'
 import { message } from 'ant-design-vue'
 import {
     loginAPI,
@@ -10,20 +9,14 @@ import {
     updateUserInfoAPI,
 } from '@/api/user'
 
-import {
-    getUserOrdersAPI,
-    cancelOrderAPI,
-} from '@/api/order'
 
 const getDefaultState = () => {
     return {
-        userId: '',
         userInfo: {
-
+			userId: '',
+			username:'',
+			userimg:'',
         },
-        userOrderList: [
-
-        ]
     }
 }
 
@@ -35,7 +28,8 @@ const user = {
             state.token = '',
             state.userId = '',
             state.userInfo = {
-                
+                username:'',
+				userimg:''
             },
             state.userOrderList = []
         },
@@ -101,28 +95,8 @@ const user = {
                 dispatch('getUserInfo')
             }
         },
-        getUserOrders: async({ state, commit }) => {
-            const data = {
-                userId: Number(state.userId)
-            }
-            const res = await getUserOrdersAPI(data)
-            if(res){
-                commit('set_userOrderList', res)
-                console.log(state.userOrderList)
-            }
-        },
-        cancelOrder: async({ state, dispatch }, orderId) => {
-            const res = await cancelOrderAPI(orderId)
-            if(res) {
-                dispatch('getUserOrders')
-                message.success('撤销成功')
-            }else{
-                message.error('撤销失败')
-            }
-        },
         logout: async({ commit }) => {
             removeToken()
-            resetRouter()
             commit('reset_state')
         },
           // remove token

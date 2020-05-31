@@ -13,37 +13,6 @@ import { message } from 'ant-design-vue'
 
 const blog = {
     state: {
-		// state: {
-		//     hotelList: [
-		        
-		//     ],
-		//     hotelListParams: {
-		//         pageNo: 0,
-		//         pageSize: 12
-		//     },
-		//     hotelListLoading: true,
-		//     currentHotelId: '',
-		//     currentHotelInfo: {
-		
-		//     },
-		//     orderModalVisible: false,
-		//     currentOrderRoom: {
-		
-		//     },
-		//     orderMatchCouponList: [
-		
-		//     ]
-		
-		// addHotelParams: {
-		//     name: '',
-		//     address: '',
-		//     bizRegion:'XiDan',
-		//     hotelStar:'',
-		//     rate: 0,
-		//     description:'',
-		//     phoneNum:'',
-		//     managerId:'',
-		// },
 		blogList:[],
 		blogListParams:{
 			pageNo:0,
@@ -96,40 +65,6 @@ const blog = {
 			}
 		}
 		
-    //     set_hotelList: function(state, data) {
-    //         state.hotelList = data
-    //     },
-    //     set_hotelListParams: function(state, data) {
-    //         state.hotelListParams = {
-    //             ...state.hotelListParams,
-    //             ...data,
-    //         }
-    //     },
-    //     set_hotelListLoading: function(state, data) {
-    //         state.hotelListLoading = data
-    //     },
-    //     set_currentHotelId: function(state, data) {
-    //         state.currentHotelId = data
-    //     },
-    //     set_currentHotelInfo: function(state, data) {
-    //         state.currentHotelInfo = {
-    //             ...state.currentHotelInfo,
-    //             ...data,
-    //         }
-    //     },
-    //     set_orderModalVisible: function(state, data) {
-    //         state.orderModalVisible = data
-    //     },
-    //     set_currentOrderRoom: function(state, data) {
-    //         state.currentOrderRoom = {
-    //             ...state.currentOrderRoom,
-    //             ...data,
-    //         }
-    //     },
-    //     set_orderMatchCouponList: function(state, data) {
-    //         state.orderMatchCouponList = data
-    //     }
-    // },
     },
     actions: {
 		getBlogListByQuery:async({state,commit,dispatch})=>{
@@ -142,7 +77,7 @@ const blog = {
 				})
 			}
 			// this.$router.push({name:'DisplayBlog'})
-			this.$router.push('/displayBlog')
+			this.$router.push('/blogList')
 		},
 		writeBlog:async({state,commit,dispatch})=>{
 			const res = await putBlogAPI(state.blogParams)
@@ -167,26 +102,6 @@ const blog = {
 				commit('set_blogList',res)
 			}
 		}
-        // getManagerList: async({ commit }) => {
-        //     const res = await getManagerListAPI()
-        //     if(res){
-        //         commit('set_managerList', res)
-        //     }
-        // },
-        // addManager: async({ state, commit, dispatch }) => {
-        //     const res = await addManagerAPI(state.addManagerParams)
-        //     if(res) {
-        //         commit('set_addManagerParams',{
-        //             email:'',
-        //             password:''
-        //         })
-        //         commit('set_addManagerModalVisible', false)
-        //         message.success('添加成功')
-        //         dispatch('getManagerList')
-        //     }else{
-        //         message.error('添加失败')
-        //     }
-        // }
     }
 }
-export default admin
+export default blog
