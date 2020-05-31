@@ -2,11 +2,6 @@ package com.example.blog.vo;
 
 import java.util.ArrayList;
 
-
-/**
- * @Author: hou rui
- * @Date: 2020-05-16
- */
 public class BlogVO {
     private Integer blogID;
     private Integer writerID;

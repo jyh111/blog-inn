@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public class UserVO {
     private int userID;
+    private String email;
     private String username;
     private String userimg;
     private String password;
@@ -22,6 +23,14 @@ public class UserVO {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {

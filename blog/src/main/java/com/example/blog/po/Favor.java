@@ -1,10 +1,6 @@
 package com.example.blog.po;
 
 
-/**
- * @Author: hou rui
- * @Date: 2020-05-16
- */
 public class Favor {
     private int userID;
     private int blogID;

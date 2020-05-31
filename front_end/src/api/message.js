@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request.js'
 const api = {
     msg: '/api/message'
-}
+};
 // export function getManagerListAPI(){
 //     return axios({
 //         url: `${api.adminPre}/getAllManagers`,
@@ -19,7 +19,7 @@ const api = {
 // GET 通知用户 userID:Integer
 export function getMessageByUserID(param){
 	return axios({
-		url:`$(api.msg)/${param.userID}/getMessages`,
+		url:`${api.msg}/${param.userID}/getMessages`,
 		method:'GET'
 	})
 }

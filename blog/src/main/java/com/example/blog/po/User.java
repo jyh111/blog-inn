@@ -1,12 +1,9 @@
 package com.example.blog.po;
 
 
-/**
- * @Author: hou rui
- * @Date: 2020-05-16
- */
 public class User {
     private int userID;
+    private String email;
     private String username;
     private String userimg;
     private String pwd;
@@ -18,6 +15,14 @@ public class User {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
