@@ -4,11 +4,11 @@ const api = {
 };
 // POST 收藏文章 分类:string 博客ID:Integer userID:Integer
 // 没有分类null 默认分类default 自定义分类
-export function putFavorAPI(data){
+export function putFavorAPI(params){
 	return axios({
-		url:`${api.favor}/${data.userID}/putFavor`,
+		url:`${api.favor}/putFavor`,
 		method:'POST',
-		data
+		params,
 	})
 }
 
