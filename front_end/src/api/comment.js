@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request.js'
 const api = {
     commment: '/api/comments'
-};
+}
 // export function getManagerListAPI(){
 //     return axios({
 //         url: `${api.adminPre}/getAllManagers`,
@@ -25,16 +25,16 @@ const api = {
  // 后台自动添加通知
 export function putCommentAPI(data){
 	return axios({
-		url:`${api.comment}/putComment`,
+		url:`$(api.comment)/putComment`,
 		method:'POST',
 		data
 	})
 }
 
 // GET 获取评论列表 Comment[]
-export function getCommentByBlogIDAPI(blogID){
+export function getCommentByBlogIDAPI(param){
 	return axios({
-		url:`${api.comment}/${blogID}/getCommentByBlogID`,
+		url:`$(api.comment)/${param.blogId}/getCommentByBlogId`,
 		method:'GET'
 	})
 }

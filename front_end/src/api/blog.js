@@ -12,7 +12,7 @@ export function getBlogByBlogIdAPI(param) {
 }
 
 // POST 搜索文章, 传入一个字符串(搜索内容)
-// data.query, data.userID
+// data.query, data.userId
 // 返回值 blogVO[]
 export function getBlogsByQueryAPI(data){
 	return axios({
@@ -23,7 +23,7 @@ export function getBlogsByQueryAPI(data){
 }
 
 // POST 更新文章内容
-// data.blogID data.content
+// data.blogIddata.content
 export function patchBlogContentAPI(data) {
     return axios({
         url: `${api.blog}/patchBlogContent`,
@@ -42,7 +42,7 @@ export function putBlogAPI(data){
 }
 
 
-// 删除blog BlogID:Integer
+// 删除blog BlogId:Integer
 export function deleteBlogByIDAPI(param){
 	return axios({
 		url:`${api.blog}/${param.blogID}/delete`,
@@ -60,7 +60,7 @@ export function patchBlogPageviewAPI(param){
 }
 
 
-// GET 查看用户文章 UserID:Integer
+// GET 查看用户文章 UserId:Integer
 export function getBlogsByUserIDAPI(param){
 	return axios({
 		url:`${api.blog}/viewBlogs/${param.blogID}`,
@@ -69,7 +69,7 @@ export function getBlogsByUserIDAPI(param){
 }
 
 // POST 添加文章分类
-// 分类 data.classification 博客ID data.blogID
+// 分类 data.classification 博客ID data.blogId
 export function patchBlogClassification(data){
 	return axios({
 		url:`${api.blog}/patchBlogClassification`,
