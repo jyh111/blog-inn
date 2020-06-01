@@ -1,9 +1,9 @@
 import store from '@/store'
 // import { message } from 'ant-design-vue'
 
-const message = {
+const msg = {
 	state:{
-		
+		msgList,
 	},
 	mutations:{
 		
@@ -12,4 +12,4 @@ const message = {
 		
 	}
 }
-export default message
+export default msg

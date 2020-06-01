@@ -23,3 +23,13 @@ export function getMessageByUserId(param){
 		method:'GET'
 	})
 }
+
+// POST 添加通知 
+// data:msgVO
+export function addMessage(data){
+	return axios({
+		url:`${api.msg}/addMessage`,
+		method:'POST',
+		data
+	})
+}
