@@ -26,10 +26,10 @@ const user = {
     mutations: {
         reset_state: function(state) {
             state.token = '',
-            state.userId = '',
             state.userInfo = {
+				        userId: '',
                 username:'',
-				userimg:''
+				        userimg:''
             },
             state.userOrderList = []
         },
