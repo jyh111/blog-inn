@@ -9,8 +9,6 @@ public class UserVO {
     private String userimg;
     private String password;
     private String self_introduction;
-    private ArrayList<BlogVO> blog_list;
-    private ArrayList<BlogVO> favor_list;
 
     public Integer getUserID() {
         return userID;
@@ -60,19 +58,4 @@ public class UserVO {
         this.self_introduction = self_introduction;
     }
 
-    public ArrayList<BlogVO> getBlog_list() {
-        return blog_list;
-    }
-
-    public void setBlog_list(ArrayList<BlogVO> blog_list) {
-        this.blog_list = blog_list;
-    }
-
-    public ArrayList<BlogVO> getFavor_list() {
-        return favor_list;
-    }
-
-    public void setFavor_list(ArrayList<BlogVO> favor_list) {
-        this.favor_list = favor_list;
-    }
 }

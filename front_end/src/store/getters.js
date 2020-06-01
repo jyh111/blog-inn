@@ -13,7 +13,9 @@ const getters = {
 	//comment
 	commentList:state=>state.comment.commentList,
 	commentParams:state=>state.comment.commentParams,
-	blogId:state=>state.comment.blogId
+	blogId:state=>state.comment.blogId,
+	//message
+	msgList:state=>state.message.msgList
   }
   
   export default getters

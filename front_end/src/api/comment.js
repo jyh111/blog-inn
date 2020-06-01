@@ -18,6 +18,7 @@ const api = {
 
 
 // POST 添加评论
+// 评论ID:string data.commentId
  //评论内容:string data.content
  //评论者ID:Integer data.commentorId
  //被评论者ID:Integer data.repliedUserId

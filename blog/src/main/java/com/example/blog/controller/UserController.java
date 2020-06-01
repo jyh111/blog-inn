@@ -3,7 +3,6 @@ package com.example.blog.controller;
 import com.example.blog.bl.UserService;
 import com.example.blog.vo.ResponseVO;
 import com.example.blog.vo.UserForm;
-import com.example.blog.vo.UserInfoVO;
 import com.example.blog.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/userInfo/update")
-    public ResponseVO updateUserInfo(@RequestBody UserInfoVO userInfoVO){
+    public ResponseVO updateUserInfo(@RequestBody UserVO userVO,@PathVariable int id){
         return ResponseVO.buildFailure("");
     }
 }

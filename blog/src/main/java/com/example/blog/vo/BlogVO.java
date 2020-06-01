@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class BlogVO {
     private Integer blogID;
     private Integer writerID;
-    private ArrayList<CommentVO> comment_list=null;
     private Boolean inFavor=false;
     private Integer page_view;
     private String content;
@@ -48,13 +47,6 @@ public class BlogVO {
         this.writerID = writerID;
     }
 
-    public ArrayList<CommentVO> getComment_list() {
-        return comment_list;
-    }
-
-    public void setComment_list(ArrayList<CommentVO> comment_list) {
-        this.comment_list = comment_list;
-    }
 
     public void setInFavor(boolean inFavor) {
         this.inFavor = inFavor;

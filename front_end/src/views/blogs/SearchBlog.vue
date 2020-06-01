@@ -45,6 +45,7 @@
 				'getBlogList',
 			]),
 			onSearch(value){
+				console.log('searching')
 				this.set_queryParams({
 					keyword:value,
 					userID:userId
