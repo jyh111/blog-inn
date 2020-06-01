@@ -2,18 +2,18 @@ package com.example.blog.po;
 
 
 public class Comment {
-    private int commentID;
+    private Integer commentID;
     private String content;
     /*评论者的userID*/
-    private int reviewer;
+    private Integer reviewer;
     /*被答复者的userID*/
-    private int replied_user;
+    private Integer replied_user;
 
-    public int getCommentID() {
+    public Integer getCommentID() {
         return commentID;
     }
 
-    public void setCommentID(int commentID) {
+    public void setCommentID(Integer commentID) {
         this.commentID = commentID;
     }
 
@@ -25,19 +25,19 @@ public class Comment {
         this.content = content;
     }
 
-    public int getReviewer() {
+    public Integer getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(int reviewer) {
+    public void setReviewer(Integer reviewer) {
         this.reviewer = reviewer;
     }
 
-    public int getReplied_user() {
+    public Integer getReplied_user() {
         return replied_user;
     }
 
-    public void setReplied_user(int replied_user) {
+    public void setReplied_user(Integer replied_user) {
         this.replied_user = replied_user;
     }
 }

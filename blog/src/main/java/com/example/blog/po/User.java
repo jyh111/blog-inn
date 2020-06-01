@@ -2,18 +2,18 @@ package com.example.blog.po;
 
 
 public class User {
-    private int userID;
+    private Integer userID;
     private String email;
     private String username;
     private String userimg;
     private String pwd;
     private String self_introduction;
 
-    public int getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 

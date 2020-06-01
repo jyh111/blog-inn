@@ -19,9 +19,9 @@ const api = {
 
 // POST 添加评论
  //评论内容:string data.content
- //评论者ID:Integer data.commentorID
- //被评论者ID:Integer data.repliedUserID
- //博客ID: Integer data.blogID
+ //评论者ID:Integer data.commentorId
+ //被评论者ID:Integer data.repliedUserId
+ //博客ID: Integer data.blogId
  // 后台自动添加通知
 export function putCommentAPI(data){
 	return axios({

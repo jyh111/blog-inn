@@ -23,7 +23,7 @@ export function getBlogsByQueryAPI(data){
 }
 
 // POST 更新文章内容
-// data.blogIddata.content
+// data.blogId data.content
 export function patchBlogContentAPI(data) {
     return axios({
         url: `${api.blog}/patchBlogContent`,

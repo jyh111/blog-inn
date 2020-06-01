@@ -1,13 +1,18 @@
 package com.example.blog.controller;
 
+import com.example.blog.bl.BlogService;
 import com.example.blog.vo.BlogVO;
 import com.example.blog.vo.ResponseVO;
+import com.example.blog.vo.SearchRecordVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/api/blogs")
 public class BlogController {
 
+    @Autowired
+    BlogService blogService;
 
     @GetMapping("/{blogId}/detail")
     public ResponseVO getBlogByBlogId(@PathVariable int blogId){
@@ -15,8 +20,8 @@ public class BlogController {
     }
 
     @PostMapping("/query")
-    public ResponseVO getBlogsByQuery(@RequestParam String query,@RequestParam int userID){
-        return ResponseVO.buildFailure("");
+    public ResponseVO getBlogsByQuery(@RequestBody SearchRecordVO searchRecordVO){
+        return ResponseVO.buildSuccess(blogService.getBlogsByQuery(searchRecordVO));
     }
 
     @PostMapping("/patchBlogContent")

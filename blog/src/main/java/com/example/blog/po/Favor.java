@@ -2,22 +2,22 @@ package com.example.blog.po;
 
 
 public class Favor {
-    private int userID;
-    private int blogID;
+    private Integer userID;
+    private Integer blogID;
 
-    public int getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 
-    public int getBlogID() {
+    public Integer getBlogID() {
         return blogID;
     }
 
-    public void setBlogID(int blogID) {
+    public void setBlogID(Integer blogID) {
         this.blogID = blogID;
     }
 }

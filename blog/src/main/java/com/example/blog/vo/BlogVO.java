@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class BlogVO {
     private Integer blogID;
     private Integer writerID;
-    private ArrayList<CommentVO> comment_list;
-    private Boolean inFavor;
-    private int page_view;
+    private ArrayList<CommentVO> comment_list=null;
+    private Boolean inFavor=false;
+    private Integer page_view;
     private String content;
 
     public Boolean getInFavor() {
@@ -64,7 +64,7 @@ public class BlogVO {
         return page_view;
     }
 
-    public void setPage_view(int page_view) {
+    public void setPage_view(Integer page_view) {
         this.page_view = page_view;
     }
 }

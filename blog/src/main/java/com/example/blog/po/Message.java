@@ -2,33 +2,33 @@ package com.example.blog.po;
 
 
 public class Message {
-    private int commentID;
+    private Integer commentID;
     /*发信人的userID*/
-    private int sender;
+    private Integer sender;
     /*收信人的userID*/
-    private int recipient;
+    private Integer recipient;
 
-    public int getCommentID() {
+    public Integer getCommentID() {
         return commentID;
     }
 
-    public void setCommentID(int commentID) {
+    public void setCommentID(Integer commentID) {
         this.commentID = commentID;
     }
 
-    public int getSender() {
+    public Integer getSender() {
         return sender;
     }
 
-    public void setSender(int sender) {
+    public void setSender(Integer sender) {
         this.sender = sender;
     }
 
-    public int getRecipient() {
+    public Integer getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(int recipient) {
+    public void setRecipient(Integer recipient) {
         this.recipient = recipient;
     }
 }
