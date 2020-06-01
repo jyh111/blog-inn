@@ -2,13 +2,8 @@ package com.example.blog.vo;
 
 import java.util.ArrayList;
 
-
-/**
- * @Author: hou rui
- * @Date: 2020-05-16
- */
 public class UserVO {
-    private int userID;
+    private Integer userID;
     private String email;
     private String username;
     private String userimg;
@@ -17,11 +12,11 @@ public class UserVO {
     private ArrayList<BlogVO> blog_list;
     private ArrayList<BlogVO> favor_list;
 
-    public int getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 

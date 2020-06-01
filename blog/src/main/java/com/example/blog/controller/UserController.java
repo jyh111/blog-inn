@@ -1,13 +1,19 @@
 package com.example.blog.controller;
 
+import com.example.blog.bl.UserService;
 import com.example.blog.vo.ResponseVO;
 import com.example.blog.vo.UserForm;
+import com.example.blog.vo.UserInfoVO;
 import com.example.blog.vo.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/api/user")
 public class UserController {
+
+    @Autowired
+    UserService userService;
 
     @PostMapping("/login")
     public ResponseVO login(@RequestBody UserForm userForm) {
@@ -32,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/userInfo/update")
-    public ResponseVO updateUserInfo(@PathVariable int id){
+    public ResponseVO updateUserInfo(@RequestBody UserInfoVO userInfoVO){
         return ResponseVO.buildFailure("");
     }
 }
