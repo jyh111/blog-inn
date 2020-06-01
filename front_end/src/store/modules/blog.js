@@ -21,7 +21,7 @@ const blog = {
 		blogListLoading:true,
 		blogParams:{
 			blogID:'',
-			writerID:'',
+			writerId:'',
 			content:'',
 			commentList:[],
 			pageView:0,
@@ -30,7 +30,7 @@ const blog = {
 		},
 		queryParams:{
 			keyword:'',
-			userID:'',
+			userId:'',
 		}
     },
     mutations: {

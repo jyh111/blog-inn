@@ -17,9 +17,9 @@ const api = {
 // }
 
 // GET 通知用户 userID:Integer
-export function getMessageByUserID(param){
+export function getMessageByUserId(param){
 	return axios({
-		url:`${api.msg}/${param.userID}/getMessages`,
+		url:`${api.msg}/${param.userId}/getMessages`,
 		method:'GET'
 	})
 }

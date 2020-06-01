@@ -42,7 +42,7 @@ export function putBlogAPI(data){
 }
 
 
-// 删除blog BlogID:Integer
+// 删除blog BlogId:Integer
 export function deleteBlogByIDAPI(param){
 	return axios({
 		url:`${api.blog}/${param.blogID}/delete`,
@@ -60,7 +60,7 @@ export function patchBlogPageviewAPI(param){
 }
 
 
-// GET 查看用户文章 UserID:Integer
+// GET 查看用户文章 UserId:Integer
 export function getBlogsByUserIDAPI(param){
 	return axios({
 		url:`${api.blog}/viewBlogs/${param.blogID}`,
