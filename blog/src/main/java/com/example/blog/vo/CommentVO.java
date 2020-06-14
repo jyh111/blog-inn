@@ -1,12 +1,18 @@
 package com.example.blog.vo;
 
-public class CommentVO {
-    private String content;
-    private UserInfoVO reviewer;
-    private UserInfoVO recipient;
-    private Integer commentID;
 
-    public Integer getCommentID() {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CommentVO {
+    private Integer commentId;
+    private String content;
+    private Integer reviewer;
+    private Integer recipient;
+
+    /*public Integer getCommentID() {
         return commentID;
     }
 
@@ -22,19 +28,19 @@ public class CommentVO {
         this.content = content;
     }
 
-    public UserInfoVO getReviewer() {
+    public UserVO getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(UserInfoVO reviewer) {
+    public void setReviewer(UserVO reviewer) {
         this.reviewer = reviewer;
     }
 
-    public UserInfoVO getRecipient() {
+    public UserVO getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(UserInfoVO recipient) {
+    public void setRecipient(UserVO recipient) {
         this.recipient = recipient;
-    }
+    }*/
 }

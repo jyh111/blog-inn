@@ -1,8 +1,13 @@
 package com.example.blog.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
 * 用于登录
 */
+@Getter
+@Setter
 public class UserForm {
     /**
      * 用户邮箱，不可重复
@@ -15,7 +20,7 @@ public class UserForm {
 
 
 
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
     }
 
@@ -29,5 +34,5 @@ public class UserForm {
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    }*/
 }

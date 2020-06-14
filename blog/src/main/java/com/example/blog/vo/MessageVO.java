@@ -1,12 +1,18 @@
 package com.example.blog.vo;
 
-public class MessageVO {
-    private UserInfoVO sender;
-    private UserInfoVO recipient;
-    private Integer commentID;
-    private Integer messageID;
 
-    public UserInfoVO getSender() {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class MessageVO {
+    private UserVO sender;
+    private UserVO recipient;
+    private Integer commentId;
+    private Integer messageId;
+
+    /*public UserInfoVO getSender() {
         return sender;
     }
 
@@ -36,5 +42,5 @@ public class MessageVO {
 
     public void setMessageID(Integer messageID) {
         this.messageID = messageID;
-    }
+    }*/
 }

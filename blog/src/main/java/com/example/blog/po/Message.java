@@ -1,14 +1,18 @@
 package com.example.blog.po;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Message {
-    private Integer commentID;
+    private Integer commentId;
     /*发信人的userID*/
     private Integer sender;
     /*收信人的userID*/
     private Integer recipient;
 
-    public Integer getCommentID() {
+    /*public Integer getCommentID() {
         return commentID;
     }
 
@@ -30,5 +34,5 @@ public class Message {
 
     public void setRecipient(Integer recipient) {
         this.recipient = recipient;
-    }
+    }*/
 }

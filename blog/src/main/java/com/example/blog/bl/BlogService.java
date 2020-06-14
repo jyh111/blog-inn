@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface BlogService {
 
-    List<Blog> getBlogsByQuery(SearchRecordVO searchRecordVO);
+    List<Blog> getBlogsByQuery(String query);
+
+    Blog getBlogByBlogId(int blogId);
 
 }

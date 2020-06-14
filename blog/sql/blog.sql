@@ -1,7 +1,7 @@
 SET NAMES utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `User`(
-    `userID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `userId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `email` VARCHAR(64) NOT NULL,
     `username` VARCHAR(16) NOT NULL,
     `userImg` VARCHAR(255) DEFAULT NULL,
@@ -10,30 +10,32 @@ CREATE TABLE IF NOT EXISTS `User`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `Blog`(
-    `blogID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `blogId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `writer` INTEGER,
     `page_view` INTEGER DEFAULT 0,
-    `classification` VARCHAR(64) DEFAULT NULL,
+    `classification` VARCHAR(64) DEFAULT '',
     `content` VARCHAR(8192) DEFAULT NULL,
-    CONSTRAINT user_ref FOREIGN KEY(`writer`) REFERENCES `User`(userID) ON UPDATE CASCADE
+    `title` VARCHAR(64) DEFAULT NULL,
+    CONSTRAINT user_ref FOREIGN KEY(`writer`) REFERENCES `User`(userId) ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `Favor`(
-    `userID` INTEGER,
-    `blogID` INTEGER,
-    PRIMARY KEY (`userID`,`blogID`)
+    `userId` INTEGER,
+    `blogId` INTEGER,
+    `classification` VARCHAR(64) DEFAULT '',
+    PRIMARY KEY (`userId`,`blogId`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `Comment`(
-    `commentID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `commentId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `content` VARCHAR(1024) DEFAULT NULL,
     `reviewer` INTEGER,
     `recipient` INTEGER
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `Message`(
-    `commentID` INTEGER,
+    `commentId` INTEGER,
     `sender` INTEGER,
     `recipient` INTEGER,
-    CONSTRAINT comment_ref FOREIGN KEY(`commentID`) REFERENCES `Comment`(commentID) ON UPDATE CASCADE
+    CONSTRAINT comment_ref FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId) ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

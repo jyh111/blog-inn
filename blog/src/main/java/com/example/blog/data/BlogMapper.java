@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface BlogMapper {
 
-    List<Blog> getBlogsByQuery();
+    List<Blog> getBlogsByQuery(String title);
+
+    Blog getBlogByBlogId(int blogId);
 
 }

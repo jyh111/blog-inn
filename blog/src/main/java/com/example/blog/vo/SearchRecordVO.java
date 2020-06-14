@@ -1,12 +1,17 @@
 package com.example.blog.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class SearchRecordVO {
 
     private Integer userId;
 
     private String query;
 
-    public Integer getUserId() {
+    /*public Integer getUserId() {
         return userId;
     }
 
@@ -20,5 +25,5 @@ public class SearchRecordVO {
 
     public void setQuery(String query) {
         this.query = query;
-    }
+    }*/
 }

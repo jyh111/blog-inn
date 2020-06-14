@@ -15,12 +15,12 @@ public class CommentController {
 
     @PostMapping("/putComment")
     public ResponseVO putComment(@RequestBody CommentVO commentVO){
-        return ResponseVO.buildFailure("");
+        return commentService.putComment(commentVO);
     }
 
-    @GetMapping("/{blogID}/getCommentByBlogID")
-    public ResponseVO getCommentByBlogID(@PathVariable int blogID){
-        return ResponseVO.buildFailure("");
+    @GetMapping("/{blogId}/getCommentByBlogId")
+    public ResponseVO getCommentByBlogID(@PathVariable Integer blogId){
+        return ResponseVO.buildSuccess(commentService.getCommentByBlogID(blogId));
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.blog.data;
 
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import com.example.blog.po.User;
 
@@ -9,36 +10,12 @@ import com.example.blog.po.User;
 @Repository
 public interface UserMapper {
 
-    /*
-     *根据用户名查询用户
-     */
-    public User queryUserByUserName(String username);
+    User getAccountByEmail(@Param("email") String email);
 
-    /**
-     * 用户注册
-     * @param user
-     * @return
-     */
-    Integer userRegister(User user);
+    int registerAccount(User user);
 
-    /**
-     * 根据邮箱查询用户
-     * @param userEmail
-     * @return
-     */
-    User queryUserByEmail(String email);
+    User getUserInfo(@Param("id") int id);
 
-    /**
-     * 根据ID查询用户
-     * @param userId
-     * @return
-     */
-    User queryUserById(Integer userID);
+    void updateUserInfo(int id,String email, String username, String userImg, String password, String self_introduction);
 
-    /**
-     * 根据ID更新用户信息
-     * @param user
-     * @return
-     */
-    Integer updateUserInfo(User user);
 }

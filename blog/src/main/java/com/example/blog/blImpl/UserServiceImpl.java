@@ -3,63 +3,61 @@ package com.example.blog.blImpl;
 import com.example.blog.bl.UserService;
 import com.example.blog.po.User;
 import com.example.blog.data.UserMapper;
+import com.example.blog.vo.ResponseVO;
+import com.example.blog.vo.UserForm;
+import com.example.blog.vo.UserVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final static String ACCOUNT_EXIST = "账号已存在";
+    private final static String REGISTER_SUCCESS = "注册成功";
+    private final static String UPDATE_ERROR = "修改失败";
+
     @Autowired
     private UserMapper userMapper;
 
-
-    /**
-     * 用户注册
-     * @param user
-     * @return
-     */
     @Override
-    public Integer userRegister(User user) {
-        return userMapper.userRegister(user);
+    public User login(UserForm userForm) {
+        User user = userMapper.getAccountByEmail(userForm.getEmail());
+        if (null == user || !user.getPassword().equals(userForm.getPassword())) {
+            return null;
+        }
+        return user;
     }
 
-    /**
-     * 根据ID查询用户
-     * @param userId
-     * @return
-     */
     @Override
-    public User queryUserById(Integer userID) {
-        return userMapper.queryUserById(userID);
+    public ResponseVO registerAccount(UserVO userVO) {
+        User user = new User();
+        BeanUtils.copyProperties(userVO,user);
+        try {
+            userMapper.registerAccount(user);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(ACCOUNT_EXIST);
+        }
+        return ResponseVO.buildSuccess(REGISTER_SUCCESS);
     }
 
-    /**
-     * 根据用户名查询用户
-     * @param userName
-     * @return
-     */
     @Override
-    public User queryUserByUserName(String username) {
-        return userMapper.queryUserByUserName(username);
+    public User getUserInfo(int id) {
+        return userMapper.getUserInfo(id);
     }
 
-    /**
-     * 根据邮箱查询用户
-     * @param userEmail
-     * @return
-     */
     @Override
-    public User queryUserByEmail(String email) {
-        return userMapper.queryUserByEmail(email);
+    public ResponseVO updateUserInfo(int id,String email, String username, String userImg, String password, String self_introduction) {
+        try {
+            userMapper.updateUserInfo(id,email,username,userImg,password,self_introduction);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(UPDATE_ERROR);
+        }
+        return ResponseVO.buildSuccess(true);
     }
-    /**
-     * 根据ID更新用户信息
-     * @param user
-     * @return
-     */
-    @Override
-    public Integer updateUserInfo(User user) {
-        return userMapper.updateUserInfo(user);
-    }
+
+
 }
 

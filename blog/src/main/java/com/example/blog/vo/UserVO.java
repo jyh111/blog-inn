@@ -1,16 +1,19 @@
 package com.example.blog.vo;
 
-import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class UserVO {
-    private Integer userID;
+    private Integer userId;
     private String email;
     private String username;
-    private String userimg;
+    private String userImg;
     private String password;
     private String self_introduction;
 
-    public Integer getUserID() {
+    /*public Integer getUserID() {
         return userID;
     }
 
@@ -34,12 +37,12 @@ public class UserVO {
         this.username = username;
     }
 
-    public String getUserimg() {
-        return userimg;
+    public String getUserImg() {
+        return userImg;
     }
 
-    public void setUserimg(String userimg) {
-        this.userimg = userimg;
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
     }
 
     public String getPassword() {
@@ -56,6 +59,6 @@ public class UserVO {
 
     public void setSelf_introduction(String self_introduction) {
         this.self_introduction = self_introduction;
-    }
+    }*/
 
 }

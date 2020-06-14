@@ -1,10 +1,14 @@
 package com.example.blog.po;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Blog {
-    private Integer blogID;
+    private Integer blogId;
     /*作者的userID*/
-    private Integer writerID;
+    private Integer writerId;
     /*浏览量*/
     private Integer page_view;
 
@@ -12,7 +16,9 @@ public class Blog {
 
     private String content;
 
-    public Integer getBlogID() {
+    private String title;
+
+    /*public Integer getBlogID() {
         return blogID;
     }
 
@@ -51,4 +57,12 @@ public class Blog {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }*/
 }

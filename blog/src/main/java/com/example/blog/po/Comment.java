@@ -1,15 +1,19 @@
 package com.example.blog.po;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Comment {
-    private Integer commentID;
+    private Integer commentId;
     private String content;
     /*评论者的userID*/
     private Integer reviewer;
     /*被答复者的userID*/
-    private Integer replied_user;
+    private Integer recipient;
 
-    public Integer getCommentID() {
+    /*public Integer getCommentID() {
         return commentID;
     }
 
@@ -39,5 +43,5 @@ public class Comment {
 
     public void setReplied_user(Integer replied_user) {
         this.replied_user = replied_user;
-    }
+    }*/
 }

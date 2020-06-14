@@ -1,6 +1,8 @@
 package com.example.blog.controller;
 
+import com.example.blog.bl.BlogService;
 import com.example.blog.bl.FavorService;
+import com.example.blog.vo.FavorVO;
 import com.example.blog.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +14,16 @@ public class FavorController {
     @Autowired
     FavorService favorService;
 
-    @GetMapping("/putFavor")
-    public ResponseVO putFavor(@RequestParam String classification,@RequestParam int blogId){
-        return ResponseVO.buildFailure("");
+    @Autowired
+    BlogService blogService;
+
+    @PostMapping("/putFavor")
+    public ResponseVO putFavor(@RequestBody FavorVO favorVO){
+        return favorService.putFavor(favorVO);
     }
 
-    @GetMapping("/{userID}/getFavor")
-    public ResponseVO getFavorsByUserID(@PathVariable int userID){
+    @GetMapping("/{userId}/getFavor")
+    public ResponseVO getFavorsByUserId(@PathVariable Integer userId){
         return ResponseVO.buildFailure("");
     }
 }

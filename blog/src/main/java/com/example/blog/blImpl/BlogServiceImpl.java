@@ -16,7 +16,13 @@ public class BlogServiceImpl implements BlogService {
     BlogMapper blogMapper;
 
     @Override
-    public List<Blog> getBlogsByQuery(SearchRecordVO searchRecordVO) {
-        return null;
+    public List<Blog> getBlogsByQuery(String query) {
+        return blogMapper.getBlogsByQuery(query);
     }
+
+    @Override
+    public Blog getBlogByBlogId(int blogId) {
+        return blogMapper.getBlogByBlogId(blogId);
+    }
+
 }

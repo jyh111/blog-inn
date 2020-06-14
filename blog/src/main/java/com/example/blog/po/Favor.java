@@ -1,11 +1,17 @@
 package com.example.blog.po;
 
 
-public class Favor {
-    private Integer userID;
-    private Integer blogID;
+import lombok.Getter;
+import lombok.Setter;
 
-    public Integer getUserID() {
+@Getter
+@Setter
+public class Favor {
+    private Integer userId;
+    private Integer blogId;
+    private String classification;
+
+    /*public Integer getUserID() {
         return userID;
     }
 
@@ -19,5 +25,5 @@ public class Favor {
 
     public void setBlogID(Integer blogID) {
         this.blogID = blogID;
-    }
+    }*/
 }
