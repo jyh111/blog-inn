@@ -10,7 +10,7 @@ export default new Router({
   routes: [
     {
 		path:'/',
-		redirect:'/searchBlog'
+		redirect:'/displayBlog'
     },
 	// {
 	// 	path:'/myBlog',

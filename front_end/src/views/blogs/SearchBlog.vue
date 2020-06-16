@@ -27,7 +27,6 @@
 				'blogListLoading',
 				'blogParams',
 				'queryParams',
-				'userId',
 				'userInfo'
 			])
 		},
@@ -48,7 +47,7 @@
 				console.log('searching')
 				this.set_queryParams({
 					keyword:value,
-					userID:userId
+					userID:this.userInfo.userId
 				})
 				this.getBlogListByQuery()
 				// this.$router.push('/blogList')

@@ -1,81 +1,46 @@
-<!-- 评论组件, 回复接口 -->
 <template>
-	  <div>
-	    <a-list
-	      v-if="commentList.length"
-	      :data-source="commentList"
-	      :header="`${commentList.length} ${commentList.length > 1 ? 'replies' : 'reply'}`"
-	      item-layout="horizontal"
-	    >
-	      <a-list-item slot="renderItem" slot-scope="item, index">
-	        <a-comment
-	          :author="item.userInfo.username"
-	          :avatar="item.userInfo.userimg"
-	          :content="item.content"
-	          <!-- :datetime="item.datetime" -->
-	        />
-	      </a-list-item>
-	    </a-list>
-	    <a-comment>
-	      <a-avatar
-	        slot="avatar"
-	        src="userInfo.userimg"
-	        alt="userInfo.username"
-	      />
-	      <div slot="content">
-	        <a-form-item>
-	          <a-textarea :rows="4" :value="value" @change="handleChange" />
-	        </a-form-item>
-	        <a-form-item>
-	          <a-button html-type="submit"  type="primary" @click="handleSubmit">
-	            Add Comment
-	          </a-button>
-	        </a-form-item>
-	      </div>
-	    </a-comment>
-	  </div>
+  <a-comment>
+    <span
+      slot="actions"
+      key="comment-basic-reply-to"
+      @click="handlReply(comment.id, comment.username)"
+    >
+      <a href="#my-textarea">回复</a>
+    </span>
+    <a slot="author" style="font-size: 15px">{{comment.username}}</a>
+    <a
+      v-if="comment.parent_msg_username"
+      slot="author"
+      class="reply-to"
+    >@{{comment.parent_msg_username}}</a>
+    <a-avatar slot="avatar" :src="require('assets/images/login_logo.png')" alt />
+    <p slot="content">{{comment.content}}</p>
+    <a-tooltip slot="datetime">
+      <span>{{comment.date}}</span>
+    </a-tooltip>
+    <slot name="childComment"></slot>
+  </a-comment>
 </template>
 
 <script>
-	import { mapGetters, mapMutations, mapActions } from 'vuex'
-	export default{
-		name:'Comment',
-		data(){
-			return{
-				value: ''
-			}
-		},
-		computed:{
-			...mapGetters([
-				'commentList',
-				'blogId',
-				'userInfo',
-				'blogParams'
-			])
-		},
-		methods:{
-			...mapActions([
-				'addComment'
-			]),
-			handleSubmit() {
-			      if (!this.value) {
-			        return;
-			      }
-				  const data = {
-				      commentId:'',
-				      content:this.value,
-				      reviewerId:userInfo.userId,
-				      recipientId:blogParams.writerId,
-				      blogId:blogId
-				  };
-				  this.addComment(data)
-			},
-		    handleChange(e) {
-		      this.value = e.target.value;
-		    },
-	},
-	}
+export default {
+  name: "Comment",
+  props: {
+    comment: ""
+  },
+  methods: {
+    handlReply(msgId, msgUsername) {
+      this.$emit("handleReply", { msgId, msgUsername });
+    }
+  }
+};
 </script>
 
-<style>
+<style scoped>
+.reply-to {
+  padding-left: 5px;
+  color: #409eff;
+  font-weight: 500;
+  font-size: 15px;
+}
 </style>

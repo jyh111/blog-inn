@@ -21,15 +21,21 @@ const getDefaultState = () => {
 }
 
 const user = {
-    state : getDefaultState(),
+    state : {
+		userInfo: {
+			userId: '',
+			username:'',
+			userimg:'',
+		},
+	},
 
     mutations: {
         reset_state: function(state) {
             state.token = '',
             state.userInfo = {
-				        userId: '',
+				userId:'',
                 username:'',
-				        userimg:''
+				userimg:''
             },
             state.userOrderList = []
         },

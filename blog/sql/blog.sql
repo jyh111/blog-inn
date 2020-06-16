@@ -19,6 +19,18 @@ CREATE TABLE IF NOT EXISTS `Blog`(
     CONSTRAINT user_ref FOREIGN KEY(`writer`) REFERENCES `User`(userId) ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE  IF NOT EXISTS `FavorFolder`(
+    `userId` INTEGER,
+    `folder_name` VARCHAR(64) DEFAULT '',
+    CONSTRAINT user_ref FOREIGN KEY (`userId`) REFERENCES `User`(userId) ON UPDATE CASCADE
+)ENGINE = InnoDB DEFAULT CHARSET =utf8mb4;
+
+CREATE TABLE  IF NOT EXISTS `BlogFolder`(
+         `userId` INTEGER,
+        `folder_name` VARCHAR(64) DEFAULT '',
+        CONSTRAINT user_ref FOREIGN KEY (`userId`) REFERENCES `User`(userId) ON UPDATE CASCADE
+)ENGINE = InnoDB DEFAULT CHARSET =utf8mb4;
+
 CREATE TABLE IF NOT EXISTS `Favor`(
     `userId` INTEGER,
     `blogId` INTEGER,
