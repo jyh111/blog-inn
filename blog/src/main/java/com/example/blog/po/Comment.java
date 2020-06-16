@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class Comment {
     private Integer commentId;
+    private Integer blogId;
     private String content;
     /*评论者的userID*/
     private Integer reviewer;

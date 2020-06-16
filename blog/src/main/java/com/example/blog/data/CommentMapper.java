@@ -2,8 +2,8 @@ package com.example.blog.data;
 
 
 import com.example.blog.po.Comment;
-import com.example.blog.vo.CommentVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +13,6 @@ import java.util.List;
 public interface CommentMapper {
     int putComment(Comment comment);
 
-    List<Comment> getCommentByBlogID(int blogId);
+    List<Comment> getCommentByBlogID(@Param("blogId") int blogId);
 
 }
