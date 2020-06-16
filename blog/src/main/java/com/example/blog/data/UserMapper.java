@@ -16,6 +16,6 @@ public interface UserMapper {
 
     User getUserInfo(@Param("id") int id);
 
-    void updateUserInfo(int id,String email, String username, String userImg, String password, String self_introduction);
+    void updateUserInfo(@Param("id") int id,@Param("email") String email, @Param("username") String username, @Param("userImg") String userImg, @Param("password") String password, @Param("self_introduction") String self_introduction);
 
 }

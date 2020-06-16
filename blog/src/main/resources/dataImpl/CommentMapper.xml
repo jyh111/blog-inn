@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.CommentMapper">
+    <insert id="putComment" parameterType="com.example.blog.po.Comment" useGeneratedKeys="true" keyProperty="commentId">
+        insert into `Comment`(blogId,content,reviewer,recipient)
+        values (#{blogId},#{content},#{reviewer},#{recipient})
+    </insert>
+
+    <select id="getCommentByBlogID" resultMap="Comment">
+        select * from `Comment` where blogId=#{blogId}
+    </select>
+
+    <resultMap id="Comment" type="com.example.blog.po.Comment">
+        <id column="commentId" property="commentId"></id>
+        <result column="blogId" property="blogId"></result>
+        <result column="content" property="content"></result>
+        <result column="reviewer" property="reviewer"></result>
+        <result column="recipient" property="recipient"></result>
+    </resultMap>
 
 </mapper>

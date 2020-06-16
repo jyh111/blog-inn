@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `Blog`(
     `classification` VARCHAR(64) DEFAULT '',
     `content` VARCHAR(8192) DEFAULT NULL,
     `title` VARCHAR(64) DEFAULT NULL,
-    CONSTRAINT user_ref FOREIGN KEY(`writer`) REFERENCES `User`(userId) ON UPDATE CASCADE
+    CONSTRAINT user_ref FOREIGN KEY(`writer`) REFERENCES `User`(userId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE  IF NOT EXISTS `FavorFolder`(
@@ -40,14 +40,16 @@ CREATE TABLE IF NOT EXISTS `Favor`(
 
 CREATE TABLE IF NOT EXISTS `Comment`(
     `commentId` INTEGER PRIMARY KEY AUTO_INCREMENT,
+    `blogId` INTEGER,
     `content` VARCHAR(1024) DEFAULT NULL,
     `reviewer` INTEGER,
-    `recipient` INTEGER
+    `recipient` INTEGER,
+    CONSTRAINT blog_ref FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `Message`(
     `commentId` INTEGER,
     `sender` INTEGER,
     `recipient` INTEGER,
-    CONSTRAINT comment_ref FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId) ON UPDATE CASCADE
+    CONSTRAINT comment_ref FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
