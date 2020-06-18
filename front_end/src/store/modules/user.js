@@ -78,6 +78,7 @@ const user = {
 
     actions: {
         login: async ({ dispatch, commit }, userData) => {
+			console.log(userData)
             const res = await loginAPI(userData)
             if(res){
 				console.log('登录成功')
