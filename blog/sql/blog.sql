@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS `BlogFolder`;
 DROP TABLE IF EXISTS `favorfolder`;
 DROP TABLE IF EXISTS `Blog`;
 DROP TABLE IF EXISTS `User`;
-
 CREATE TABLE `User`(
     `userId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `email` VARCHAR(64) NOT NULL,
@@ -16,7 +15,7 @@ CREATE TABLE `User`(
     `self_introduction` VARCHAR(1024) DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `User` VALUES (1,'111@qq.com','测试一号','','123456','hello')
+INSERT INTO `User` VALUES (1,'111@qq.com','测试一号','','123456','hello');
 
 CREATE TABLE `Blog`(
     `blogId` INTEGER PRIMARY KEY AUTO_INCREMENT,
