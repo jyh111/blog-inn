@@ -45,4 +45,26 @@ public class FavorServiceImpl implements FavorService {
         }
         return ResponseVO.buildSuccess(PUT_FAVOR_SUCCESS);
     }
+
+    @Override
+    public ResponseVO putFavorFolder(int userId, String folder_name) {
+        try {
+            favorMapper.putFavorFolder(userId,folder_name);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("新建收藏夹失败");
+        }
+        return ResponseVO.buildSuccess("新建收藏夹成功");
+    }
+
+    @Override
+    public ResponseVO deleteFavorFolder(int userId, String folder_name) {
+        try {
+            favorMapper.deleteFavorFolder(userId,folder_name);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure("删除收藏夹失败");
+        }
+        return ResponseVO.buildSuccess("删除收藏夹成功");
+    }
 }

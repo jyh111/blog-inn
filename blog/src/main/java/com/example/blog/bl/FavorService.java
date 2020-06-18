@@ -12,4 +12,8 @@ public interface FavorService {
 
     ResponseVO putFavor(FavorVO favorVO);
 
+    ResponseVO putFavorFolder(int userId,String folder_name);
+
+    ResponseVO deleteFavorFolder(int userId,String folder_name);
+
 }

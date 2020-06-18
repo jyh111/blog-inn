@@ -2,6 +2,7 @@ package com.example.blog.controller;
 
 import com.example.blog.bl.BlogService;
 import com.example.blog.bl.FavorService;
+import com.example.blog.vo.FavorFolderVO;
 import com.example.blog.vo.FavorVO;
 import com.example.blog.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,15 @@ public class FavorController {
     public ResponseVO getFavorsByUserId(@PathVariable Integer userId){
         return ResponseVO.buildFailure("");
     }
+
+    @PostMapping("/{userId}/putFavorFolder")
+    public ResponseVO putFavorFolder(@RequestBody FavorFolderVO favorFolderVO, @PathVariable Integer userId){
+        return favorService.putFavorFolder(userId,favorFolderVO.getFolder_name());
+    }
+
+    @GetMapping("/{userId}/deleteFavorFolder")
+    public ResponseVO deleteFavorFolder(@RequestParam String folder_name,@PathVariable Integer userId){
+        return favorService.deleteFavorFolder(userId,folder_name);
+    }
+
 }

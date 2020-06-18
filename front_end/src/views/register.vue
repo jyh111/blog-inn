@@ -1,19 +1,18 @@
 <template>
-	<div>
-	    <h2>博客登陆界面</h2>
-	
-	    <input type="text" placeholder="请输入用户名" v-model="username" />
-	
-	    <input type="password" placeholder="请输入密码" v-model="password" />
-	    <button v-on:click="login">登录</button>
-	
-	    <p>
-	      <router-link to="/b">没有账号？马上注册</router-link>
-	    </p>
-	    <!-- <p v-on:click="ToRegister">没有账号？马上注册</p> -->
-	    <br />
-	    <!-- <router-link to="/">返回</router-link> -->
-	  </div>
+	<h2>注册界面</h2>
+	  <input type="text" placeholder="请输入您的邮箱" v-model="email" />
+	  <input type="text" placeholder="请输入用户名" v-model="username" />
+	  <input type="password" placeholder="请输入密码" v-model="password" />
+		
+	  <button v-on:click="register">注册</button>
+		
+	  <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
+	  <p>
+	    <router-link to="/login">已有账号？马上登录</router-link>
+	  </p>
+	  <br />
+	  <!-- <router-link to="/">返回</router-link> -->
+	</div>
 </template>
 
 <script>
@@ -23,7 +22,8 @@
 	.login-wrap {
 	  text-align: center;
 	}
-	h3 {
+	
+	h2 {
 	  text-align: center;
 	}
 	span {
