@@ -4,6 +4,7 @@ import com.example.blog.bl.UserService;
 import com.example.blog.po.User;
 import com.example.blog.data.UserMapper;
 import com.example.blog.vo.ResponseVO;
+import com.example.blog.vo.UserDisplayVO;
 import com.example.blog.vo.UserForm;
 import com.example.blog.vo.UserVO;
 import org.springframework.beans.BeanUtils;
@@ -56,6 +57,19 @@ public class UserServiceImpl implements UserService {
             return ResponseVO.buildFailure(UPDATE_ERROR);
         }
         return ResponseVO.buildSuccess(true);
+    }
+
+    @Override
+    public UserDisplayVO getUserDisplay(int id){
+        User user = userMapper.getUserInfo(id);
+        if(user==null){
+            return null;
+        }
+        UserDisplayVO userDisplay = new UserDisplayVO();
+        userDisplay.setUserId(user.getUserId());
+        userDisplay.setUserImg(user.getUserImg());
+        userDisplay.setUsername(user.getUsername());
+        return userDisplay;
     }
 
 

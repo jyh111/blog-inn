@@ -1,17 +1,15 @@
+<!-- 主视图 -->
 <template>
-	<template>
-	  <div>
-	    <comment-message @handleReply="handleReply" :commentList="comments"></comment-message>
-	    <comment-area @reload="reload" :parentMsgId="replyMsgId" :replyMsgUsername="replyMsgUsername"></comment-area>
-	  </div>
-	</template>
+	 <div>
+	    <comment-message @handleReply="handleReply" :commentList="commentList"></comment-message>
+	    <comment-area @reload="reload" :commentId="commentId" :recipientDisplay="recipientDisplay"></comment-area>
+  </div>
+</template>
 	
-	<script>
+<script>
 	import CommentMessage from "components/common/comment/CommentMessage";
 	import CommentArea from "components/common/comment/CommentArea";
-	
-	import { findAllMsg } from "network/ajax";
-	
+	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default {
 	  name: "Message",
 	  components: {
@@ -20,39 +18,36 @@
 	  },
 	  data() {
 	    return {
-	      comments: [],
-	      replyMsgId: "",
-	      replyMsgUsername: ""
+	      // replyMsgId: "",
+	      // replyMsgUsername: ""
+		  commentId:'',
+		  recipientDisplay:{}
 	    };
 	  },
+	  computed:{
+		  
+	  },
 	  mounted() {
-	    findAllMsg()
-	      .then(res => {
-	        this.comments = res.data.messages;
-	      })
-	      .catch(err => {
-	        console.log(err);
-	        this.$router.push("/500");
-	      });
+	    
+	  },
+	  computed:{
+		  ...mapGetters([
+			  'commentList',			  
+		  ])
 	  },
 	  methods: {
 	    handleReply(data) {
-	      this.replyMsgId = data.msgId;
-	      this.replyMsgUsername = data.msgUsername;
+			this.commentId = data.commentId,
+			this.recipientDisplay = data.recipientDisplay
+	      // this.replyMsgId = data.msgId;
+	      // this.replyMsgUsername = data.msgUsername;
 	    },
 	    reload() {
 	      this.$emit("reload")
 	    }
 	  }
 	};
-	</script>
-	
-	<style>
-	</style>
-</template>
-
-<script>
 </script>
-
+	
 <style>
 </style>

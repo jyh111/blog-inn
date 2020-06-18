@@ -14,19 +14,36 @@ const getDefaultState = () => {
     return {
         userInfo: {
 			userId: '',
+			email:'',
 			username:'',
-			userimg:'',
+			userImg:'',
+			password:'',
+			self_introduction:''
         },
+		userDisplay:{
+			userId:'',
+			username:'',
+			userImg:''
+		}
     }
 }
 
 const user = {
     state : {
+		token: '',
 		userInfo: {
 			userId: '',
+			email:'',
 			username:'',
-			userimg:'',
+			userImg:'',
+			password:'',
+			self_introduction:''
 		},
+		userDisplay:{
+			userId:'',
+			username:'',
+			userImg:''
+		}
 	},
 
     mutations: {
@@ -42,18 +59,18 @@ const user = {
         set_token: function(state, token){
             state.token = token
         },
-        set_email: (state, data) => {
-            state.email = data
-        },
-        set_userId: (state, data) => {
-            state.userId = data
-        },
         set_userInfo: (state, data) => {
             state.userInfo = {
                 ...state.userInfo,
                 ...data
             }
         },
+		set_userDisplay:(state,data)=>{
+			state.userDisplay={
+				...state.userDisplay,
+				...data
+			}
+		},
         set_userOrderList: (state, data) => {
             state.userOrderList = data
         }
@@ -77,7 +94,7 @@ const user = {
         },
         getUserInfo({ state, commit }) {
             return new Promise((resolve, reject) => {
-              getUserInfoAPI(state.userId).then(response => {
+              getUserInfoAPI(state.userInfo.userId).then(response => {
                 const data = response
                 if (!data) {
                   reject('登录已过期，请重新登录')
@@ -90,6 +107,16 @@ const user = {
               })
             })
         },
+		getUserDisplay({ state, commit }) {
+		    return new Promise((resolve, reject) => {
+		      getUserDisplayAPI(state.userInfo.userId).then(response => {
+		        const data = response
+				commit('set_userDisplay',data)
+		      }).catch(error => {
+		        console.log("获取userDisplay失败")
+		      })
+		    })
+		},
         updateUserInfo: async({ state, dispatch }, data) => {
             const params = {
                 id: state.userId,

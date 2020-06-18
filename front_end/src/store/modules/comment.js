@@ -18,7 +18,7 @@ const comment = {
 			recipient:{
 				userId:'',
 				username:'',
-				userimg:''
+				userImg:''
 			},
 			blogId:''
 		},
@@ -53,14 +53,22 @@ const comment = {
 			}
 		},
 		addComment:async({state,commit,dispatch},data)=>{
-			const res = await putBlogAPI(data)
+			const res = await putCommentAPI(data)
 			if(res){
 				dispatch('getCommentListByBlogId')
 			    commit('set_commentParams', {
 					commentId:'',
 					content:'',
-					reviewerId:'',
-					recipientId:'',
+					reviewer:{
+						userId:'',
+						username:'',
+						userimg:''
+					},
+					recipient:{
+						userId:'',
+						username:'',
+						userImg:''
+					},
 					blogId:''
 			    })
 			    message.success('评论成功')				

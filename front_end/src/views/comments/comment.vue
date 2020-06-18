@@ -1,23 +1,24 @@
+<!-- 留言组件 -->
 <template>
   <a-comment>
     <span
       slot="actions"
       key="comment-basic-reply-to"
-      @click="handlReply(comment.id, comment.username)"
+      @click="handlReply(comment.id, comment.recipient)"
     >
       <a href="#my-textarea">回复</a>
     </span>
-    <a slot="author" style="font-size: 15px">{{comment.username}}</a>
+    <a slot="author" style="font-size: 15px">{{comment.reviewer.username}}</a>
     <a
       v-if="comment.parent_msg_username"
       slot="author"
       class="reply-to"
-    >@{{comment.parent_msg_username}}</a>
-    <a-avatar slot="avatar" :src="require('assets/images/login_logo.png')" alt />
+    >@{{comment.recipient.username}}</a>
+    <a-avatar slot="avatar" src="@/assets/default_logo.jpg" alt />
     <p slot="content">{{comment.content}}</p>
-    <a-tooltip slot="datetime">
+<!--    <a-tooltip slot="datetime">
       <span>{{comment.date}}</span>
-    </a-tooltip>
+    </a-tooltip> -->
     <slot name="childComment"></slot>
   </a-comment>
 </template>
@@ -26,11 +27,11 @@
 export default {
   name: "Comment",
   props: {
-    comment: ""
+    comment: {}
   },
   methods: {
-    handlReply(msgId, msgUsername) {
-      this.$emit("handleReply", { msgId, msgUsername });
+    handlReply(commentId, recipientDisplay) {
+      this.$emit("handleReply", { commentId, recipientDisplay });
     }
   }
 };

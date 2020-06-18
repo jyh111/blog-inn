@@ -10,6 +10,7 @@ const getters = {
 	token: state => state.user.token,
 	// userId: state => state.user.userId,
 	userInfo: state => state.user.userInfo,
+	userDisplay:state=>state.user.userDisplay,
 	//comment
 	commentList:state=>state.comment.commentList,
 	commentParams:state=>state.comment.commentParams,

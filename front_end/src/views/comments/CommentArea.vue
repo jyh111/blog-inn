@@ -1,7 +1,8 @@
+<!-- 添加留言或回复的表单组件 -->
 <template>
   <div>
     <a-comment id="comment-area">
-      <a-avatar slot="avatar" :src="require('assets/images/login_logo.png')" alt="Han Solo" />
+      <a-avatar slot="avatar" src="@/assets/default_logo.jpg" alt="Han Solo" />
       <div slot="content">
         <a-form-item>
           <a-textarea id="my-textarea" :rows="4" v-model="content" />
@@ -19,9 +20,9 @@
   </div>
 </template>
 <script>
-import {insertMsg} from 'network/ajax.js'
-
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
+	name:"CommentArea",
   data() {
     return {
       content: "",
@@ -29,8 +30,8 @@ export default {
     };
   },
   props: {
-    parentMsgId: "",
-    replyMsgUsername: ""
+    commentId:'',
+    recipientDisplay:{}
   },
   watch: {
     replyMsgUsername() {
@@ -39,23 +40,46 @@ export default {
         .setAttribute("placeholder", "回复: " + "@" + this.replyMsgUsername);
     }
   },
+  computed:{
+	  ...mapGetters([
+		  'userDisplay'
+	  ])
+  },
   methods: {
+	...mapActions([
+		'addComment'
+	]),
     handleSubmit() {
       if (!this.content) {
         return;
       }
-      this.submitting = true;
-      insertMsg(this.content, this.parentMsgId, this.$store.state.userId).then(res => {
-        this.submitting = false;
-        this.content = "";
-        document
-        .querySelector("#my-textarea")
-        .setAttribute("placeholder", '');
-        this.$emit('reload')
-      }).catch(err => {
-        console.log(err);
-        this.$router.push('/500')
-      })
+	  this.addComment({
+		  commentId:'',
+		  content:this.content,
+		  reviewer:{
+		  	userId:this.userDisplay.userId,
+		  	username:this.userDisplay.username,
+		  	userimg:this.userDisplay.userImg
+		  },
+		  recipient:{
+		  	userId:this.recipientDisplay.userId,
+		  	username:this.recipientDisplay.username,
+		  	userImg:this.recipientDisplay.userImg
+		  },
+		  blogId:''
+	  })
+      // this.submitting = true;
+      // insertMsg(this.content, this.parentMsgId, this.$store.state.userId).then(res => {
+      //   this.submitting = false;
+      //   this.content = "";
+      //   document
+      //   .querySelector("#my-textarea")
+      //   .setAttribute("placeholder", '');
+      //   this.$emit('reload')
+      // }).catch(err => {
+      //   console.log(err);
+      //   this.$router.push('/500')
+      // })
     },
     handleChange(e) {
       this.value = e.target.value;

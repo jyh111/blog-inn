@@ -3,6 +3,7 @@ package com.example.blog.controller;
 import com.example.blog.bl.UserService;
 import com.example.blog.po.User;
 import com.example.blog.vo.ResponseVO;
+import com.example.blog.vo.UserDisplayVO;
 import com.example.blog.vo.UserForm;
 import com.example.blog.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,15 @@ public class UserController {
     @PostMapping("/{id}/userInfo/update")
     public ResponseVO updateUserInfo(@RequestBody UserVO userVO,@PathVariable Integer id){
         return userService.updateUserInfo(id,userVO.getEmail(),userVO.getUsername(),userVO.getUserImg(),userVO.getPassword(),userVO.getSelf_introduction());
+    }
+
+    @GetMapping("/{id}/getUserDisplay")
+    public ResponseVO getUserDisplay(@PathVariable Integer id){
+        UserDisplayVO userDisplay = userService.getUserDisplay(id);
+        if(userDisplay==null){
+            return ResponseVO.buildFailure(ACCOUNT_NOT_EXIST);
+        }
+        return ResponseVO.buildSuccess(userDisplay);
     }
 
 }
