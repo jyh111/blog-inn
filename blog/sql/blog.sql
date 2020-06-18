@@ -1,6 +1,14 @@
 SET NAMES utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `User`(
+DROP TABLE IF EXISTS `Favor`;
+DROP TABLE IF EXISTS `Message`;
+DROP TABLE IF EXISTS `Comment`;
+DROP TABLE IF EXISTS `BlogFolder`;
+DROP TABLE IF EXISTS `favorfolder`;
+DROP TABLE IF EXISTS `Blog`;
+DROP TABLE IF EXISTS `User`;
+
+CREATE TABLE `User`(
     `userId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `email` VARCHAR(64) NOT NULL,
     `username` VARCHAR(16) NOT NULL,
@@ -9,47 +17,54 @@ CREATE TABLE IF NOT EXISTS `User`(
     `self_introduction` VARCHAR(1024) DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `Blog`(
+
+CREATE TABLE `Blog`(
     `blogId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `writer` INTEGER,
     `page_view` INTEGER DEFAULT 0,
     `classification` VARCHAR(64) DEFAULT '',
     `content` VARCHAR(8192) DEFAULT NULL,
     `title` VARCHAR(64) DEFAULT NULL,
-    CONSTRAINT user_ref FOREIGN KEY(`writer`) REFERENCES `User`(userId)
+    CONSTRAINT user_ref_from_blog FOREIGN KEY(`writer`) REFERENCES `User`(userId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE  IF NOT EXISTS `FavorFolder`(
+
+CREATE TABLE `FavorFolder`(
     `userId` INTEGER,
     `folder_name` VARCHAR(64) DEFAULT '',
-    CONSTRAINT user_ref FOREIGN KEY (`userId`) REFERENCES `User`(userId) ON UPDATE CASCADE
+    CONSTRAINT user_ref_from_favorFolder FOREIGN KEY (`userId`) REFERENCES `User`(userId)
 )ENGINE = InnoDB DEFAULT CHARSET =utf8mb4;
 
-CREATE TABLE  IF NOT EXISTS `BlogFolder`(
+
+CREATE TABLE `BlogFolder`(
          `userId` INTEGER,
         `folder_name` VARCHAR(64) DEFAULT '',
-        CONSTRAINT user_ref FOREIGN KEY (`userId`) REFERENCES `User`(userId) ON UPDATE CASCADE
+        CONSTRAINT user_ref_from_blogFolder FOREIGN KEY (`userId`) REFERENCES `User`(userId)
 )ENGINE = InnoDB DEFAULT CHARSET =utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `Favor`(
+
+CREATE TABLE `Favor`(
     `userId` INTEGER,
     `blogId` INTEGER,
     `classification` VARCHAR(64) DEFAULT '',
-    PRIMARY KEY (`userId`,`blogId`)
+    CONSTRAINT user_ref_from_favor FOREIGN KEY (`userId`) REFERENCES `User`(userId),
+    CONSTRAINT blog_ref_from_favor FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `Comment`(
+
+CREATE TABLE `Comment`(
     `commentId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `blogId` INTEGER,
     `content` VARCHAR(1024) DEFAULT NULL,
     `reviewer` INTEGER,
     `recipient` INTEGER,
-    CONSTRAINT blog_ref FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
+    CONSTRAINT blog_ref_from_comment FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `Message`(
+
+CREATE TABLE `Message`(
     `commentId` INTEGER,
     `sender` INTEGER,
     `recipient` INTEGER,
-    CONSTRAINT comment_ref FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId)
+    CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

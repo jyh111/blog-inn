@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.UserMapper">
     <insert id="registerAccount" parameterType="com.example.blog.po.User" useGeneratedKeys="true" keyProperty="userId">
-        insert into `User`(email,username,userImg,password,self_introduction)
+        insert into `user`(email,username,userImg,password,self_introduction)
         values(#{email},#{username},#{userImg},#{password},#{self_introduction})
     </insert>
     <select id="getAccountByEmail" resultMap="User">
-        select * from `User` where email=#{email}
+        select * from `user` where email=#{email}
     </select>
     <select id="getUserInfo" resultMap="User">
-        select * from `User` where userId=#{userId}
+        select * from `user` where userId=#{userId}
     </select>
     <update id="updateUserInfo">
-        update `User` set email=#{email},username=#{username},userImg=#{userImg},password=#{password},self_introduction=#{self_introduction}
+        update `user` set email=#{email},username=#{username},userImg=#{userImg},password=#{password},self_introduction=#{self_introduction}
         where userId=#{userId}
     </update>
 
