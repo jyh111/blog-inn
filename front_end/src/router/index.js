@@ -4,13 +4,14 @@ import MyBlog from '@/views/blogs/MyBlog'
 import SearchBlog from '@/views/blogs/SearchBlog'
 import BlogList from '@/views/blogs/BlogList'
 import DisplayBlog from '@/views/blogs/DisplayBlog'
+import Login from '@/views/Login'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
 		path:'/',
-		redirect:'/displayBlog'
+		redirect:'/login'
     },
 	// {
 	// 	path:'/myBlog',
@@ -34,6 +35,11 @@ export default new Router({
 		path:'/displayBlog',
 		name:'DisplayBlog',
 		component:DisplayBlog
+	},
+	{
+		path:'/login',
+		name:'Login',
+		component:Login
 	}
   ]
 })

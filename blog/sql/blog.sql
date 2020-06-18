@@ -1,5 +1,4 @@
 SET NAMES utf8mb4;
-
 DROP TABLE IF EXISTS `Favor`;
 DROP TABLE IF EXISTS `Message`;
 DROP TABLE IF EXISTS `Comment`;
@@ -17,6 +16,7 @@ CREATE TABLE `User`(
     `self_introduction` VARCHAR(1024) DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `User` VALUES (1,'111@qq.com','测试一号','','123456','hello')
 
 CREATE TABLE `Blog`(
     `blogId` INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -27,7 +27,6 @@ CREATE TABLE `Blog`(
     `title` VARCHAR(64) DEFAULT NULL,
     CONSTRAINT user_ref_from_blog FOREIGN KEY(`writer`) REFERENCES `User`(userId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 CREATE TABLE `FavorFolder`(
     `userId` INTEGER,

@@ -80,10 +80,11 @@ const user = {
         login: async ({ dispatch, commit }, userData) => {
             const res = await loginAPI(userData)
             if(res){
-                setToken(res.id)
-                commit('set_userId', res.id)
-                dispatch('getUserInfo')
-                router.push('/hotel/hotelList')
+				console.log('登录成功')
+                // setToken(res.id)
+                // commit('set_userId', res.id)
+                // dispatch('getUserInfo')
+                // router.push('/hotel/hotelList')
             }
         },
         register: async({ commit }, data) => {

@@ -2,11 +2,10 @@
 	<div>
 	    <h2>博客登陆界面</h2>
 	
-	    <input type="text" placeholder="请输入用户名" v-model="username" />
-	
+	    <input type="email" placeholder="请输入邮箱" v-model="email" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />
-	    <button v-on:click="login">登录</button>
-	
+	    <button v-on:click="loginHandler">登录</button>
+		
 	    <p>
 	      <router-link to="/b">没有账号？马上注册</router-link>
 	    </p>
@@ -17,6 +16,32 @@
 </template>
 
 <script>
+	import { mapGetters, mapMutations, mapActions } from 'vuex'
+	export default{
+		name:'Login',
+		data(){
+			return{
+				email:'',
+				password:''
+			}
+		},
+		computed:{
+			...mapGetters([
+				
+			])
+		},
+		methods:{
+			...mapActions([
+				'login'
+			]),
+			loginHandler(){
+				this.login({
+					email:this.email,
+					password:this.password
+				})
+			}
+		}
+	}
 </script>
 
 <style>
