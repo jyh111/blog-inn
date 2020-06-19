@@ -4,7 +4,10 @@
 
     <insert id="putFavor" parameterType="com.example.blog.po.Favor">
         insert into `favor`(userId, blogId, classification)
-        values (#{userId},#{blofId},#{classification})
+        values (#{userId},#{blogId},#{classification})
     </insert>
+    <select id="getFavors">
+        select blogId from `favor` where userId=#{userId} and classification=#{classification}
+    </select>
 
 </mapper>

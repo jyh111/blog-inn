@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface FavorMapper {
 
-    List<Integer> getFavors(int userId,String classification);
+    List<Integer> getFavors(@Param("userId") int userId,@Param("classification") String classification);
 
     void putFavor(Favor favor);
 
