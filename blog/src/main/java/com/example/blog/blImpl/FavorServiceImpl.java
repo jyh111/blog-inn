@@ -1,6 +1,7 @@
 package com.example.blog.blImpl;
 
 import com.example.blog.bl.FavorService;
+import com.example.blog.data.BlogMapper;
 import com.example.blog.data.FavorMapper;
 import com.example.blog.po.Blog;
 import com.example.blog.po.Favor;
@@ -9,6 +10,7 @@ import com.example.blog.vo.FavorVO;
 import com.example.blog.vo.ResponseVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,14 +25,28 @@ public class FavorServiceImpl implements FavorService {
     @Autowired
     FavorMapper favorMapper;
 
+    @Autowired
+    BlogMapper blogMapper;
+
     /*
     返回收藏的文章列表
      */
     @Override
-    public List<BlogInfoVO> getFavorsByUserId(int userId) {
-        List<Favor> favors=favorMapper.getFavorsByUserId(userId);
+    public List<BlogInfoVO> getFavors(int userId,String classification) {
+        List<Integer> blogIdList=favorMapper.getFavors(userId, classification);
+        if(blogIdList==null){
+            return null;
+        }
         List<BlogInfoVO> blogInfoVOS=new ArrayList<>();
-        return null;
+        for(int i:blogIdList){
+            Blog blog=blogMapper.getBlogByBlogId(i);
+            BlogInfoVO blogInfoVO=new BlogInfoVO();
+            blogInfoVO.setBlogId(blog.getBlogId());
+            blogInfoVO.setTitle(blog.getTitle());
+            blogInfoVO.setInFavor(classification);
+            blogInfoVOS.add(blogInfoVO);
+        }
+        return blogInfoVOS;
     }
 
     @Override
@@ -46,25 +62,4 @@ public class FavorServiceImpl implements FavorService {
         return ResponseVO.buildSuccess(PUT_FAVOR_SUCCESS);
     }
 
-    @Override
-    public ResponseVO putFavorFolder(int userId, String folder_name) {
-        try {
-            favorMapper.putFavorFolder(userId,folder_name);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseVO.buildFailure("新建收藏夹失败");
-        }
-        return ResponseVO.buildSuccess("新建收藏夹成功");
-    }
-
-    @Override
-    public ResponseVO deleteFavorFolder(int userId, String folder_name) {
-        try {
-            favorMapper.deleteFavorFolder(userId,folder_name);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseVO.buildFailure("删除收藏夹失败");
-        }
-        return ResponseVO.buildSuccess("删除收藏夹成功");
-    }
 }

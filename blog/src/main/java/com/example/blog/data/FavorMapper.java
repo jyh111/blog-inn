@@ -12,12 +12,8 @@ import java.util.List;
 @Repository
 public interface FavorMapper {
 
-    List<Favor> getFavorsByUserId(int userId);
+    List<Integer> getFavors(int userId,String classification);
 
     void putFavor(Favor favor);
-
-    void putFavorFolder(@Param("userId") int userId,@Param("folder_name") String folder_name);
-
-    void deleteFavorFolder(@Param("userId") int userId,@Param("folder_name") String folder_name);
 
 }

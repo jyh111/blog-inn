@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.blog.data.FavorFolderMapper">
+
+    <select id="getFavorFoldersByUserId">
+        select * from `favorfolder` where userId=#{userId};
+    </select>
+    <insert id="putFavorFolder">
+        insert into `favorfolder`(userId,folder_name)
+        values (#{userId},#{folder_name})
+    </insert>
+    <delete id="deleteFavorFolder">
+        delete from `favorfolder`
+        where userId=#{userId} and folder_name=#{folder_name}
+    </delete>
+
+</mapper>

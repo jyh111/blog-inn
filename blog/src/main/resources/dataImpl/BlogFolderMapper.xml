@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.blog.data.BlogFolderMapper">
+
+    <select id="getBlogFoldersByUserId">
+        select * from `blogfolder` where userId=#{userId};
+    </select>
+    <insert id="putBlogFolder">
+        insert into `blogfolder`(userId,folder_name)
+        values (#{userId},#{folder_name})
+    </insert>
+    <delete id="deleteBlogFolder">
+        delete from `blogfolder`
+        where userId=#{userId} and folder_name=#{folder_name}
+    </delete>
+
+</mapper>

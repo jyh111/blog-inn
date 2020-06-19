@@ -8,12 +8,8 @@ import java.util.List;
 
 public interface FavorService {
 
-    List<BlogInfoVO> getFavorsByUserId(int userId);
+    List<BlogInfoVO> getFavors(int userId,String classification);
 
     ResponseVO putFavor(FavorVO favorVO);
-
-    ResponseVO putFavorFolder(int userId,String folder_name);
-
-    ResponseVO deleteFavorFolder(int userId,String folder_name);
 
 }

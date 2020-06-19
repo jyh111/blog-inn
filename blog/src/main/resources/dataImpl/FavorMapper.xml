@@ -7,14 +7,4 @@
         values (#{userId},#{blofId},#{classification})
     </insert>
 
-    <insert id="putFavorFolder">
-        insert into `favorfolder`(userId,folder_name)
-        values (#{userId},#{folder_name})
-    </insert>
-
-    <delete id="deleteFavorFolder">
-        delete from `favorfolder`
-        where userId=#{userId} and folder_name=#{folder_name}
-    </delete>
-
 </mapper>

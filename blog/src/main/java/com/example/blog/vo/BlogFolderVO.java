@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SearchRecordVO {
-
-    private Integer userId;
-
-    private String query;
+public class BlogFolderVO {
+    Integer userId;
+    String folder_name;
 }
