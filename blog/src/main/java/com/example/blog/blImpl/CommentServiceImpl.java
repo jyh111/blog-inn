@@ -5,7 +5,6 @@ import com.example.blog.data.CommentMapper;
 import com.example.blog.po.Comment;
 import com.example.blog.vo.CommentVO;
 import com.example.blog.vo.ResponseVO;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public ResponseVO putComment(CommentVO commentVO) {
         Comment comment=new Comment();
-        BeanUtils.copyProperties(commentVO,comment);
+        comment.setBlogId(commentVO.getBlogId());
+        comment.setCommentId(commentVO.getCommentId());
+        comment.setContent(commentVO.getContent());
+        comment.setReviewer(commentVO.getReviewer().getUserId());
+        comment.setRecipient(commentVO.getRecipient().getUserId());
         try{
             commentMapper.putComment(comment);
         }catch (Exception e){
