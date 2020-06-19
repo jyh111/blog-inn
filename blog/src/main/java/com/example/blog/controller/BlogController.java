@@ -27,13 +27,14 @@ public class BlogController {
 
     @GetMapping("/{blogId}/detail")
     public ResponseVO getBlogByBlogId(@PathVariable Integer blogId){
-        Blog blog=blogService.getBlogByBlogId(blogId);
-        return ResponseVO.buildSuccess(blog);
+        /*Blog blog=blogService.getBlogByBlogId(blogId);
+        return ResponseVO.buildSuccess(blog);*/
+        return null;
     }
 
     @PostMapping("/query")
     public ResponseVO getBlogsByQuery(@RequestBody SearchRecordVO searchRecordVO){
-        List<Blog> blogs=blogService.getBlogsByQuery(searchRecordVO.getQuery());
+        /*List<Blog> blogs=blogService.getBlogsByQuery(searchRecordVO.getQuery());
         if(blogs.isEmpty()){
             return ResponseVO.buildFailure(QUERY_FAILED);
         }
@@ -45,7 +46,8 @@ public class BlogController {
             blogInfoVO.setTitle(blog.getTitle());
             blogInfos.add(blogInfoVO);
         }
-        return ResponseVO.buildSuccess(blogInfos);
+        return ResponseVO.buildSuccess(blogInfos);*/
+        return null;
     }
 
     @PostMapping("/patchBlogContent")
