@@ -12,4 +12,6 @@ public interface FavorService {
 
     ResponseVO putFavor(FavorVO favorVO);
 
+    String inFavor(int userId,int blogId);
+
 }

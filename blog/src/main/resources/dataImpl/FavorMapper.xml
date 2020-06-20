@@ -9,5 +9,8 @@
     <select id="getFavors">
         select blogId from `favor` where userId=#{userId} and classification=#{classification}
     </select>
+    <select id="inFavor">
+        select classification from `favor` where userId=#{userId} and blogId=#{blogId}
+    </select>
 
 </mapper>

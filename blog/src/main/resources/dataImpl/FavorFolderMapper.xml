@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.FavorFolderMapper">
 
-    <select id="getFavorFoldersByUserId">
+    <select id="getFavorFoldersByUserId" resultMap="Folder">
         select * from `favorfolder` where userId=#{userId};
     </select>
     <insert id="putFavorFolder">
@@ -13,5 +13,10 @@
         delete from `favorfolder`
         where userId=#{userId} and folder_name=#{folder_name}
     </delete>
+
+    <resultMap id="Folder" type="com.example.blog.po.FavorFolder">
+        <result column="userId" property="userId"></result>
+        <result column="folder_name" property="folder_name"></result>
+    </resultMap>
 
 </mapper>

@@ -34,9 +34,6 @@ public class FavorServiceImpl implements FavorService {
     @Override
     public List<BlogInfoVO> getFavors(int userId,String classification) {
         List<Integer> blogIdList=favorMapper.getFavors(userId, classification);
-        if(blogIdList==null){
-            return null;
-        }
         List<BlogInfoVO> blogInfoVOS=new ArrayList<>();
         for(int i:blogIdList){
             Blog blog=blogMapper.getBlogByBlogId(i);
@@ -60,6 +57,16 @@ public class FavorServiceImpl implements FavorService {
             return ResponseVO.buildFailure(PUT_FAVOR_FAILURE);
         }
         return ResponseVO.buildSuccess(PUT_FAVOR_SUCCESS);
+    }
+
+    // String为"null"表示未被收藏，为""表示在默认收藏夹。
+    @Override
+    public String inFavor(int userId, int blogId) {
+        String ans=favorMapper.inFavor(userId, blogId);
+        if(ans==null){
+            ans="null";
+        }
+        return ans;
     }
 
 }
