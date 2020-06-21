@@ -3,7 +3,9 @@
 	  <input type="text" placeholder="请输入您的邮箱" v-model="email" />
 	  <input type="text" placeholder="请输入用户名" v-model="username" />
 	  <input type="password" placeholder="请输入密码" v-model="password" />
-
+    <input type="password" placeholder="确认密码" v-model="password2" />
+    <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert>
+    <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">注册</div>
 	  <button v-on:click="register">注册</button>
 
 	  <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
@@ -18,6 +20,7 @@
   	import { mapGetters, mapMutations, mapActions } from 'vuex'
     export default{
     	name:'register',
+      fullscreenLoading: false,//全屏loading
     	data(){
     		return{
           username:'',
@@ -27,7 +30,7 @@
     	},
     	computed:{
     		...mapGetters([
-    
+
     		])
     	},
     	methods:{
