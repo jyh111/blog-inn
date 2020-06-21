@@ -1,11 +1,24 @@
 <!-- blog列表 -->
 <template>
 	<div>
-		<h2>我是博客列表</h2>
+		<a-list item-layout="horizontal"></a-list>
 	</div>
 </template>
 
 <script>
+import { mapGetters, mapMutations, mapActions } from 'vuex'
+	
+export default{
+	name:'BlogList',
+	data(){
+		return{
+			
+		}
+	},
+	computed:{
+		
+	}
+}
 </script>
 
 <style>

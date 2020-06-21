@@ -1,6 +1,6 @@
 <template>
 	<div>
-	    <h2>博客登陆界面</h2>
+	    <h2>博客登录界面</h2>
 	
 	    <input type="email" placeholder="请输入邮箱" v-model="email" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />

@@ -4,15 +4,19 @@ const api = {
 };
 
 // 得到完整的blogVO
-export function getBlogByBlogIdAPI(param) {
+// 如果用户未登录,userId=0  
+// blogId, userId
+export function getBlogByIdAPI(params) {
     return axios({
-        url: `${api.blog}/${param.blogId}/detail`,
+        url: `${api.blog}/detail`,
         method: 'GET',
+		params
     })
 }
 
 // POST 搜索文章, 传入一个字符串(搜索内容)
 // data.query, data.userId
+// 如果用户未登录,userId=0
 // 返回值 blogVO[]
 export function getBlogsByQueryAPI(data){
 	return axios({
