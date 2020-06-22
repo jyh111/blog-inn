@@ -3,14 +3,13 @@ const api = {
     blog: '/api/blogs'
 };
 
-// 得到完整的blogVO
-// 如果用户未登录,userId=0  
-// blogId, userId
-export function getBlogByIdAPI(params) {
-    return axios({
-        url: `${api.blog}/detail`,
+
+// 得到完整的blogVO,传入userId, 如果用户未登录,userId=0
+export function getBlogByBlogIdAPI(param) {
+  return axios({
+        url: `${api.blog}/${param.blogId}/detail`,
         method: 'GET',
-		params
+		param
     })
 }
 
@@ -26,13 +25,13 @@ export function getBlogsByQueryAPI(data){
 	})
 }
 
-// POST 更新文章内容
-// data.blogId data.content
-export function patchBlogContentAPI(data) {
+// GET    更新文章内容
+// param.blogId param.content param.title
+export function patchBlogContentAPI(param) {
     return axios({
-        url: `${api.blog}/patchBlogContent`,
-        method: 'POST',
-        data
+        url: `${api.blog}/patchBlogContent/${param.blogId}`,
+        method: 'GET',
+        param
     })
 }
 
@@ -64,20 +63,12 @@ export function patchBlogPageviewAPI(param){
 }
 
 
-// GET 查看用户文章 UserId:Integer
-export function getBlogsByUserIDAPI(param){
-	return axios({
-		url:`${api.blog}/viewBlogs/${param.blogID}`,
-		method:'GET'
-	})
-}
-
 // POST 添加文章分类
 // 分类 data.classification 博客ID data.blogId
-export function patchBlogClassification(data){
+export function patchBlogClassificationAPI(data){
 	return axios({
 		url:`${api.blog}/patchBlogClassification`,
-		method:'POST',
+		method:'GET',
 		data
 	})
 }

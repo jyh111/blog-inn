@@ -8,7 +8,7 @@ import lombok.Setter;
 public class BlogVO {
     private Integer blogId;
     private Integer writerId;
-    //""表示没有收藏，"default"表示收藏后没有手动添加别的分类，"自定义类别"表示收藏后添加到了自定义的收藏夹里
+    //"null"表示没有收藏，""表示收藏后没有手动添加别的分类，"自定义类别"表示收藏后添加到了自定义的收藏夹里
     private String inFavor="";
     private Integer page_view;
     private String content;

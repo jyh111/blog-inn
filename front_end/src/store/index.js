@@ -14,7 +14,8 @@ export default new Vuex.Store({
     user,
     comment,
     favor,
-	message
+	message,
+	blogFolder
   },
   state: {
   },

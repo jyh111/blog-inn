@@ -2,4 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.BlogMapper">
 
+    <select id="getBlogsByFolder" resultMap="Blog">
+        select * from `blog` where writerId=#{writerId} and classification=#{classification}
+    </select>
+
+    <select id="getBlogsByQuery" resultMap="Blog">
+        select * from `blog` where title=#{title}
+    </select>
+
+    <select id="getBlogByBlogId" resultMap="Blog">
+        select * from `blog` where blogId=#{blogId}
+    </select>
+
+    <update id="patchBlogContent">
+        update `blog` set title=#{title},content=#{content}
+        where blogId=#{blogId}
+    </update>
+
+    <insert id="putBlog" parameterType="com.example.blog.po.Blog" useGeneratedKeys="true" keyProperty="blogId">
+        insert into `blog`(writerId, page_view, classification, content, title)
+        values (#{writerId},#{page_view},#{classification},#{content},#{title})
+    </insert>
+
+    <delete id="deleteBlogByID">
+        delete from `blog` where blogId=#{blogId}
+    </delete>
+
+    <update id="patchBlogPageview">
+        update `blog` set page_view=page_view+1 where blogId=#{blogId}
+    </update>
+
+    <update id="patchBlogClassification">
+        update `blog` set classification=#{classification}
+        where blogId=#{blogId}
+    </update>
+
+
+    <resultMap id="Blog" type="com.example.blog.po.Blog">
+        <id column="blogId" property="blogId"></id>
+        <result column="writerId" property="writerId"></result>
+        <result column="page_view" property="page_view"></result>
+        <result column="classification" property="classification"></result>
+        <result column="content" property="content"></result>
+        <result column="title" property="title"></result>
+    </resultMap>
+
 </mapper>

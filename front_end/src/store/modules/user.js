@@ -109,9 +109,9 @@ const user = {
               })
             })
         },
-		getUserDisplay({ state, commit }) {
+		getUserDisplay({ state, commit },userId) {
 		    return new Promise((resolve, reject) => {
-		      getUserDisplayAPI(state.userInfo.userId).then(response => {
+		      getUserDisplayAPI(userId).then(response => {
 		        const data = response
 				commit('set_userDisplay',data)
 		      }).catch(error => {

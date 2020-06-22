@@ -1,7 +1,7 @@
 package com.example.blog.controller;
 
 import com.example.blog.bl.BlogService;
-import com.example.blog.bl.CommentService;
+import com.example.blog.bl.FavorService;
 import com.example.blog.po.Blog;
 import com.example.blog.vo.BlogInfoVO;
 import com.example.blog.vo.BlogVO;
@@ -18,60 +18,71 @@ import java.util.List;
 public class BlogController {
 
     private static final String QUERY_FAILED = "";
+    private static final String BLOG_NOT_EXIST = "文章不存在";
 
     @Autowired
     BlogService blogService;
 
     @Autowired
-    CommentService commentService;
+    FavorService favorService;
 
+    // 未登录状态userId为0
     @GetMapping("/{blogId}/detail")
-    public ResponseVO getBlogByBlogId(@PathVariable Integer blogId){
-        /*Blog blog=blogService.getBlogByBlogId(blogId);
-        return ResponseVO.buildSuccess(blog);*/
-        return null;
+    public ResponseVO getBlogByBlogId(@RequestParam Integer userId,@PathVariable Integer blogId){
+        Blog blog=blogService.getBlogByBlogId(blogId);
+        if(blog==null){
+            return ResponseVO.buildFailure(BLOG_NOT_EXIST);
+        }
+        BlogVO blogVO=new BlogVO();
+        blogVO.setBlogId(blog.getBlogId());
+        blogVO.setClassification(blog.getClassification());
+        blogVO.setContent(blog.getContent());
+        blogVO.setTitle(blog.getTitle());
+        blogVO.setWriterId(blog.getWriterId());
+        blogVO.setPage_view(blog.getPage_view());
+        blogVO.setInFavor(favorService.inFavor(userId,blog.getBlogId()));
+        return ResponseVO.buildSuccess(blogVO);
     }
 
     @PostMapping("/query")
     public ResponseVO getBlogsByQuery(@RequestBody SearchRecordVO searchRecordVO){
-        /*List<Blog> blogs=blogService.getBlogsByQuery(searchRecordVO.getQuery());
-        if(blogs.isEmpty()){
-            return ResponseVO.buildFailure(QUERY_FAILED);
-        }
-        List<BlogInfoVO> blogInfos=new ArrayList<>(blogs.size());
-        for(int i=0;i<blogs.size();++i){
+        List<Blog> blogs=blogService.getBlogsByQuery(searchRecordVO.getQuery());
+        List<BlogInfoVO> blogInfos=new ArrayList<>();
+        for(Blog blog:blogs){
             BlogInfoVO blogInfoVO=new BlogInfoVO();
-            Blog blog=blogs.get(i);
             blogInfoVO.setBlogId(blog.getBlogId());
             blogInfoVO.setTitle(blog.getTitle());
+            //用户处于未登录状态，则前端返回的userId为0
+            int i=searchRecordVO.getUserId();
+            if(i==0)blogInfoVO.setInFavor("null");
+            else blogInfoVO.setInFavor(favorService.inFavor(searchRecordVO.getUserId(),blog.getBlogId()));
             blogInfos.add(blogInfoVO);
         }
-        return ResponseVO.buildSuccess(blogInfos);*/
-        return null;
+        return ResponseVO.buildSuccess(blogInfos);
     }
 
-    @PostMapping("/patchBlogContent")
-    public ResponseVO patchBlogContent(@RequestParam Integer blogID,@RequestParam String content){
-        return ResponseVO.buildFailure("");
+    @GetMapping("/patchBlogContent/{blogId}")
+    public ResponseVO patchBlogContent(@RequestParam String content,@RequestParam String title,@PathVariable Integer blogId){
+        return blogService.patchBlogContent(content, title, blogId);
     }
 
     @PostMapping("/putBlog")
     public ResponseVO putBlog(@RequestBody BlogVO blogVO){
-        return ResponseVO.buildFailure("");
+        return blogService.putBlog(blogVO);
     }
 
     @GetMapping("/{blogID}/delete")
     public ResponseVO deleteBlogByID(@PathVariable Integer blogID){
-        return ResponseVO.buildFailure("");
+        return blogService.deleteBlogByID(blogID);
     }
 
-    @GetMapping("/viewBlogs/{blogID}")
+    @GetMapping("/{blogID}/patchBlogPageviewAPI")
     public ResponseVO patchBlogPageview(@PathVariable Integer blogID){
-        return ResponseVO.buildFailure("");
+        return blogService.patchBlogPageview(blogID);
     }
 
-    @PostMapping("/patchBlogClassification")
+    @GetMapping("/patchBlogClassification")
     public ResponseVO patchBlogClassification(@RequestParam String classification,@RequestParam Integer blogID){
-        return ResponseVO.buildFailure("");
+        return blogService.patchBlogClassification(classification,blogID);
     }
 }

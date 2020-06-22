@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.BlogFolderMapper">
 
-    <select id="getBlogFoldersByUserId">
+    <select id="getBlogFoldersByUserId" resultMap="Folder">
         select * from `blogfolder` where userId=#{userId};
     </select>
     <insert id="putBlogFolder">
@@ -13,5 +13,10 @@
         delete from `blogfolder`
         where userId=#{userId} and folder_name=#{folder_name}
     </delete>
+
+    <resultMap id="Folder" type="com.example.blog.po.BlogFolder">
+        <result column="userId" property="userId"></result>
+        <result column="folder_name" property="folder_name"></result>
+    </resultMap>
 
 </mapper>

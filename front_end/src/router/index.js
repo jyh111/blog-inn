@@ -32,7 +32,7 @@ export default new Router({
 		component:BlogList
 	},
 	{
-		path:'/displayBlog',
+		path:'/:blogId/displayBlog',
 		name:'DisplayBlog',
 		component:DisplayBlog
 	},
@@ -40,6 +40,11 @@ export default new Router({
 		path:'/login',
 		name:'Login',
 		component:Login
+	},
+	{
+		path:'/:blogId/editBlog',
+		name:'EditBlog',
+		component:EditBlog
 	}
   ]
 })

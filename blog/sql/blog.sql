@@ -25,12 +25,12 @@ INSERT INTO `User` VALUES (1,'111@qq.com','测试一号','','123456','hello');
 
 CREATE TABLE `Blog`(
     `blogId` INTEGER PRIMARY KEY AUTO_INCREMENT,
-    `writer` INTEGER,
+    `writerId` INTEGER,
     `page_view` INTEGER DEFAULT 0,
     `classification` VARCHAR(64) DEFAULT '',
     `content` VARCHAR(8192) DEFAULT NULL,
     `title` VARCHAR(64) DEFAULT NULL,
-    CONSTRAINT user_ref_from_blog FOREIGN KEY(`writer`) REFERENCES `User`(userId)
+    CONSTRAINT user_ref_from_blog FOREIGN KEY(`writerId`) REFERENCES `User`(userId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `FavorFolder`(
