@@ -6,7 +6,7 @@
     <input type="password" placeholder="确认密码" v-model="password2" />
     <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert>
     <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">注册</div>
-	  <button v-on:click="register">注册</button>
+	  <button v-on:click="register">注&nbsp;&nbsp;册</button>
 
 	  <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
 	  <p>

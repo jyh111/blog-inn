@@ -4,7 +4,7 @@
 
 	    <input type="email" placeholder="请输入邮箱" v-model="email" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />
-	    <button v-on:click="loginHandler">登录</button>
+	    <button v-on:click="loginHandler">登&nbsp;&nbsp;录</button>
 
 	    <p>
 	      <router-link to="/register">没有账号？马上注册</router-link>
