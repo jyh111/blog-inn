@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.MessageMapper">
+    <insert id="addMessage" parameterType="com.example.blog.po.Message" useGeneratedKeys="true" keyProperty="messageId">
+        insert into `Message`(commentId,sender,recipient)
+        values (#{commentId},#{sender},#{recipient})
+    </insert>
+
+    <select id="getMessageByUserID" resultMap="Message">
+        select * from `Message` where messageId=#{messageId}
+    </select>
+
+    <resultMap id="Message" type="com.example.blog.po.Message">
+        <id column="messageId" property="messageId"></id>
+        <result column="commentId" property="commentId"></result>
+        <result column="sender" property="sender"></result>
+        <result column="recipient" property="recipient"></result>
+    </resultMap>
 
 </mapper>
