@@ -1,8 +1,10 @@
 <!-- 写文章界面 -->
 <template>
+	<div>
 	<a-input v-model="title"></a-input>
-	<a-textarea value="content" :rows="10" />
+	<a-textarea :value="content" :rows="10" />
 	<a-button type="primary" @click="submit">提交</a-button>
+	</div>
 </template>
 
 <script>
@@ -23,10 +25,10 @@
 			])
 		},
 		methods:{
-			...mapActions({
+			...mapActions([
 				'writeBlog',
 				
-			}),
+			]),
 			submit(){
 				this.writeBlog({
 					title:this.title,

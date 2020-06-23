@@ -12,8 +12,9 @@ import {
 
 const getDefaultState = () => {
     return {
+		token:'',
         userInfo: {
-			userId: '',
+			userId: 0,
 			email:'',
 			username:'',
 			userImg:'',
@@ -24,7 +25,7 @@ const getDefaultState = () => {
 			userId:'',
 			username:'',
 			userImg:''
-		}
+		},
     }
 }
 
@@ -32,7 +33,7 @@ const user = {
     state : {
 		token: '',
 		userInfo: {
-			userId: '',
+			userId: 0,
 			email:'',
 			username:'',
 			userImg:'',
@@ -40,7 +41,7 @@ const user = {
 			self_introduction:''
 		},
 		userDisplay:{
-			userId:'',
+			userId:0,
 			username:'',
 			userImg:''
 		}
@@ -50,9 +51,9 @@ const user = {
         reset_state: function(state) {
             state.token = '',
             state.userInfo = {
-				userId:'',
+				userId:0,
                 username:'',
-				userimg:''
+				userImg:''
             },
             state.userOrderList = []
         },

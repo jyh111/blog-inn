@@ -81,14 +81,15 @@ const blog = {
 					userID:'',
 				})
 			}
+			console.log(res)
 			// this.$router.push({name:'DisplayBlog'})
-			this.$router.push('/blogList')
+			this.$router.push({name:'BlogList'})
 		},
 
 		writeBlog:async({state,commit,dispatch},data)=>{
 			commit('set_blogParams',{
 				blogId:0,
-				writerId:state.userInfo.userId,
+				writerId:state.userInfo['userId'],
 				content:data.content,
 				pageView:0,
 				title:data.title,

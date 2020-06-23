@@ -18,7 +18,7 @@ export default{
 			title:blogParams.title
 		}
 	},
-	mounted:{
+	mounted:function(){
 		getBlogByBlogId(this.$route.query.blogId)
 	},
 	computed:{
@@ -31,10 +31,10 @@ export default{
 			this.content = this.blogParams.content,
 			this.title = this.blogParams.title
 		},
-		...mapActions({
+		...mapActions([
 			'updateBlog',
 			'getBlogByBlogId'
-		}),
+		]),
 		submit(){
 			this.updateBlog({
 				blogId:this.blogParams.blogId,

@@ -5,6 +5,9 @@ import SearchBlog from '@/views/blogs/SearchBlog'
 import BlogList from '@/views/blogs/BlogList'
 import DisplayBlog from '@/views/blogs/DisplayBlog'
 import Login from '@/views/Login'
+import EditBlog from '@/views/blogs/EditBlog'
+import Register from '@/views/Register'
+import WriteBlog from '@/views/blogs/WriteBlog'
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +48,16 @@ export default new Router({
 		path:'/:blogId/editBlog',
 		name:'EditBlog',
 		component:EditBlog
-	}
+	},
+  {
+    path:'/register',
+    name:'Register',
+    component:Register
+  },
+  {
+	  path:'/:userId/writeBlog',
+	  name:'WriteBlog',
+	  component:WriteBlog
+  }
   ]
 })

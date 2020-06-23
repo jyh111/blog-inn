@@ -1,17 +1,14 @@
 <template>
 	<div>
-	    <h2>博客登录界面</h2>
-	
 	    <input type="email" placeholder="请输入邮箱" v-model="email" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />
-	    <button v-on:click="loginHandler">登录</button>
-		
+	    <button v-on:click="loginHandler">登&nbsp;&nbsp;录</button>
+
 	    <p>
-	      <router-link to="/b">没有账号？马上注册</router-link>
+	      <router-link to="/register">没有账号？马上注册</router-link>
 	    </p>
 	    <!-- <p v-on:click="ToRegister">没有账号？马上注册</p> -->
 	    <br />
-	    <!-- <router-link to="/">返回</router-link> -->
 	  </div>
 </template>
 
@@ -27,7 +24,7 @@
 		},
 		computed:{
 			...mapGetters([
-				
+				'userInfo'
 			])
 		},
 		methods:{
@@ -39,6 +36,7 @@
 					email:this.email,
 					password:this.password
 				})
+				this.$router.push({name:'SearchBlog'})
 			}
 		}
 	}
@@ -66,12 +64,12 @@
 	  padding: 10px;
 	  box-sizing: border-box;
 	}
-	
+
 	p {
 	  color: red;
 	  text-align: center;
 	}
-	
+
 	button {
 	  display: block;
 	  width: 250px;
@@ -84,11 +82,11 @@
 	  font-size: 16px;
 	  margin-bottom: 5px;
 	}
-	
+
 	span {
 	  cursor: pointer;
 	}
-	
+
 	span:hover {
 	  color: #41b883;
 	}
