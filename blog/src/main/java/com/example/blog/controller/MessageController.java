@@ -21,6 +21,7 @@ public class MessageController {
 	@Autowired
 	UserService userService;
 
+
 	@GetMapping("/{userID}/getMessages")
 	public ResponseVO getMessageByUserID(@PathVariable Integer userID) {
 		List<Message> messageList = messageService.getMessageByUserID(userID);
@@ -34,7 +35,7 @@ public class MessageController {
 	}
 
 	@PostMapping("/addMessage")
-	public ResponseVO addMessage() {
-		return null;
+	public ResponseVO addMessage(MessageVO messageVO) {
+		return messageService.addMessage(messageVO);
 	}
 }

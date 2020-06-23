@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MessageMapper {
-	public List<Message> getMessageByUserID(int userId);
+	List<Message> getMessageByUserID(int userId);
 
+	int addMessage(Message message);
 }
