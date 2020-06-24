@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/api/blogs")
 public class BlogController {
 
-    private static final String QUERY_FAILED = "";
     private static final String BLOG_NOT_EXIST = "文章不存在";
 
     @Autowired
