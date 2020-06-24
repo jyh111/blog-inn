@@ -1,7 +1,5 @@
 <template>
 	<div>
-	    <h2>博客登录界面</h2>
-
 	    <input type="email" placeholder="请输入邮箱" v-model="email" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />
 	    <button v-on:click="loginHandler">登&nbsp;&nbsp;录</button>
@@ -26,7 +24,7 @@
 		},
 		computed:{
 			...mapGetters([
-
+				'userInfo'
 			])
 		},
 		methods:{
@@ -38,6 +36,7 @@
 					email:this.email,
 					password:this.password
 				})
+				this.$router.push({name:'SearchBlog'})
 			}
 		}
 	}

@@ -16,7 +16,11 @@ const getters = {
 	commentParams:state=>state.comment.commentParams,
 	blogId:state=>state.comment.blogId,
 	//message
-	msgList:state=>state.message.msgList
+	msgList:state=>state.message.msgList,
+	//blogFolder
+	blogListInFolder:state=>state.blogFolder.blogListInFolder,
+	blogFolders:state=>state.blogFolder.blogFolders,
+	blogFolderParams:state=>state.blogFolder.blogFolders
   }
   
   export default getters

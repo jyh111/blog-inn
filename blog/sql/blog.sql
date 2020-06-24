@@ -22,7 +22,7 @@ CREATE TABLE `User`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `User` VALUES (1,'111@qq.com','测试一号','','123456','hello');
-
+INSERT INTO `User` VALUES (2,'222@qq.com','测试二号','','123456','hello');
 CREATE TABLE `Blog`(
     `blogId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `writerId` INTEGER,
@@ -33,6 +33,7 @@ CREATE TABLE `Blog`(
     CONSTRAINT user_ref_from_blog FOREIGN KEY(`writerId`) REFERENCES `User`(userId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `Blog` VALUES (1,1,0,'','abac','test');
 CREATE TABLE `FavorFolder`(
     `userId` INTEGER,
     `folder_name` VARCHAR(64) DEFAULT '',
@@ -54,6 +55,7 @@ CREATE TABLE `Favor`(
     CONSTRAINT user_ref_from_favor FOREIGN KEY (`userId`) REFERENCES `User`(userId),
     CONSTRAINT blog_ref_from_favor FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 
 CREATE TABLE `Comment`(

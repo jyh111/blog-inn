@@ -12,6 +12,9 @@
 </template>
 
 <script>
+	import Vue from 'Vue'
+	import Vuex from 'vuex'
+	Vue.use(Vuex)
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
 		name:'SearchBlog',
@@ -43,14 +46,16 @@
 				'getBlogListByQuery',
 				'getBlogList',
 			]),
-			onSearch(value){
+			onSearch:(value)=>{
 				console.log('searching')
-				this.set_queryParams({
+				console.log(this.$store)
+				this.$store.commit('set_queryParams',{
 					keyword:value,
-					userID:this.userInfo.userId
+					userId:1
 				})
 				this.getBlogListByQuery()
-				// this.$router.push('/blogList')
+				this.$router.push({name:'BlogList'})
+				// this.$router.push({name:'SearchBlog'})
 			}
 		}
 	}

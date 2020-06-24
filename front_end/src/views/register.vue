@@ -1,4 +1,5 @@
 <template>
+	<div>
 	<h2>注册界面</h2>
 	  <input type="text" placeholder="请输入您的邮箱" v-model="email" />
 	  <input type="text" placeholder="请输入用户名" v-model="username" />
@@ -19,7 +20,7 @@
 <script>
   	import { mapGetters, mapMutations, mapActions } from 'vuex'
     export default{
-    	name:'register',
+    	name:'Register',
       fullscreenLoading: false,//全屏loading
     	data(){
     		return{
@@ -30,7 +31,7 @@
     	},
     	computed:{
     		...mapGetters([
-
+				'userInfo'
     		])
     	},
     	methods:{
@@ -43,6 +44,7 @@
     				email:this.email,
     				password:this.password
     			})
+				this.$route.push({name:'Login'})
     		}
     	}
     }

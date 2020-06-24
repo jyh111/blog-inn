@@ -6,9 +6,14 @@ import {
 	putBlogAPI,
 	deleteBlogByIDAPI,
 	patchBlogPageviewAPI,
-	getBlogsByUserIDAPI,
 	patchBlogClassification
 } from '@/api/blog.js'
+import {
+	getBlogFoldersByUserIdAPI,
+	getBlogsByFolderAPI,
+	putBlogFolderAPI,
+	deleteBlogFolderAPI
+} from '@/api/blogFolder.js'
 import { message } from 'ant-design-vue'
 
 const blog = {
@@ -22,8 +27,8 @@ const blog = {
 		blogParams:{
 			blogID:'',
 			writerId:'',
+			title:'',
 			content:'',
-			commentList:[],
 			pageView:0,
 			isInFavor:false,
 			classification:''
@@ -76,30 +81,60 @@ const blog = {
 					userID:'',
 				})
 			}
+			console.log(res)
 			// this.$router.push({name:'DisplayBlog'})
-			this.$router.push('/blogList')
+			this.$router.push({name:'BlogList'})
 		},
-		writeBlog:async({state,commit,dispatch})=>{
+
+		writeBlog:async({state,commit,dispatch},data)=>{
+			commit('set_blogParams',{
+				blogId:0,
+				writerId:state.userInfo['userId'],
+				content:data.content,
+				pageView:0,
+				title:data.title,
+				isInFavor:false,
+				classification:'null'
+			})
 			const res = await putBlogAPI(state.blogParams)
 			if(res){
 				commit('set_blogParams',{
 					blogID:'',
 					writerID:'',
 					content:'',
-					commentList:[],
 					pageView:0,
+					title:'',
 					isInFavor:false,
-					classification:''
+					classification:'null'
 				})
 				message.success('发布成功')
 				dispatch('getBlogList')
 				this.$router.push({name:'MyBlog'})
 			}
 		},
-		getBlogList:async({state, commit, dispatch})=>{
-			const res = await getBlogsByUserIDAPI(state.userId)
+		
+		getBlogByBlogId:async({state,commit,dispatch},blogId)=>{
+			const res = await getBlogByBlogIdAPI({
+				blogId:blogId,
+				userId:state.userInfo.userId
+			})
 			if(res){
-				commit('set_blogList',res)
+				commit('set_blogParams',res)
+			}else{
+				console.log('获取文章失败')
+			}
+		},
+		
+		updateBlog:async({state,commit,dispatch},data)=>{
+			const res = await patchBlogContentAPI({
+				blogId:data.blogId,
+				content:data.content,
+				title:data.title
+			})
+			if(res){
+				getBlogByBlogIdAPI(data.blogId)
+			}else{
+				console.log('更新文章失败')
 			}
 		}
     }

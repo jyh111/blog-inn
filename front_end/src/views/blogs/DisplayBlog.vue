@@ -1,7 +1,11 @@
 <!-- 具体文章界面, 评论和回复功能 -->
 <template>
 	<div>
-		<h1>我是具体文章</h1>
+		<a-avatar size="small" :src="userDisplay.userImg"/>
+		<span>{{userDisplay.username}}</span>
+		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'"></a-icon>
+		<p>{{blogParams.content}}</p>
+		<span>浏览量:{{blogParams.pageView}}</span>
 		<Comment></Comment>
 	</div>
 </template>
@@ -9,15 +13,32 @@
 <script>
 	import Vue from 'vue'
 	import Comment from '@/views/comments/Comment'
+	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
 		name:'DisplayBlog',
 		data(){
 			return {
-				
+
 			}
 		},
 		components:{
 			Comment,
+		},
+		mounted:function() {
+			getBlogByBlogId(this.$route.query.blogId)
+		},
+		computed:{
+			...mapGetters([
+				'blogParams',
+				'userDisplay',
+				'pageView'
+			])
+		},
+		methods:{
+			...mapActions([
+				'getBlogByBlogId',
+				
+			])
 		}
 	}
 	// 第一种方式

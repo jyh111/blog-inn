@@ -3,17 +3,19 @@ const api = {
     blog: '/api/blogs'
 };
 
-// 得到完整的blogVO,传入userId
+
+// 得到完整的blogVO,传入userId, 如果用户未登录,userId=0
 export function getBlogByBlogIdAPI(param) {
   return axios({
         url: `${api.blog}/${param.blogId}/detail`,
         method: 'GET',
-		    param
+		param
     })
 }
 
 // POST 搜索文章, 传入一个字符串(搜索内容)
 // data.query, data.userId
+// 如果用户未登录,userId=0
 // 返回值 blogVO[]
 export function getBlogsByQueryAPI(data){
 	return axios({
@@ -63,7 +65,7 @@ export function patchBlogPageviewAPI(param){
 
 // POST 添加文章分类
 // 分类 data.classification 博客ID data.blogId
-export function patchBlogClassification(data){
+export function patchBlogClassificationAPI(data){
 	return axios({
 		url:`${api.blog}/patchBlogClassification`,
 		method:'GET',
