@@ -1,14 +1,12 @@
 <template>
 	<div>
 	<h2>注册界面</h2>
-	  <input type="text" placeholder="请输入您的邮箱" v-model="email" />
-	  <input type="text" placeholder="请输入用户名" v-model="username" />
-	  <input type="password" placeholder="请输入密码" v-model="password" />
-    <input type="password" placeholder="确认密码" v-model="password2" />
+	  <a-input class="input" type="text" placeholder="请输入您的邮箱" v-model="email" />
+	  <a-input class="input" type="text" placeholder="请输入用户名" v-model="username" />
+	  <a-input class="input" type="password" placeholder="请输入密码" v-model="password" />
+    <a-input class="input" type="password" placeholder="确认密码" v-model="password2" />
     <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert>
-    <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">注册</div>
 	  <button v-on:click="register">注&nbsp;&nbsp;册</button>
-
 	  <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
 	  <p>
 	    <router-link to="/login">已有账号？马上登录</router-link>
@@ -24,9 +22,11 @@
       fullscreenLoading: false,//全屏loading
     	data(){
     		return{
-          username:'',
+				username:'',
     			email:'',
-    			password:''
+    			password:'',
+				password2:'',
+				npassword2Err:false,
     		}
     	},
     	computed:{
@@ -39,8 +39,13 @@
     			'register'
     		]),
     		RegisterHandler(){
+				if(this.password!=this.password2){
+					this.npassword2Err = true
+				}else{
+					this.npassword2Err = false
+				}
     			this.register({
-            username:this.name,
+					username:this.name,
     				email:this.email,
     				password:this.password
     			})
@@ -61,7 +66,7 @@
 	span {
 	  text-align: center;
 	}
-	input {
+	.input {
 	  display: block;
 	  width: 250px;
 	  height: 40px;

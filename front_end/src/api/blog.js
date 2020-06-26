@@ -46,9 +46,9 @@ export function putBlogAPI(data){
 
 
 // 删除blog BlogId:Integer
-export function deleteBlogByIDAPI(param){
+export function deleteBlogByIDAPI(blogId){
 	return axios({
-		url:`${api.blog}/${param.blogID}/delete`,
+		url:`${api.blog}/${blogId}/delete`,
 		method:'GET'
 	})
 }

@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-	<Header></Header>
-    <router-view/>
+	 <div class="header">
+		<Header></Header>
+	</div>
+	<div id="content">
+		<router-view/>
+	</div>
   </div>
 </template>
 
@@ -22,6 +26,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0 auto;
+}
+.header{
+	width: 100%;
+	margin-top: 5px;
+	margin-right: 10px;
+	position: fixed;
+}
+#content{
+
 }
 </style>

@@ -20,7 +20,11 @@ const getters = {
 	//blogFolder
 	blogListInFolder:state=>state.blogFolder.blogListInFolder,
 	blogFolders:state=>state.blogFolder.blogFolders,
-	blogFolderParams:state=>state.blogFolder.blogFolders
+	blogFolderParams:state=>state.blogFolder.blogFolders,
+	//favor
+	addFavorVisble:state=>state.favor.addFavorVisble,
+	favorFolders:state=>state.favor.favorFolders,
+	favorFolderParam:state=>state.favor.favorFolderParam
   }
   
   export default getters

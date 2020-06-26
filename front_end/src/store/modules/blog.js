@@ -83,7 +83,6 @@ const blog = {
 			}
 			console.log(res)
 			// this.$router.push({name:'DisplayBlog'})
-			this.$router.push({name:'BlogList'})
 		},
 
 		writeBlog:async({state,commit,dispatch},data)=>{
@@ -132,9 +131,20 @@ const blog = {
 				title:data.title
 			})
 			if(res){
-				getBlogByBlogIdAPI(data.blogId)
+				dispatch('getBlogByBlogId',data.blogId)
 			}else{
+				message.error('删除文章失败')
 				console.log('更新文章失败')
+			}
+		},
+		
+		deleteBlog:async({state,commit,dispatch},blogId)=>{
+			const res = await deleteBlogByIDAPI(blogId)
+			if(res){
+				dispatch('getBlogByBlogId',blogId)
+			}else{
+				message.error('删除文章失败')
+				console.log('删除文章失败')
 			}
 		}
     }

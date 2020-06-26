@@ -3,6 +3,14 @@
 </template>
 
 <script>
+	export default{
+		name:"MyMessage",
+		data(){
+			return {
+				
+			}
+		}
+	}
 </script>
 
 <style>

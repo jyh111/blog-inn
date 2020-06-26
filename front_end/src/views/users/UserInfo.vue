@@ -89,14 +89,13 @@
 
 <script>
   import header from '../../components/Header.vue';
-  import UserIcon from "UserIcon.vue";
+  import UserIcon from "@/views/users/UserIcon.vue";
   import { mapGetters, mapMutations, mapActions } from 'vuex';
   export default {
-    name: "userInfo",
+    name: "UserInfo",
     data() { //选项 / 数据
       return {
         isEdit: false,
-        userInfo:'',//本地用户信息
         userInfoObj:'',//用户的信息
       };
     },
@@ -109,7 +108,7 @@
       
     },
     components: {
-      'userIcon':UserIcon,
+      UserIcon
     },
     computed:{
   	  ...mapGetters([

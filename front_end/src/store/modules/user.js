@@ -54,9 +54,8 @@ const user = {
 				userId:0,
                 username:'',
 				userImg:''
-            },
-            state.userOrderList = []
-        },
+            }
+       },
         set_token: function(state, token){
             state.token = token
         },
@@ -114,6 +113,7 @@ const user = {
 		    return new Promise((resolve, reject) => {
 		      getUserDisplayAPI(userId).then(response => {
 		        const data = response
+				console.log(data)
 				commit('set_userDisplay',data)
 		      }).catch(error => {
 		        console.log("获取userDisplay失败")

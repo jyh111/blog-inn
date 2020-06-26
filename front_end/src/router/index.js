@@ -8,6 +8,7 @@ import Login from '@/views/Login'
 import EditBlog from '@/views/blogs/EditBlog'
 import Register from '@/views/Register'
 import WriteBlog from '@/views/blogs/WriteBlog'
+import UserInfo from '@/views/users/UserInfo'
 Vue.use(Router)
 
 export default new Router({
@@ -58,6 +59,16 @@ export default new Router({
 	  path:'/:userId/writeBlog',
 	  name:'WriteBlog',
 	  component:WriteBlog
-  }
+  },
+  {
+	  path:'/:userId/userInfo',
+	  name:'UserInfo',
+	  component:UserInfo
+  },
+  {
+	  path:'/:writerId/myBlog',
+	  name:'MyBlog',
+	  component:MyBlog
+  },
   ]
 })

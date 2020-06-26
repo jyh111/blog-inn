@@ -92,6 +92,12 @@ const blogFolder = {
 					folder_name:data.folder_name
 				})
 			}
+		},
+		deleteBlogFolder:async({state,commit,dispatch},folder_name)=>{
+			const res = await deleteBlogFolderAPI({
+				userId:state.userInfo.userId,
+				folder_name:folder_name
+			})
 		}
 
 	}
