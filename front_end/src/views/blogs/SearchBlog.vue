@@ -1,14 +1,16 @@
 <!-- 搜索文章界面,显示文章列表 -->
 <template>
-	<div>
-		<a-input-search
-		      placeholder="input search text"
-		      enter-button="Search"
-		      size="large"
-		      @search="onSearch"
-			  class="search"
-		    />
-	</div>
+  <div class="al">
+	  <div>
+	  	<a-input-search
+	  	      placeholder="input search text"
+	  	      enter-button="Search"
+	  	      size="large"
+	  	      @search="onSearch"
+	  		    class="search"
+	  	    />
+	  </div>
+  </div>
 </template>
 
 <script>
@@ -20,7 +22,7 @@
 		name:'SearchBlog',
 		data(){
 				return{
-					
+
 				}
 			},
 		computed:{
@@ -67,4 +69,12 @@
 		border-radius: 15px;
 		width: 40%;
 	}
+ .al{
+   background-image: url("../../../static/image/search.jpg");
+   background-attachment: fixed;
+   background-repeat:no-repeat;
+   background-size:cover;
+   width:100%;
+ }
+
 </style>

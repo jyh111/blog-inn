@@ -8,9 +8,11 @@
 	    <input type="password" placeholder="请输入密码" v-model="password" />
 	    <input type="password" placeholder="确认密码" v-model="password2" />
 	    <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert>
-	    <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">注册</div>
-	    <button v-on:click="register">注&nbsp;&nbsp;册</button>
-	
+	    <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">
+        <button v-on:click="register">注&nbsp;&nbsp;册</button>
+      </div>
+
+
 	    <!-- <p v-on:click="ToLogin">已有账号？马上登录</p> -->
 	    <p>
 	      <router-link to="/login">已有账号？马上登录</router-link>
@@ -64,7 +66,7 @@
 	.login-wrap {
 	  text-align: center;
 	}
-	
+
 	h1 {
 	  text-align: center;
 	}
@@ -83,12 +85,12 @@
 	  padding: 10px;
 	  box-sizing: border-box;
 	}
-	
+
 	p {
 	  color: red;
 	  text-align: center;
 	}
-	
+
 	button {
 	  display: block;
 	  width: 250px;
@@ -101,11 +103,11 @@
 	  font-size: 16px;
 	  margin-bottom: 5px;
 	}
-	
+
 	span {
 	  cursor: pointer;
 	}
-	
+
 	span:hover {
 	  color: #41b883;
 	}
@@ -116,8 +118,7 @@
 	  text-align: center;
 	}
 	.all{
-	  background-image: url("../../static/image/back.png");
-	  background-attachment: fixed;
+	  background-image: url("../../static/image/back.jpg");
 	  background-repeat:no-repeat;
 	  background-size:cover
 	}

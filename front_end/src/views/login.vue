@@ -102,7 +102,7 @@
 	  text-align: center;    
 	}
 	.all{
-	  background-image: url("../../static/image/back.png");
+	  background-image: url("../../static/image/back.jpg");
 	  background-attachment: fixed;
 	  background-repeat:no-repeat;
 	  background-size:cover
