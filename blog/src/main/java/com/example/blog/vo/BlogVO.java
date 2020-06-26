@@ -14,4 +14,14 @@ public class BlogVO {
     private String content;
     private String title;
     private String classification;
+
+    public String toString(){
+        return "blogId: "+blogId+"/n"+
+                "writerId: "+writerId+"/n"+
+                "inFavor "+inFavor+"/n"+
+                "page_view "+page_view+"/n"+
+                "classification"+classification+"/n"+
+                "title: "+title+"/n"+
+                "content: "+content;
+    }
 }
