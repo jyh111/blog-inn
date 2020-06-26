@@ -8,6 +8,12 @@
 				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
 			</a-list-item>
 		</a-list>
+		<a-list item-layout="horizontal" :data-source="blogListWithoutFolder">
+		<a-list-item slot="renderItem" slot-scope="item, index">
+	        <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
+			<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
+	    </a-list-item>
+		</a-list>
 	</div>
 </template>
 
@@ -22,11 +28,20 @@ Vue.prototype.$axios = axios
 			return {
 				currentIndex:-1,
 				blogList:[],
-				circleType:'up-circle'
+				circleType:'up-circle',
+				blogListWithoutFolder:[]
 			}
 		},
 		created:()=>{
-			
+			this.getBlogFoldersByUserId(this.userInfo.userId)
+			this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
+				userId:this.userInfo.userId,
+				classification:''
+			}).then(res=>{
+				this.blogListWithoutFolder =res
+			}).catch(Error=>{
+				console.log(Error)
+			})
 		},
 		mounted:()=>{
 			
@@ -34,7 +49,8 @@ Vue.prototype.$axios = axios
 		computed:{
 			...mapGetters([
 				'blogFolders',
-				'userInfo'
+				'userInfo',
+				'getBlogFoldersByUserId'
 			])
 		},
 		methods:{
@@ -42,7 +58,7 @@ Vue.prototype.$axios = axios
 				'deleteBlog'
 			]),
 			showBlogs:(folder_name, index)=>{
-				this.blogList = this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
+				this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
 					// writerId userId classification
 					userId:this.userInfo.userId,
 					classification:folder_name

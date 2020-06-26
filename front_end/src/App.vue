@@ -29,9 +29,9 @@ export default {
   margin: 0 auto;
 }
 .header{
-	width: 100%;
+	/* width: 100%; */
 	margin-top: 5px;
-	margin-right: 10px;
+	margin-right: 0px;
 	position: fixed;
 }
 #content{

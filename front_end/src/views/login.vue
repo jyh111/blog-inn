@@ -29,13 +29,15 @@
 		},
 		methods:{
 			...mapActions([
-				'login'
+				'login',
+				'getUserInfo'
 			]),
 			loginHandler(){
 				this.login({
 					email:this.email,
 					password:this.password
 				})
+				this.getUserInfo()
 				this.$router.push({name:'SearchBlog'})
 			}
 		}
