@@ -1,15 +1,17 @@
 import store from '@/store'
 import { message } from 'ant-design-vue'
 import {
-	putFavorAPI
+	putFavorAPI,
+	getFavorsAPI
 } from '@/api/favor.js'
 import{
 	getFavorFoldersByUserIdAPI,
 	putFavorFolderAPI,
-	getFavorsByUserIdAPI
+	deleteFavorFolderAPI
 }from '@/api/favorFolder.js'
 const favor = {
 	state:{
+		putFavorBlogId:0,
 		addFavorVisble:false,
 		favorFolders:[],
 		favorFolderParam:{
@@ -29,6 +31,9 @@ const favor = {
 				...state.favorFolderParam,
 				...data
 			}
+		},
+		set_putFavorBlogId:function(state,data){
+			state.putFavorBlogId = data
 		}
 	},
 	actions:{
@@ -38,7 +43,7 @@ const favor = {
 				folder_name:folder_name
 			})
 			if(res){
-				dispatch(getFavorFoldersByUserId)
+				dispatch('getFavorFoldersByUserId')
 			}else{
 				message.error('新建收藏夹失败')
 				console.log('新建收藏夹失败')
@@ -51,7 +56,25 @@ const favor = {
 			}else{
 				console.log('获取收藏夹列表失败')
 			}
-		}
+		},
+		deleteFavorFolder:async({state,commit,dispatch},folder_name)=>{
+			const res = await deleteFavorFolderAPI({
+				userId:state.userInfo.userId,
+				folder_name:folder_name
+			})
+			if(res){
+				dispatch('getFavorFoldersByUserId')
+			}else{
+				console.log('删除收藏夹失败')
+			}
+		},
+		putFavor:async({state,commit,dispatch},classification)=>{
+			const res = await putFavorAPI({
+				userId:state.userInfo.userId,
+				classification:classification,
+				blogId:state.putFavorBlogId
+			})
+		},
 	}
 }
 export default favor

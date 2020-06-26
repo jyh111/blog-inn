@@ -9,6 +9,7 @@ import EditBlog from '@/views/blogs/EditBlog'
 import Register from '@/views/Register'
 import WriteBlog from '@/views/blogs/WriteBlog'
 import UserInfo from '@/views/users/UserInfo'
+import MyMessage from '@/views/users/MyMessage'
 Vue.use(Router)
 
 export default new Router({
@@ -70,5 +71,10 @@ export default new Router({
 	  name:'MyBlog',
 	  component:MyBlog
   },
+  {
+	  path:'/:userId/myMessage',
+	  name:'MyMessage',
+	  component:MyMessage
+  }
   ]
 })

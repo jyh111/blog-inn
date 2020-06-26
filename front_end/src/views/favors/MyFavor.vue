@@ -1,22 +1,48 @@
 <!-- 收藏详情界面 功能: 删文章, 改分类-->
 <template>
 	<div>
-		<a-list v-for="(item, index) in blogFolders" :key="index">
+		<a-list v-for="(item, index) in favorFolders" :key="index">
+			<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
+			{{item.folder_name}}
 			<a-icon :type="index==currentIndex?'up-circle':'down-circle'" @click="showBlogs(item.folder_name, index)" />
-			<a-list-item v-for="(item,index) in blogList" :key="index" v-if="index==currentIndex"></a-list-item>
+			<a-list-item v-for="(item,index) in blogList" :key="index" v-if="index==currentIndex">
+				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
+				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
+			</a-list-item>
+		</a-list>
+		<a-list item-layout="horizontal" :data-source="blogListWithoutFolder">
+		<a-list-item slot="renderItem" slot-scope="item, index">
+		    <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
+			<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
+		</a-list-item>
 		</a-list>
 	</div>
 </template>
 
 <script>
-	import { mapGetters, mapMutations, mapActions } from 'vuex'
+import Vue from 'vue'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { axios } from '@/utils/request.js'
+Vue.prototype.$axios = axios
 	export default{
 		name:"MyFavor",
 		data(){
 			return {
 				blogList:[],
-				currentIndex:-1
+				currentIndex:-1,
+				blogListWithoutFolder:[]
 			}
+		},
+		created: () => {
+			this.getFavorFoldersByUserId()
+			this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
+				userId:this.userInfo.userId,
+				classfication:""
+			}).then(res=>{
+				this.blogListWithoutFolder = res
+			}).catch(Error=>{
+				console.log('获取默认收藏文章失败')
+			})
 		},
 		computed:{
 			...mapGetters([
@@ -25,8 +51,27 @@
 			])
 		},
 		methods:{
+			...mapActions([
+				'getFavorFoldersByUserId',
+				'deleteFavorFolder'
+			]),
 			showBlogs:(folder_name, index)=>{
+				this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
+					userId:this.userInfo.userId,
+					classfication:folder_name
+				}).then(res=>{
+					this.blogList = res
+					this.currentIndex = index
+				}).catch(Error=>{
+					console.log('获取收藏夹列表失败')
+				})
+			},
+			deleteBlogHandler:(blogId)=>{
+				this.deleteBlog(blogId)
 				
+			},
+			deleteFavorFolderHandler:(folder_name)=>{
+				this.deleteFavorFolder(folder_name)
 			}
 		}
 	}

@@ -18,6 +18,7 @@ import { message } from 'ant-design-vue'
 
 const blog = {
     state: {
+		putFavorBlogId:0,
 		blogList:[],
 		blogListParams:{
 			pageNo:0,
@@ -25,8 +26,8 @@ const blog = {
 		},
 		blogListLoading:true,
 		blogParams:{
-			blogID:'',
-			writerId:'',
+			blogID:0,
+			writerId:0,
 			title:'',
 			content:'',
 			pageView:0,
@@ -68,8 +69,10 @@ const blog = {
 				...state.queryParams,
 				...data
 			}
+		},
+		set_putFavorBlogId:function(state,data){
+			state.putFavorBlogId = data
 		}
-		
     },
     actions: {
 		getBlogListByQuery:async({state,commit,dispatch})=>{

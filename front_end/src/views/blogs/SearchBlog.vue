@@ -46,12 +46,12 @@
 				'getBlogListByQuery',
 				'getBlogList',
 			]),
+
 			onSearch:(value)=>{
 				console.log('searching')
-				console.log(this.$store)
-				this.$store.commit('set_queryParams',{
+				this.set_queryParams({
 					keyword:value,
-					userId:1
+					userId:this.userInfo.userId
 				})
 				this.getBlogListByQuery()
 				this.$router.push({name:'BlogList'})

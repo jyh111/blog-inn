@@ -13,6 +13,7 @@ public class MessageVO {
     private UserDisplayVO sender;
     private UserDisplayVO recipient;
     private Integer blogId;
+    private String content;
     private Integer commentId;
     private Integer messageId;
 
