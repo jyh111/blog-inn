@@ -1,6 +1,7 @@
 <!-- 修改文章界面 -->
 <template>
-	<div>
+	<div >
+		<Header></Header>
 		<a-input v-model="title"></a-input>
 		<a-textarea value="content" :rows="10" />
 		<a-button type="danger" @click="reset">重置</a-button>
@@ -10,6 +11,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+  import Header from '../../components/Header.vue';
 export default{
 	name:'EditBlog',
 	data(){
@@ -18,13 +20,16 @@ export default{
 			title:blogParams.title
 		}
 	},
-	mounted:function(){
+	created(){
 		getBlogByBlogId(this.$route.query.blogId)
 	},
 	computed:{
 		...mapGetters([
 			'blogParams',
 		])
+	},
+	components:{
+		Header
 	},
 	methods:{
 		reset(){

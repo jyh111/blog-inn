@@ -1,6 +1,8 @@
 <!-- 搜索文章界面,显示文章列表 -->
 <template>
-  <div class="al">
+	<div>
+	<Header></Header>
+  <div class="al" >
 	  <div>
 	  	<a-input-search
 	  	      placeholder="input search text"
@@ -11,12 +13,14 @@
 	  	    />
 	  </div>
   </div>
+  </div>
 </template>
 
 <script>
 	import Vue from 'Vue'
 	import Vuex from 'vuex'
 	Vue.use(Vuex)
+	  import Header from '../../components/Header.vue'
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
 		name:'SearchBlog',
@@ -35,6 +39,13 @@
 				'userInfo'
 			])
 		},
+		created(){
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
+			console.log(this.userInfo)
+		},
+		components:{
+			Header
+		},
 		methods:{
 			...mapMutations([
 				'set_blogList',
@@ -42,7 +53,8 @@
 				'set_pageView',
 				'set_blogListParams',
 				'set_blogParams',
-				'set_queryParams'
+				'set_queryParams',
+				'set_userInfo'
 			]),
 			...mapActions([
 				'getBlogListByQuery',
@@ -51,9 +63,15 @@
 
 			onSearch:(value)=>{
 				console.log('searching')
+				var userId = 0
+				if(typeof(this.userInfo)=="undefined"){
+					userId = 0
+				}else{
+					userId = this.userInfo.userId
+				}
 				this.set_queryParams({
 					keyword:value,
-					userId:this.userInfo.userId
+					userId:userId
 				})
 				this.getBlogListByQuery()
 				this.$router.push({name:'BlogList'})
@@ -66,11 +84,10 @@
 <style>
 	.search{
 		padding-top: 150px;
-		border-radius: 15px;
 		width: 40%;
+		margin-top: 150px;
 	}
  .al{
-   background-image: url("../../../static/image/search.jpg");
    background-attachment: fixed;
    background-repeat:no-repeat;
    background-size:cover;

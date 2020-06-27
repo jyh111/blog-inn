@@ -45,9 +45,16 @@ export default {
 		  'userDisplay'
 	  ])
   },
+  created() {
+  	this.set_userInfo(sessionStorage.getItem('userInfo'))
+  },
   methods: {
 	...mapActions([
-		'addComment'
+		'addComment',
+		'addMesage'
+	]),
+	...mapMutations([
+		'set_userInfo'
 	]),
     handleSubmit() {
       if (!this.content) {

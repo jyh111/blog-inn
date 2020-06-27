@@ -1,8 +1,8 @@
 <!-- 头部组件 -->
 <template>
 	<div>
-		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin">写文章</router-link>
-		<UserIcon :userInfo="userInfo"></UserIcon>
+		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin"><span class="writeIcon">写文章</span></router-link>
+		<UserIcon></UserIcon>
 	</div>
 </template>
 
@@ -13,20 +13,16 @@
 		name:'Header',
 		data(){
 			return{
-				isLogin:false
+
 			}
 		},
 		computed:{
 			...mapGetters([
-				'userInfo'
+				'userInfo',
+				'isLogin'
 			])
 		},
 		created:()=>{
-			if(typeof(this.userInfo)=="undefined" || this.userInfo.userId==0){
-				this.isLogin = false
-			}else{
-				this.isLogin = true
-			}
 		},
 		methods:{
 			...mapActions([
@@ -40,5 +36,9 @@
 </script>
 
 <style>
-
+span.writeIcon{
+	background-color: #00ffff;
+	color: #FFFFFF;
+	padding: 5px;
+}
 </style>

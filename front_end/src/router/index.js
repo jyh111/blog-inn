@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 import MyBlog from '@/views/blogs/MyBlog'
 import SearchBlog from '@/views/blogs/SearchBlog'
 import BlogList from '@/views/blogs/BlogList'
@@ -10,18 +11,20 @@ import Register from '@/views/Register'
 import WriteBlog from '@/views/blogs/WriteBlog'
 import UserInfo from '@/views/users/UserInfo'
 import MyMessage from '@/views/users/MyMessage'
+import MyFavor from '@/views/favors/MyFavor'
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
 		path:'/',
-		redirect:'/SearchBlog'
+		redirect:'/searchBlog'
     },
-	// {
-	// 	path:'/myBlog',
-	// 	component:MyBlog,
-	// 	name:'MyBlog',
+	{
+		path:'/myBlog',
+		component:MyBlog,
+		name:'MyBlog'
+	},
 	// 	children:[
 	// 		path:'/:blogID'
 	// 	]
@@ -75,6 +78,12 @@ export default new Router({
 	  path:'/:userId/myMessage',
 	  name:'MyMessage',
 	  component:MyMessage
+  },
+  {
+	  path:'/:userId/MyFavor',
+	  name:'MyFavor',
+	  component:MyFavor
   }
   ]
 })
+export default router

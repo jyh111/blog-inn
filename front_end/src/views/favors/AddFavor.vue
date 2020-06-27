@@ -28,8 +28,8 @@
 				isCreateNewFolder:false
 			}
 		},
-		created: () => {
-			
+		created() {
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
 		computed:{
 			...mapGetters([
@@ -46,6 +46,7 @@
 			]),
 			...mapMutations([
 				'set_addFavorVisble',
+				'set_userInfo'
 			]),
 			deleteFavorFolderHandler:(folder_name)=>{
 				this.deleteFavorFolder(folder_name)

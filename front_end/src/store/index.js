@@ -12,11 +12,11 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     blog,
+	blogFolder,
     user,
     comment,
     favor,
 	message,
-	blogFolder
   },
   state: {
   },

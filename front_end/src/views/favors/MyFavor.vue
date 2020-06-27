@@ -1,6 +1,7 @@
 <!-- 收藏详情界面 功能: 删文章, 改分类-->
 <template>
 	<div>
+		<Header></Header>
 		<a-list v-for="(item, index) in favorFolders" :key="index">
 			<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
 			{{item.folder_name}}
@@ -21,6 +22,7 @@
 
 <script>
 import Vue from 'vue'
+  import Header from '../../components/Header.vue';
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { axios } from '@/utils/request.js'
 Vue.prototype.$axios = axios
@@ -33,7 +35,10 @@ Vue.prototype.$axios = axios
 				blogListWithoutFolder:[]
 			}
 		},
-		created: () => {
+		created() {
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
+		},
+		mounted () {
 			this.getFavorFoldersByUserId()
 			this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
 				userId:this.userInfo.userId,
@@ -50,10 +55,16 @@ Vue.prototype.$axios = axios
 				'userInfo'
 			])
 		},
+		components:{
+			Header
+		},
 		methods:{
 			...mapActions([
 				'getFavorFoldersByUserId',
 				'deleteFavorFolder'
+			]),
+			...mapMutations([
+				'set_userInfo'
 			]),
 			showBlogs:(folder_name, index)=>{
 				this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{

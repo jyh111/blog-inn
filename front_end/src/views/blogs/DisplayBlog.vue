@@ -1,6 +1,7 @@
 <!-- 具体文章界面, 评论和回复功能 -->
 <template>
-	<div>
+	<div >
+		<Header></Header>
 		<a-avatar size="small" :src="userDisplay.userImg"/>
 		<span>{{userDisplay.username}}</span>
 		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'"></a-icon>
@@ -13,6 +14,7 @@
 <script>
 	import Vue from 'vue'
 	import Comment from '@/views/comments/Comment'
+	  import Header from '../../components/Header.vue';
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
 		name:'DisplayBlog',
@@ -24,8 +26,11 @@
 		components:{
 			Comment,
 		},
-		mounted:function() {
+		created:()=> {
 			getBlogByBlogId(this.$route.query.blogId)
+		},
+		created() {
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
 		computed:{
 			...mapGetters([
@@ -34,10 +39,16 @@
 				'pageView'
 			])
 		},
+		components:{
+			Header
+		},
 		methods:{
 			...mapActions([
 				'getBlogByBlogId',
 				
+			]),
+			...mapMutations([
+				'set_userInfo'
 			])
 		}
 	}

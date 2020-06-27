@@ -1,6 +1,7 @@
 <!-- blog列表 -->
 <template>
 	<div>
+		<Header></Header>
 		<a-list item-layout="horizontal" :data-source="blogList">
 			<a-list-item slot="renderItem" slot-scope="item, index">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">
@@ -15,7 +16,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-	
+	  import Header from '../../components/Header.vue';
 export default{
 	name:'BlogList',
 	data(){
@@ -23,9 +24,20 @@ export default{
 			
 		}
 	},
+	created() {
+		this.set_userInfo(sessionStorage.getItem('userInfo'))
+	},
 	computed:{
 		...mapGetters([
 			'blogList'
+		])
+	},
+	components:{
+		Header
+	},
+	methods:{
+		...mapMutations([
+			'set_userInfo'
 		])
 	}
 }
