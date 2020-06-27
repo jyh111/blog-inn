@@ -29,6 +29,8 @@ public class MessageServiceImpl implements MessageService {
 		message.setCommentId(messageVO.getCommentId());
 		message.setSender(messageVO.getSender().getUserId());
 		message.setRecipient(messageVO.getRecipient().getUserId());
+		message.setBlogId(messageVO.getBlogId());
+		message.setContent(messageVO.getContent());
 
 		try {
 			messageMapper.addMessage(message);
