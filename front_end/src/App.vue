@@ -58,7 +58,7 @@ sessionStorage.setItem("store",JSON.stringify(this.$store.state))
 .header{
 	width: 100%;
 	margin-top: 5px;
-	margin-right: 0px;
+	margin-right: 1px;
 	position: fixed;
 }
 #content{
