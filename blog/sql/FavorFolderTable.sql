@@ -1,0 +1,15 @@
+INSERT INTO `FavorFolder` VALUES (1,'喜欢1');
+INSERT INTO `FavorFolder` VALUES (1,'喜欢2');
+INSERT INTO `FavorFolder` VALUES (1,'喜欢3');
+INSERT INTO `FavorFolder` VALUES (2,'喜欢4');
+INSERT INTO `FavorFolder` VALUES (2,'喜欢5');
+INSERT INTO `FavorFolder` VALUES (2,'喜欢6');
+INSERT INTO `FavorFolder` VALUES (3,'喜欢7');
+INSERT INTO `FavorFolder` VALUES (3,'喜欢8');
+INSERT INTO `FavorFolder` VALUES (3,'喜欢9');
+INSERT INTO `FavorFolder` VALUES (4,'喜欢10');
+INSERT INTO `FavorFolder` VALUES (4,'喜欢11');
+INSERT INTO `FavorFolder` VALUES (4,'喜欢12');
+INSERT INTO `FavorFolder` VALUES (5,'喜欢13');
+INSERT INTO `FavorFolder` VALUES (5,'喜欢14');
+INSERT INTO `FavorFolder` VALUES (5,'喜欢15');
