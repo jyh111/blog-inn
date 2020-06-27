@@ -45,7 +45,7 @@ public class BlogController {
 
     @PostMapping("/query")
     public ResponseVO getBlogsByQuery(@RequestBody SearchRecordVO searchRecordVO){
-        List<Blog> blogs=blogService.getBlogsByQuery(searchRecordVO.getQuery());
+        List<Blog> blogs=blogService.getBlogsByQuery(searchRecordVO.getKeyword());
         List<BlogInfoVO> blogInfos=new ArrayList<>();
         for(Blog blog:blogs){
             BlogInfoVO blogInfoVO=new BlogInfoVO();
