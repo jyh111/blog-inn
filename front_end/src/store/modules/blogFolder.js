@@ -54,9 +54,9 @@ const blogFolder = {
 		},
 		getBlogsByFolder:async({state,commit,dispatch},data)=>{
 			const res = await getBlogsByFolderAPI({
+				userId:data.userId,
+				classification:data.classification,
 				writerId:data.writerId,
-				userId:state.userInfo.userId,
-				classification:data.classification
 			})
 			if(res){
 				var j, len, isInList=false;
