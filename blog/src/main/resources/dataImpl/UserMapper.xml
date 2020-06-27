@@ -9,7 +9,7 @@
         select * from `user` where email=#{email}
     </select>
     <select id="getUserInfo" resultMap="User">
-        select * from `user` where userId=#{userId}
+        select * from `user` where userId=#{id}
     </select>
     <update id="updateUserInfo">
         update `user` set email=#{email},username=#{username},userImg=#{userImg},password=#{password},self_introduction=#{self_introduction}
