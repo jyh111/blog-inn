@@ -22,7 +22,7 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
-	name:"CommentArea",
+	name:'CommentArea',
   data() {
     return {
       content: "",
@@ -42,7 +42,7 @@ export default {
   },
   computed:{
 	  ...mapGetters([
-		  'userDisplay'
+		  'userInfo'
 	  ])
   },
   created() {
@@ -64,16 +64,16 @@ export default {
 		  commentId:'',
 		  content:this.content,
 		  reviewer:{
-		  	userId:this.userDisplay.userId,
-		  	username:this.userDisplay.username,
-		  	userimg:this.userDisplay.userImg
+		  	userId:this.userInfo.userId,
+		  	username:this.userInfo.username,
+		  	userimg:this.userInfo.userImg
 		  },
 		  recipient:{
 		  	userId:this.recipientDisplay.userId,
 		  	username:this.recipientDisplay.username,
 		  	userImg:this.recipientDisplay.userImg
 		  },
-		  blogId:''
+		  blogId:this.$route.query.blgoId
 	  })
       // this.submitting = true;
       // insertMsg(this.content, this.parentMsgId, this.$store.state.userId).then(res => {

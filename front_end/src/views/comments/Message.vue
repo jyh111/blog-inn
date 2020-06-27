@@ -1,21 +1,22 @@
 <!-- 主视图 -->
 <template>
 	 <div>
-		 <Header></Header>
 	    <comment-message @handleReply="handleReply" :commentList="commentList"></comment-message>
 	    <comment-area @reload="reload" :commentId="commentId" :recipientDisplay="recipientDisplay"></comment-area>
   </div>
 </template>
 	
 <script>
-	import CommentMessage from "components/common/comment/CommentMessage";
-	import CommentArea from "components/common/comment/CommentArea";
+	import CommentMessage from "@/views/comments/CommentMessage";
+	import CommentArea from "@/views/comments/CommentArea";
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
+		  import Header from '../../components/Header.vue';
 	export default {
 	  name: "Message",
 	  components: {
 	    CommentMessage,
-	    CommentArea
+	    CommentArea,
+		Header
 	  },
 	  data() {
 	    return {
@@ -25,14 +26,11 @@
 		  recipientDisplay:{}
 	    };
 	  },
-	  computed:{
-		  
-	  },
 		created() {
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
-		components:{
-			Header
+		mounted() {
+			this.getCommentListByBlogId(this.$route.query.blogId)
 		},
 	  computed:{
 		  ...mapGetters([
@@ -42,6 +40,10 @@
 	  methods: {
 		  ...mapMutations([
 			  'set_userInfo'
+		  ]),
+		  ...mapActions([
+			  'addMessage',
+			  'getCommentListByBlogId'
 		  ]),
 	    handleReply(data) {
 			this.commentId = data.commentId,

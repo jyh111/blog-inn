@@ -7,13 +7,13 @@
 		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'"></a-icon>
 		<p>{{blogParams.content}}</p>
 		<span>浏览量:{{blogParams.pageView}}</span>
-		<Comment></Comment>
+		<Message></Message>
 	</div>
 </template>
 
 <script>
 	import Vue from 'vue'
-	import Comment from '@/views/comments/Comment'
+	import Message from '@/views/comments/Message'
 	  import Header from '../../components/Header.vue';
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
@@ -24,12 +24,11 @@
 			}
 		},
 		components:{
-			Comment,
-		},
-		created:()=> {
-			getBlogByBlogId(this.$route.query.blogId)
+			Message,
+			Header
 		},
 		created() {
+			getBlogByBlogId(this.$route.query.blogId)
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
 		computed:{
@@ -38,9 +37,6 @@
 				'userDisplay',
 				'pageView'
 			])
-		},
-		components:{
-			Header
 		},
 		methods:{
 			...mapActions([

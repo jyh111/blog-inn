@@ -27,9 +27,13 @@
 		created() {
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
+		mounted() {
+			this.getMsgList(this.userInfo.userId)
+		},
 		computed:{
 			...mapGetters([
-				'msgList'
+				'msgList',
+				'userInfo'
 			]),
 
 		},
@@ -38,7 +42,11 @@
 		},
 		methods:{
 			...mapMutations([
-				'set_userInfo'
+				'set_userInfo',
+
+			]),
+			...mapActions([
+				'getMsgList'
 			])
 		}
 	}
