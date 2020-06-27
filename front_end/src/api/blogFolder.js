@@ -1,12 +1,12 @@
 import { axios } from '@/utils/request.js'
 const api = {
-    blog: '/api/blogs'
+    blog: '/api/blogFolders'
 };
 
 // userId
 export function getBlogFoldersByUserIdAPI(param){
 	return axios({
-		url: `${api.blog}/${param.userId}/getBlogFolders`,
+		url: `${api.blog}/${userId}/getBlogFolders`,
 		method: 'GET',
 		param
 	})
@@ -30,14 +30,14 @@ export function putBlogFolderAPI(data){
 	})
 }
 
-// userId, folder_name, blogId
-export function insertIntoFolderAPI(param){
-	return axios({
-		url:`$(api.blog)/$(param.userId)/insertIntoFolder`,
-		method:'GET',
-		param
-	})
-}
+// // userId, folder_name, blogId
+// export function insertIntoFolderAPI(param){
+// 	return axios({
+// 		url:`$(api.blog)/$(param.userId)/insertIntoFolder`,
+// 		method:'GET',
+// 		param
+// 	})
+// }
 
 // folder_name userId
 export function deleteBlogFolderAPI(param){

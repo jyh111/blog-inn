@@ -33,6 +33,8 @@ const blogFolder = {
 	},
 	actions:{
 		getBlogFoldersByUserId:async({state,commit,dispatch},userId)=>{
+			console.log(userId)
+			console.log('getBlogFoldersByUserId:'+userId)
 			const res = await getBlogFoldersByUserIdAPI(userId)
 			if(res){
 				commit('set_blogFolders',res)
@@ -98,6 +100,11 @@ const blogFolder = {
 				userId:state.userInfo.userId,
 				folder_name:folder_name
 			})
+			if(res){
+				dispatch('getBlogFoldersByUserId',state.userInfo.userId)
+			}else{
+				message.error("删除文件夹失败")
+			}
 		}
 
 	}

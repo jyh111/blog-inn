@@ -37,9 +37,12 @@ Vue.prototype.$axios = axios
 		created(){
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
 			console.log(this.userInfo)
-			console.log(this.userInfo)
+
+		},
+		mounted() {
 			this.getBlogFoldersByUserId(this.userInfo.userId)
-			this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
+			this.$axios.get('/api/blogFolders/'+this.$route.query.userId+'/getBlogsByFolder',{
+				writerId:this.userInfo.userId,
 				userId:this.userInfo.userId,
 				classification:''
 			}).then(res=>{
@@ -55,12 +58,12 @@ Vue.prototype.$axios = axios
 			...mapGetters([
 				'blogFolders',
 				'userInfo',
-				'getBlogFoldersByUserId'
 			])
 		},
 		methods:{
 			...mapActions([
-				'deleteBlog'
+				'deleteBlog',
+				'getBlogFoldersByUserId'
 			]),
 			...mapMutations([
 				'set_userInfo'
