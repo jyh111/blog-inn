@@ -27,7 +27,12 @@
 export default {
   name: "Comment",
   props: {
-    comment: {}
+    comment: {
+		
+	}
+  },
+  created() {
+
   },
   methods: {
     handlReply(commentId, recipientDisplay) {

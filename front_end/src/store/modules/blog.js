@@ -18,7 +18,7 @@ import { message } from 'ant-design-vue'
 
 const blog = {
     state: {
-		putFavorBlogId:0,
+		
 		blogList:[],
 		blogListParams:{
 			pageNo:0,
@@ -70,9 +70,7 @@ const blog = {
 				...data
 			}
 		},
-		set_putFavorBlogId:function(state,data){
-			state.putFavorBlogId = data
-		}
+
     },
     actions: {
 		getBlogListByQuery:async({state,commit,dispatch})=>{
@@ -89,9 +87,10 @@ const blog = {
 		},
 
 		writeBlog:async({state,commit,dispatch},data)=>{
+			console.log(state.userInfo)
 			commit('set_blogParams',{
 				blogId:0,
-				writerId:state.userInfo['userId'],
+				writerId:state.userInfo.userId,
 				content:data.content,
 				pageView:0,
 				title:data.title,

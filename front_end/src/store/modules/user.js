@@ -12,6 +12,7 @@ import {
 
 const getDefaultState = () => {
     return {
+		isLogin:false,
 		token:'',
         userInfo: {
 			userId: 0,
@@ -31,6 +32,7 @@ const getDefaultState = () => {
 
 const user = {
     state : {
+		isLogin:false,
 		token: '',
 		userInfo: {
 			userId: 0,
@@ -71,13 +73,16 @@ const user = {
 				...data
 			}
 		},
+		set_isLogin:(state,data)=>{
+			state.isLogin = data
+		},
         set_userOrderList: (state, data) => {
             state.userOrderList = data
         }
     },
 
     actions: {
-        login: async ({ dispatch, commit }, userData) => {
+        login: async ({ state, dispatch, commit }, userData) => {
 			console.log(userData)
             const res = await loginAPI(userData)
             if(res){
@@ -86,7 +91,14 @@ const user = {
                 // commit('set_userId', res.id)
                 // dispatch('getUserInfo')
                 // router.push('/hotel/hotelList')
+				console.log(res)
+				commit('set_userInfo',res)
+				console.log(state.userInfo)
+				commit('set_isLogin',true)
+				return 1
             }
+			message.error("邮箱或密码错误,请重新输入")
+			return 0
         },
         register: async({ commit }, data) => {
             const res = await registerAPI(data)
@@ -102,7 +114,6 @@ const user = {
                   reject('登录已过期，请重新登录')
                 }
                 commit('set_userInfo', data)
-                commit('set_userId', data.id)
                 resolve(data)
               }).catch(error => {
                 reject(error)

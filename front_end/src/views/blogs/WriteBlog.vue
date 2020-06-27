@@ -1,6 +1,7 @@
 <!-- 写文章界面 -->
 <template>
 	<div>
+		<Header></Header>
 	<a-input v-model="title"></a-input>
 	<a-textarea :value="content" :rows="10" />
 	<a-button type="primary" @click="submit">提交</a-button>
@@ -11,6 +12,7 @@
 	import Vue from 'vue'
 	import Vuex from 'vuex'
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
+	  import Header from '../../components/Header.vue';
 	export default{
 		name:'WriteBlog',
 		data(){
@@ -19,18 +21,29 @@
 				title:''
 			}
 		},
+		created() {
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
+		},
 		computed:{
 			...mapGetters([
-				'blogParams'
+				'blogParams',
+				'userInfo'
 			])
+		},
+		comments:{
+			Header
 		},
 		methods:{
 			...mapActions([
 				'writeBlog',
 				
 			]),
+			...mapMutations([
+				'set_userInfo'
+			]),
 			submit(){
 				this.writeBlog({
+					userId:this.userInfo.userId,
 					title:this.title,
 					content:this.content
 				})

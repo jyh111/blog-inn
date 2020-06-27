@@ -1,25 +1,27 @@
 <!-- 用户头像，下拉框(包含个人信息,我的博客,我的消息,我的收藏)等，在顶部使用 -->
 <template>
-	<div>
+
+	<div class="userIcon">
 	    <router-link :to="{name:'Login'}" v-if="!isLogin">
-			<a-avatar icon="user"></a-avatar>登录
+			<a-avatar icon="user" size="large"></a-avatar>
+			<span class="login">登录</span>
 		</router-link>
 		<a-dropdown v-if="isLogin">
 		    <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-		       <a-avatar :src="userDisplay.userId" />{{userDisplay.username}}
+		       <a-avatar :src="userInfo.userImg" />{{userInfo.username}}
 		    </a>
 		    <a-menu slot="overlay">
 		      <a-menu-item>
-		        <router-link :to="{name:'UserInfo',query:{userId:userDisplay.userId}}">个人信息</router-link>
+		        <router-link :to="{name:'UserInfo',query:{userId:userInfo.userId}}">个人信息</router-link>
 		      </a-menu-item>
 		      <a-menu-item>
-		        <router-link :to="{name:'MyBlog',query:{userId:userDisplay.userId}}">我的博客</router-link>
+		        <router-link :to="{name:'MyBlog',query:{userId:userInfo.userId}}">我的博客</router-link>
 		      </a-menu-item>
 		      <a-menu-item>
-		        <router-link :to="{name:'MyMessage',query:{userId:userDisplay.userId}}">我的消息</router-link>
+		        <router-link :to="{name:'MyMessage',query:{userId:userInfo.userId}}">我的消息</router-link>
 		      </a-menu-item>
 			  <a-menu-item>
-			    <router-link :to="{name:'MyFavor',query:{userId:userDisplay.userId}}">我的收藏</router-link>
+			    <router-link :to="{name:'MyFavor',query:{userId:userInfo.userId}}">我的收藏</router-link>
 			  </a-menu-item>
 		    </a-menu>
 		  </a-dropdown>
@@ -32,7 +34,6 @@
   	name:'UserIcon',
   	data(){
   		return{
-			isLogin:false
         // blognav:[
         //     comp:<a-popover trigger="click">,
         //       <template slot="content">
@@ -41,35 +42,54 @@
         //         <p><a href="MyMessage">我的消息</a></p>
         //         <p><a href="../favors/collect">我的收藏</a></p>
         //   },
-          
+
           // ]
 		}
 	  },
-	  created: () => {
-	  	if(typeof(this.userInfo)=="undefined"|| this.userDisplay.userId==0){
-			this.isLogin = false
-		}else{
-			this.isLogin = true
-		}
+	  watch:{
+		  isLogin(val){
+			  console.log(val)
+		  }
 	  },
-	  props:['userDisplay'],
+		created() {
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
+		},
 	  computed:{
 		  ...mapGetters([
-			  'userInfo'
+			  'userInfo',
+			  'isLogin'
 		  ])
 	  },
 	  methods:{
+		  ...mapMutations([
+			  'set_isLogin',
+			  'set_userInfo'
+		  ]),
 		  ...mapActions([
-			  
+
 		  ]),
 		  handleMenuClick(){
-			  
+
 		  }
 	  },
-  	
-  	
+
+
   }
 </script>
 
 <style>
+	.userIcon{
+		float: right;
+		margin-right: 20px;
+		margin-bottom: 40px;
+	}
+	span.login{
+		font-size: 25px;
+		color: #FFFFFF;
+		background-color: #00ff7f;
+		padding: 10px 5px;
+	}
+  .al{
+    right: auto;
+  }
 </style>

@@ -8,6 +8,7 @@ const getters = {
 	queryParams:state=>state.blog.queryParams,
 	//user
 	token: state => state.user.token,
+	isLogin:state=>state.user.isLogin,
 	// userId: state => state.user.userId,
 	userInfo: state => state.user.userInfo,
 	userDisplay:state=>state.user.userDisplay,

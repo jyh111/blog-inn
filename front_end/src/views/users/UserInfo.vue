@@ -1,7 +1,7 @@
 <!-- 个人信息查看/修改界面 -->
 <template>
   <div>
-    <userIcon></userIcon>
+	  <Header></Header>
     <div class="container">
       <div v-show="isEdit" class="userInfo">
           <header>
@@ -88,7 +88,7 @@
 
 
 <script>
-  import header from '../../components/Header.vue';
+  import Header from '../../components/Header.vue';
   import UserIcon from "@/views/users/UserIcon.vue";
   import { mapGetters, mapMutations, mapActions } from 'vuex';
   export default {
@@ -104,11 +104,12 @@
         'commentList',			  
       ])	  
     },
-    mounted() {
-      
-    },
+	created() {
+		this.set_userInfo(sessionStorage.getItem('userInfo'))
+	},
     components: {
-      UserIcon
+      UserIcon,
+	  Header
     },
     computed:{
   	  ...mapGetters([
@@ -116,6 +117,9 @@
   	  ])
     },
     methods: {
+		...mapMutations([
+			'set_userInfo'
+		]),
       handleAvatarSuccess(res, file) {//上传头像
           if(res.code==1001){//存储
               this.userInfoObj.avatar = res.image_name;

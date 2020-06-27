@@ -37,12 +37,12 @@
 				'getUserInfo'
 			]),
 			loginHandler(){
-				this.login({
+				var res = this.login({
 					email:this.email,
 					password:this.password
 				})
-				this.getUserInfo()
 				this.$router.push({name:'SearchBlog'})
+				sessionStorage.setItem('userInfo',this.userInfo)
 			}
 		}
 	}

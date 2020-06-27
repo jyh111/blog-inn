@@ -1,6 +1,7 @@
 <!-- 我的博客界面 -->
 <template>
-	<div>
+	<div >
+		<Header></Header>
 		<a-list v-for="(item, index) in blogFolders" :key="index">
 			<a-icon :type="index==currentIndex?circleType:'down-circle'" @click="showBlogs(item.folder_name, index)" />
 			<a-list-item v-for="(item,index) in blogList" :key="index" v-if="index==currentIndex">
@@ -21,6 +22,7 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { axios } from '@/utils/request.js'
+  import Header from '../../components/Header.vue';
 Vue.prototype.$axios = axios
 	export default{
 		name:'MyBlog',
@@ -32,7 +34,10 @@ Vue.prototype.$axios = axios
 				blogListWithoutFolder:[]
 			}
 		},
-		created:()=>{
+		created(){
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
+			console.log(this.userInfo)
+			console.log(this.userInfo)
 			this.getBlogFoldersByUserId(this.userInfo.userId)
 			this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
 				userId:this.userInfo.userId,
@@ -43,8 +48,8 @@ Vue.prototype.$axios = axios
 				console.log(Error)
 			})
 		},
-		mounted:()=>{
-			
+		components:{
+			Header
 		},
 		computed:{
 			...mapGetters([
@@ -56,6 +61,9 @@ Vue.prototype.$axios = axios
 		methods:{
 			...mapActions([
 				'deleteBlog'
+			]),
+			...mapMutations([
+				'set_userInfo'
 			]),
 			showBlogs:(folder_name, index)=>{
 				this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
