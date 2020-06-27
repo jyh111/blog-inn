@@ -1,6 +1,6 @@
 <!-- 头部组件 -->
 <template>
-	<div>
+	<div class="location">
 		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin">写文章</router-link>
 		<UserIcon :userInfo="userInfo"></UserIcon>
 	</div>
@@ -30,7 +30,7 @@
 		},
 		methods:{
 			...mapActions([
-				
+
 			])
 		},
 		components:{
@@ -40,5 +40,5 @@
 </script>
 
 <style>
-
+  
 </style>

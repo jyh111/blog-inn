@@ -1,6 +1,6 @@
 <!-- 用户头像，下拉框(包含个人信息,我的博客,我的消息,我的收藏)等，在顶部使用 -->
 <template>
-	<div>
+	<div class="">
 	    <router-link :to="{name:'Login'}" v-if="!isLogin">
 			<a-avatar icon="user"></a-avatar>登录
 		</router-link>
@@ -41,7 +41,7 @@
         //         <p><a href="MyMessage">我的消息</a></p>
         //         <p><a href="../favors/collect">我的收藏</a></p>
         //   },
-          
+
           // ]
 		}
 	  },
@@ -60,16 +60,19 @@
 	  },
 	  methods:{
 		  ...mapActions([
-			  
+
 		  ]),
 		  handleMenuClick(){
-			  
+
 		  }
 	  },
-  	
-  	
+
+
   }
 </script>
 
 <style>
+  .al{
+    right: auto;
+  }
 </style>

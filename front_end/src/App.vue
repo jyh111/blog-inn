@@ -1,12 +1,15 @@
 <template>
-  <div id="app">
-	 <div class="header">
-		<Header></Header>
-	</div>
-	<div id="content">
-		<router-view/>
-	</div>
+  <div id="al">
+    <div id="app">
+     <div class="header">
+    	<Header></Header>
+    </div>
+    <div id="content">
+    	<router-view/>
+    </div>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -37,4 +40,12 @@ export default {
 #content{
 
 }
+#al{
+    background-image: url("../static/image/main1.jpg");
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+    background-size: cover;
+    width:100%;
+    height:200%;
+  }
 </style>

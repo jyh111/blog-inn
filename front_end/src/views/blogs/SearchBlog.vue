@@ -1,16 +1,18 @@
 <!-- 搜索文章界面,显示文章列表 -->
 <template>
-  <div class="al">
-	  <div>
-	  	<a-input-search
-	  	      placeholder="input search text"
-	  	      enter-button="Search"
-	  	      size="large"
-	  	      @search="onSearch"
-	  		    class="search"
-	  	    />
-	  </div>
+<div>
+  <div>
+  	<a-input-search
+  	      placeholder="input search text"
+  	      enter-button="Search"
+  	      size="large"
+  	      @search="onSearch"
+  		    class="search"
+  	    />
   </div>
+</div>
+
+
 </template>
 
 <script>
@@ -69,12 +71,5 @@
 		border-radius: 15px;
 		width: 40%;
 	}
- .al{
-   background-image: url("../../../static/image/search.jpg");
-   background-attachment: fixed;
-   background-repeat:no-repeat;
-   background-size:cover;
-   width:100%;
- }
 
 </style>

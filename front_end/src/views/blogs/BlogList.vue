@@ -1,6 +1,7 @@
 <!-- blog列表 -->
 <template>
 	<div>
+    <img>
 		<a-list item-layout="horizontal" :data-source="blogList">
 			<a-list-item slot="renderItem" slot-scope="item, index">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">
@@ -15,12 +16,12 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-	
+
 export default{
 	name:'BlogList',
 	data(){
 		return{
-			
+
 		}
 	},
 	computed:{
@@ -32,4 +33,6 @@ export default{
 </script>
 
 <style>
+
+
 </style>
