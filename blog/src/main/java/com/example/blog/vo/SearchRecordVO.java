@@ -9,5 +9,5 @@ public class SearchRecordVO {
 
     private Integer userId;
 
-    private String query;
+    private String keyword;
 }
