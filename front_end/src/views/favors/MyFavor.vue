@@ -40,14 +40,24 @@ Vue.prototype.$axios = axios
 		},
 		mounted () {
 			this.getFavorFoldersByUserId(this.userInfo.userId)
-			this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
-				userId:this.userInfo.userId,
-				classfication:""
-			}).then(res=>{
-				this.blogListWithoutFolder = res
-			}).catch(Error=>{
-				console.log('获取默认收藏文章失败')
+			// this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
+			// 	userId:this.userInfo.userId,
+			// 	classfication:""
+			// }).then(res=>{
+			// 	this.blogListWithoutFolder = res
+			// }).catch(Error=>{
+			// 	console.log('获取默认收藏文章失败')
+			// })
+			const data = {
+					userId:this.userInfo.userId,
+					classfication:""
+			}
+			var res = axios({
+				url:`/api/favors/getFavor`,
+				method:'GET',
+				data
 			})
+			this.blogListWithoutFolder = res
 		},
 		computed:{
 			...mapGetters([
@@ -67,15 +77,15 @@ Vue.prototype.$axios = axios
 				'set_userInfo'
 			]),
 			showBlogs:(folder_name, index)=>{
-				this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
-					userId:this.userInfo.userId,
-					classfication:folder_name
-				}).then(res=>{
-					this.blogList = res
-					this.currentIndex = index
-				}).catch(Error=>{
-					console.log('获取收藏夹列表失败')
-				})
+				// this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
+				// 	userId:this.userInfo.userId,
+				// 	classfication:folder_name
+				// }).then(res=>{
+				// 	this.blogList = res
+				// 	this.currentIndex = index
+				// }).catch(Error=>{
+				// 	console.log('获取收藏夹列表失败')
+				// })
 			},
 			deleteBlogHandler:(blogId)=>{
 				this.deleteBlog(blogId)

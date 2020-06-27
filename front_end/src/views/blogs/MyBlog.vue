@@ -41,6 +41,7 @@ Vue.prototype.$ajax = axios
 
 		},
 		mounted() {
+			console.log(userInfo)
 			this.getBlogFoldersByUserId(this.userInfo.userId)
 			console.log(this.blogFolders)
 			console.log('MyBlog:'+this.userInfo.userId)
@@ -59,6 +60,7 @@ Vue.prototype.$ajax = axios
 				method:'GET',
 				data
 			})
+			
 		},
 		components:{
 			Header
@@ -98,6 +100,8 @@ Vue.prototype.$ajax = axios
 					method:'GET',
 					data2
 				})
+				this.blogList = res
+				this.currentIndex = index
 			},
 			deleteBlogHandler:(blogId)=>{
 				this.deleteBlog(blogId)

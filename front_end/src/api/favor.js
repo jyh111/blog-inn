@@ -15,7 +15,7 @@ export function putFavorAPI(params){
 // GET 获取用户收藏列表 返回Blog[]
 export function getFavorsAPI(param){
 	return axios({
-		url:`${api.favor}/${param.userId}/getFavor`,
+		url:`${api.favor}/getFavor`,
 		method:'GET',
 		param
 	})
