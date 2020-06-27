@@ -6,10 +6,10 @@
         insert into `favor`(userId, blogId, classification)
         values (#{userId},#{blogId},#{classification})
     </insert>
-    <select id="getFavors">
+    <select id="getFavors" resultType="int">
         select blogId from `favor` where userId=#{userId} and classification=#{classification}
     </select>
-    <select id="inFavor">
+    <select id="inFavor" resultType="String">
         select classification from `favor` where userId=#{userId} and blogId=#{blogId}
     </select>
 
