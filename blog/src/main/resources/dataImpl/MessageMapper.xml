@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.MessageMapper">
     <insert id="addMessage" parameterType="com.example.blog.po.Message" useGeneratedKeys="true" keyProperty="messageId">
-        insert into `Message`(commentId,sender,recipient)
-        values (#{commentId},#{sender},#{recipient})
+        insert into `Message`(commentId,sender,recipient,blogId,content)
+        values (#{commentId},#{sender},#{recipient},#{blogId},#{content})
     </insert>
 
     <select id="getMessageByUserID" resultMap="Message">

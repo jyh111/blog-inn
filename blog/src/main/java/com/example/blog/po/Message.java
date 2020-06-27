@@ -12,4 +12,8 @@ public class Message {
     private Integer sender;
     /*收信人的userID*/
     private Integer recipient;
+
+    private Integer blogId;
+    private String content;
+
 }
