@@ -37,6 +37,7 @@ public class CommentController {
             commentVO.setContent(comment.getContent());
             commentVO.setRecipient(userService.getUserDisplay(comment.getRecipient()));
             commentVO.setReviewer(userService.getUserDisplay(comment.getReviewer()));
+            commentVOS.add(commentVO);
         }
         return ResponseVO.buildSuccess(commentVOS);
     }
