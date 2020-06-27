@@ -32,9 +32,9 @@ export default {
   margin: 0 auto;
 }
 .header{
-	/* width: 100%; */
+	width: 195%;
 	margin-top: 5px;
-	margin-right: 0px;
+	margin-right: 1px;
 	position: fixed;
 }
 #content{
