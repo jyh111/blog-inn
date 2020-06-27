@@ -39,7 +39,7 @@ Vue.prototype.$axios = axios
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
 		mounted () {
-			this.getFavorFoldersByUserId()
+			this.getFavorFoldersByUserId(this.userInfo.userId)
 			this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
 				userId:this.userInfo.userId,
 				classfication:""

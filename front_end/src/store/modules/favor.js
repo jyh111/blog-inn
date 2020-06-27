@@ -49,8 +49,8 @@ const favor = {
 				console.log('新建收藏夹失败')
 			}
 		},
-		getFavorFoldersByUserId:async({state,commit,dispatch})=>{
-			const res = await getFavorFoldersByUserIdAPI(state.userInfo.userId)
+		getFavorFoldersByUserId:async({state,commit,dispatch},userId)=>{
+			const res = await getFavorFoldersByUserIdAPI(userId)
 			if(res){
 				commit('set_favorFolders',res)
 			}else{
