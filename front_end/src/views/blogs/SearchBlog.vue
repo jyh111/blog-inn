@@ -1,5 +1,6 @@
 <!-- 搜索文章界面,显示文章列表 -->
 <template>
+
 	<div>
 	<Header></Header>
   <div class="al" >
@@ -14,6 +15,7 @@
 	  </div>
   </div>
   </div>
+
 </template>
 
 <script>
@@ -87,6 +89,7 @@
 		width: 40%;
 		margin-top: 150px;
 	}
+
  .al{
    background-attachment: fixed;
    background-repeat:no-repeat;

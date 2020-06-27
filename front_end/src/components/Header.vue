@@ -1,8 +1,12 @@
 <!-- 头部组件 -->
 <template>
-	<div>
-		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin"><span class="writeIcon">写文章</span></router-link>
+
+
+
+	<div class="location">
+		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin"><span class="writeIcon">创作</span></router-link>
 		<UserIcon></UserIcon>
+
 	</div>
 </template>
 
@@ -26,7 +30,7 @@
 		},
 		methods:{
 			...mapActions([
-				
+
 			])
 		},
 		components:{
@@ -36,9 +40,11 @@
 </script>
 
 <style>
+
 span.writeIcon{
 	background-color: #00ffff;
 	color: #FFFFFF;
 	padding: 5px;
 }
+
 </style>

@@ -1,5 +1,6 @@
 <!-- 用户头像，下拉框(包含个人信息,我的博客,我的消息,我的收藏)等，在顶部使用 -->
 <template>
+
 	<div class="userIcon">
 	    <router-link :to="{name:'Login'}" v-if="!isLogin">
 			<a-avatar icon="user" size="large"></a-avatar>
@@ -41,7 +42,7 @@
         //         <p><a href="MyMessage">我的消息</a></p>
         //         <p><a href="../favors/collect">我的收藏</a></p>
         //   },
-          
+
           // ]
 		}
 	  },
@@ -65,14 +66,14 @@
 			  'set_userInfo'
 		  ]),
 		  ...mapActions([
-			  
+
 		  ]),
 		  handleMenuClick(){
-			  
+
 		  }
 	  },
-  	
-  	
+
+
   }
 </script>
 
@@ -88,4 +89,7 @@
 		background-color: #00ff7f;
 		padding: 10px 5px;
 	}
+  .al{
+    right: auto;
+  }
 </style>
