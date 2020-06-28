@@ -3,10 +3,10 @@
 	<div>
 		<Header></Header>
 
-		<a-list item-layout="horizontal" :data-source="blogList">
+		<a-list item-layout="horizontal" :data-source="blogList" >
 			<a-list-item slot="renderItem" slot-scope="item, index">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">
-				<p>{{item.title}}</p>
+				<span>{{item.title}}</span>
 				<span>{{item.pageView}}</span>
 				<a-icon type="heart" :theme="item.infavor=='null'?'twoTone':'filled'"></a-icon>
 				</router-link>
