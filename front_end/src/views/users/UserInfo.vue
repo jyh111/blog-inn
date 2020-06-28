@@ -8,7 +8,7 @@
               <h1>个人信息修改</h1>
           </header>
           <section>
-              <ul class="userInfoBox">            
+              <ul class="userInfoBox">
                   <li class="avatarlist">
                       <span class="leftTitle">用户头像</span>
                       <el-upload
@@ -22,12 +22,12 @@
                         <div slot="tip" class="el-upload__tip">点击上传头像，只能上传jpg/png文件</div>
                       </el-upload>
                   </li>
-                  
+
                   <li class="username">
                       <span class="leftTitle">用户名</span>
                       <el-input v-model="userInfoObj.username" placeholder="用户名"></el-input>
                   </li>
-                  
+
                   <li>
                       <span class="leftTitle">电子邮件</span>
                       <span>{{userInfoObj.email}}</span>
@@ -37,23 +37,23 @@
                       <span class="leftTitle">个人介绍</span>
                       <el-input v-model="userInfoObj.self_introduction" placeholder="简单介绍下自己..."></el-input>
                   </li>
-                  
-              </ul>              
-              
+
+              </ul>
+
               <div class=" saveInfo">
                   <a class="tcolors-bg"  href="javascript:void(0);" @click="isEdit=!isEdit">返&nbsp;&nbsp;回</a>
                   <a class="tcolors-bg" href="javascript:void(0);" @click="saveInfo">保&nbsp;&nbsp;存</a>
               </div>
           </section>
       </div>
-      
-      
+
+
       <div v-show="!isEdit" class="tcommonBox">
           <header>
               <h1>个人中心
                   <span class="gotoEdit" @click="isEdit=!isEdit">编辑</span>
-              </h1>   
-          </header>        
+              </h1>
+          </header>
           <section>
               <ul class="userInfoBox">
                   <li class="avatarlist">
@@ -62,27 +62,27 @@
                           <img  :src="userInfoObj.avatar?wwwHost+userInfoObj.avatar:''"   :onerror="$store.state.errorImg" class="avatar">
                       </div>
                   </li>
-                  
+
                   <li class="username">
                       <span class="leftTitle">用户名</span>
                       <span>{{userInfoObj.username?userInfoObj.username:"NULL"}}</span>
                   </li>
-                  
+
                   <li>
                       <span class="leftTitle">电子邮件</span>
                       <span>{{userInfoObj.email}}</span>
                   </li>
-                  
+
                   <li>
                       <span class="leftTitle">个人介绍</span>
                       <span>{{userInfoObj.label?userInfoObj.label:"此人什么也没有说"}}</span>
                   </li>
-              </ul>    
+              </ul>
           </section>
       </div>
   </div>
 </div>
-  
+
 </template>
 
 
@@ -101,8 +101,8 @@
     },
     computed:{
       ...mapGetters([
-        'commentList',			  
-      ])	  
+        'commentList',
+      ])
     },
 	created() {
 		this.set_userInfo(sessionStorage.getItem('userInfo'))
@@ -113,7 +113,7 @@
     },
     computed:{
   	  ...mapGetters([
-  		  'userInfo',			  
+  		  'userInfo',
   	  ])
     },
     methods: {
@@ -146,17 +146,17 @@
               that.isEdit = false;
           })
       },
-      
+
     }
   };
-  
+
 </script>
 
 <style>
   .userInfoBox .avatarlist{
       position: relative;
   }
-  
+
   .avatar-uploader {
       display: inline-block;
       vertical-align: top;
@@ -217,7 +217,7 @@
       max-width:300px;
       min-width: 100px;
   }
-  
+
   .userInfoBox .el-input__inner{
       border-radius: 4px;
   }
@@ -235,4 +235,10 @@
       border-radius: 5px;
       font-size: 14px;
   }
+  .container{
+    background-image: url(../../../static/image/back5.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+  }
+
 </style>
