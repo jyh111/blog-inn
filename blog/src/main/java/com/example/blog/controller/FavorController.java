@@ -26,7 +26,7 @@ public class FavorController {
     public ResponseVO getFavors( @RequestParam Integer userId,@RequestParam String classification){
         List<BlogInfoVO> blogInfoVOS=favorService.getFavors(userId,classification);
         if(blogInfoVOS==null){
-            return ResponseVO.buildSuccess(new ArrayList<BlogInfoVO>());
+            return ResponseVO.buildFailure("获取收藏文章失败");
         }
         return ResponseVO.buildSuccess(blogInfoVOS);
     }
