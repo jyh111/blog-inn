@@ -27,11 +27,11 @@ export function getBlogsByQueryAPI(data){
 
 // GET    更新文章内容
 // param.blogId param.content param.title
-export function patchBlogContentAPI(param) {
+export function patchBlogContentAPI(params) {
     return axios({
-        url: `${api.blog}/patchBlogContent/${param.blogId}`,
+        url: `${api.blog}/patchBlogContent/${params.blogId}`,
         method: 'GET',
-        param
+        params
     })
 }
 
@@ -46,7 +46,7 @@ export function putBlogAPI(data){
 
 
 // 删除blog BlogId:Integer
-export function deleteBlogByIDAPI(blogId){
+export function deleteBlogByIdAPI(blogId){
 	return axios({
 		url:`${api.blog}/${blogId}/delete`,
 		method:'GET'
@@ -55,16 +55,16 @@ export function deleteBlogByIDAPI(blogId){
 
 
 // GET 浏览量加一
-export function patchBlogpage_viewAPI(param){
+export function patchBlogpage_viewAPI(params){
 	return axios({
-		url:`${api.blog}/${param.blogID}/patchBlogpage_viewAPI`,
+		url:`${api.blog}/${params.blogId}/patchBlogPage_viewAPI`,
 		method:'GET'
 	})
 }
 
 
 // POST 添加文章分类
-// 分类 data.classification 博客ID data.blogId
+// 分类 data.classification 博客Id data.blogId
 export function patchBlogClassificationAPI(data){
 	return axios({
 		url:`${api.blog}/patchBlogClassification`,

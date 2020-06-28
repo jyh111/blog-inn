@@ -16,7 +16,7 @@ const api = {
 //     })
 // }
 
-// GET 通知用户 userID:Integer
+// GET 通知用户 userId:Integer
 // 返回messageVO
 // public class MessageVO {
 //     private UserDisplayVO sender;

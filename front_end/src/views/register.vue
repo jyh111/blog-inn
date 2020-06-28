@@ -56,7 +56,7 @@
     				email:this.email,
     				password:this.password
     			})
-				this.$route.push({name:'Login'})
+				this.$router.push({name:'Login'})
     		}
     	}
     }
@@ -75,13 +75,13 @@
 	}
 	input {
 	  display: block;
-	  width: 250px;
+	  wIdth: 250px;
 	  height: 40px;
 	  line-height: 40px;
 	  margin: 0 auto;
 	  margin-bottom: 10px;
 	  outline: none;
-	  border: 1px solid #888;
+	  border: 1px solId #888;
 	  padding: 10px;
 	  box-sizing: border-box;
 	}
@@ -93,7 +93,7 @@
 
 	button {
 	  display: block;
-	  width: 250px;
+	  wIdth: 250px;
 	  height: 40px;
 	  line-height: 40px;
 	  margin: 0 auto;
@@ -123,6 +123,6 @@
 	  background-size:cover
 	}
 	.p2{
-	  width: 900px;
+	  wIdth: 900px;
 	}
 </style>

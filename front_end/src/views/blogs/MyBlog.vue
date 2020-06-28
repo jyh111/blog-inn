@@ -5,16 +5,16 @@
 		<a-list v-for="(item, index) in blogFolders" :key="index">
 			{{item.folder_name}}
 			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
-			<a-list-item v-for="(item,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
-				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
-				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
-				<router-link :to="{name:'EditBlog',query:{blogId:item.blogId}}"></router-link>
+			<a-list-item v-for="(item2,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
+				<router-link :to="{name:'DisplayBlog',query:{blogId:item2.blogId}}">{{item2.title}}</router-link>
+				<a-icon type="close" @click="deleteBlogHandler(item2.blogId,item2.folder_name)"/>
+				<router-link :to="{name:'EditBlog',query:{blogId:item2.blogId}}">修改</router-link>
 			</a-list-item>
 		</a-list>
 		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInMyBlog" v-if="blogListWithoutFolderInMyBlog.length>0">
 		<a-list-item slot="renderItem" slot-scope="item, index">
 	        <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
-			<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
+			<a-icon type="close" @click="deleteBlogHandler(item.blogId,item.folder_name)"/>
 	    </a-list-item>
 		</a-list>
 	</div>
@@ -48,13 +48,13 @@ Vue.prototype.$ajax = axios
 			// 	classification:'',
 			// 	writerId:this.userInfo.userId
 			// })
-			const data = {			
+			const data = {
 					userId:this.userInfo.userId,
 					classification:'',
-					writerId:this.userInfo.userId					
+					writerId:this.userInfo.userId
 				}
 			this.getBlogsByFolder(data)
-			
+
 		},
 		components:{
 			Header
@@ -71,7 +71,7 @@ Vue.prototype.$ajax = axios
 			...mapActions([
 				'deleteBlog',
 				'getBlogFoldersByUserId',
-				'getBlogsByFolder'
+				'getBlogsByFolder',
 			]),
 			...mapMutations([
 				'set_userInfo'
@@ -101,8 +101,16 @@ Vue.prototype.$ajax = axios
 					this.currentIndex = -1
 				}
 			},
-			deleteBlogHandler:(blogId)=>{
+			deleteBlogHandler(blogId, folder_name){
 				this.deleteBlog(blogId)
+				var data3 = {					
+					userId:this.userInfo.userId,
+					classification:typeof(folder_name)=="undefined"?"":folder_name,
+					writerId:this.userInfo.userId,
+					}
+				console.log('删除文章')
+				console.log(data3)
+				this.getBlogsByFolder(data3)
 			}
 		}
 	}

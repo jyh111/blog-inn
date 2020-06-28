@@ -1,11 +1,11 @@
 <!-- 添加留言或回复的表单组件 -->
 <template>
   <div>
-    <a-comment id="comment-area">
+    <a-comment Id="comment-area">
       <a-avatar slot="avatar" src="../../static/image/default_logo.jpg" alt="Han Solo" />
       <div slot="content">
         <a-form-item>
-          <a-textarea id="my-textarea" :rows="4" v-model="content" />
+          <a-textarea Id="my-textarea" :rows="4" v-model="content" />
         </a-form-item>
         <a-form-item>
           <a-button
@@ -42,16 +42,27 @@ export default {
   },
   computed:{
 	  ...mapGetters([
-		  'userInfo'
+		  'userInfo',
+		  'blogParams',
+		  'userDisplay'
 	  ])
   },
   created() {
   	this.set_userInfo(sessionStorage.getItem('userInfo'))
   },
+  mounted() {
+  	this.getBlogByBlogId({
+		blogId:this.$route.query.blogId,
+		userId:this.userInfo.userId
+	})
+	this.getUserDisplay(this.blogParams.writerId)
+  },
   methods: {
 	...mapActions([
 		'addComment',
-		'addMesage'
+		'addMesage',
+		'getBlogByBlogId',
+		'getUserDisplay',
 	]),
 	...mapMutations([
 		'set_userInfo'
@@ -70,9 +81,9 @@ export default {
 		  	userimg:this.userInfo.userImg
 		  },
 		  recipient:{
-		  	userId:this.recipientDisplay.userId,
-		  	username:this.recipientDisplay.username,
-		  	userImg:this.recipientDisplay.userImg
+		  	userId:this.userDisplay.userId,
+		  	username:this.userDisplay.username,
+		  	userImg:this.userDisplay.userImg
 		  },
 		  blogId:blogId
 	  })

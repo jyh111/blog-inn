@@ -50,6 +50,10 @@ public class FavorServiceImpl implements FavorService {
     public ResponseVO putFavor(FavorVO favorVO) {
         Favor favor=new Favor();
         BeanUtils.copyProperties(favorVO,favor);
+        if(favor.getClassification().equals("null")){
+            favorMapper.annulFavor(favor.getUserId(),favor.getBlogId());
+            return ResponseVO.buildSuccess(true);
+        }
         try {
             favorMapper.putFavor(favor);
         }catch (Exception e){

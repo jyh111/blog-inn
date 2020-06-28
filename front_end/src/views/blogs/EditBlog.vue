@@ -2,30 +2,42 @@
 <template>
 	<div >
 		<Header></Header>
+		<div class="edit_blog">
 		<a-input v-model="title"></a-input>
-		<a-textarea value="content" :rows="10" />
+		<a-textarea v-model="content" :rows="18" />
 		<a-button type="danger" @click="reset">重置</a-button>
 		<a-button type="primary" @click="submit">提交</a-button>
+		</div>
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
   import Header from '../../components/Header.vue';
+  	import {message} from 'ant-design-vue'
 export default{
 	name:'EditBlog',
 	data(){
 		return {
-			content:blogParams.content,
-			title:blogParams.title
+			content:'',
+			title:''
 		}
 	},
+	mounted(){
+		this.getBlogByBlogId({
+			blogId:this.$route.query.blogId,
+			userId:this.userInfo.userId
+		})
+		this.content = this.blogParams.content
+		this.title = this.blogParams.title
+	},
 	created(){
-		getBlogByBlogId(this.$route.query.blogId)
+		this.set_userInfo(sessionStorage.getItem('userInfo'))
 	},
 	computed:{
 		...mapGetters([
 			'blogParams',
+			'userInfo'
 		])
 	},
 	components:{
@@ -40,17 +52,29 @@ export default{
 			'updateBlog',
 			'getBlogByBlogId'
 		]),
+		...mapMutations([
+			'set_userInfo'
+		]),
 		submit(){
+			console.log(this.blogParams)
 			this.updateBlog({
 				blogId:this.blogParams.blogId,
 				content:this.blogParams.content,
-				title:this.blogParams.title
+				title:this.blogParams.title,
+				userId:this.userInfo.userId
 			})
-			this.reset()
+			message.success('修改成功')
+			this.$router.push({name:'MyBlog',query:{writerId:this.userInfo.userId}})
 		}
 	}
 }
 </script>
 
 <style>
+	.edit_blog{
+		width: 80%;
+		margin: 100px auto;
+		padding: 10px 0 20px 0;
+		background-color: #e1e1e1;
+	}
 </style>

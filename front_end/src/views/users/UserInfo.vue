@@ -41,8 +41,8 @@
               </ul>
 
               <div class=" saveInfo">
-                  <a class="tcolors-bg"  href="javascript:void(0);" @click="isEdit=!isEdit">返&nbsp;&nbsp;回</a>
-                  <a class="tcolors-bg" href="javascript:void(0);" @click="saveInfo">保&nbsp;&nbsp;存</a>
+                  <a class="tcolors-bg"  href="javascript:voId(0);" @click="isEdit=!isEdit">返&nbsp;&nbsp;回</a>
+                  <a class="tcolors-bg" href="javascript:voId(0);" @click="saveInfo">保&nbsp;&nbsp;存</a>
               </div>
           </section>
       </div>
@@ -166,8 +166,8 @@
       border-radius: 50%;
       cursor: pointer;
       position: relative;
-      overflow: hidden;
-      width: 120px;
+      overflow: hIdden;
+      wIdth: 120px;
       height: 120px;
     }
     .avatar-uploader .el-upload:hover {
@@ -176,7 +176,7 @@
     .avatar-uploader-icon {
       font-size: 28px;
       color: #8c939d;
-      width: 120px;
+      wIdth: 120px;
       height: 120px;
       line-height: 120px;
       text-align: center;
@@ -185,7 +185,7 @@
       left:0;
     }
     .avatar {
-      width: 120px;
+      wIdth: 120px;
       height: 120px;
       border-radius: 50%;
       display: block;
@@ -203,19 +203,19 @@
   /*个人设置*/
   .userInfoBox .leftTitle{
       display: inline-block;
-      width:100px;
+      wIdth:100px;
       padding: 10px 0;
   }
   .userInfoBox li{
       padding:20px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solId #ddd;
   }
   .userInfoBox li:last-child{
-      border-bottom: 1px solid transparent;
+      border-bottom: 1px solId transparent;
   }
   .userInfoBox  .el-input,.userInfoBox  .el-textarea{
-      max-width:300px;
-      min-width: 100px;
+      max-wIdth:300px;
+      min-wIdth: 100px;
   }
 
   .userInfoBox .el-input__inner{

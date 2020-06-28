@@ -20,25 +20,25 @@ export function registerAPI(data){
     })
 }
 //userVO
-export function getUserInfoAPI(id){
+export function getUserInfoAPI(Id){
     return axios({
-        url: `${api.userPre}/${id}/getUserInfo`,
+        url: `${api.userPre}/${Id}/getUserInfo`,
         method: 'GET'
     })
 }
 
 export function updateUserInfoAPI(data) {
     return axios({
-        url: `${api.userPre}/${data.id}/userInfo/update`,
+        url: `${api.userPre}/${data.Id}/userInfo/update`,
         method: 'POST',
         data
     })
 }
 
 //userDisplayVO
-export function getUserDisplayAPI(id){
+export function getUserDisplayAPI(Id){
 	return axios({
-		url:`${api.userPre}/${id}/getUserDisplay`,
+		url:`${api.userPre}/${Id}/getUserDisplay`,
 		method:`GET`
 	})
 }

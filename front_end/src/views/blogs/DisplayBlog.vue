@@ -7,7 +7,7 @@
 		<h2>{{blogParams.title}}</h2>
 		<a-avatar size="small" src="../../static/image/default_logo.jpg"/>
 		<span>{{userDisplay.username}}</span>
-		<a-icon type="heart" :theme="blogParams.isInFavor==false?'twoTone':'filled'" @click="addFavorHandler" style="float: right; width: 30px;"/>
+		<a-icon type="heart" :theme="blogParams.isInFavor==false?'twoTone':'filled'" @click="addFavorHandler" style="float: right; wIdth: 30px;"/>
 		<p>{{blogParams.content}}</p>
 		<span class="page_view">浏览量:{{blogParams.page_view}}</span>
 		</div>
@@ -57,7 +57,8 @@
 		methods:{
 			...mapActions([
 				'getBlogByBlogId',
-				'getUserDisplay'
+				'getUserDisplay',
+				'deleteFavor'
 			]),
 			...mapMutations([
 				'set_userInfo',
@@ -67,13 +68,21 @@
 				if(this.userInfo.userId==0){
 					message.error('请登录')
 				}else{
-				// if(this.blogParams.isInFavor==false){
+				if(this.blogParams.isInFavor==false){
 				this.set_addFavorVisible(true)
 				console.log('set_addFavorVisible')
 				console.log(this.addFavorVisible)
-				// }else{
-					
-				// }
+				}else{
+					this.deleteFavor({
+						userId:this.userInfo.userId,
+						blogId:this.$route.query.blogId,
+						classification:"null",
+					})
+				}
+				this.getBlogByBlogId({
+					blogId:this.$route.query.blogId,
+					userId:this.userInfo.userId
+				})
 				}
 			}
 		}
@@ -88,7 +97,7 @@
 <a-button></a-button>
 <style>
 	.display_blog_content{
-		width: 80%;
+		wIdth: 80%;
 		text-align: left;
 		padding: 10px 0 20px 0;
 		background-color: #e1e1e1;

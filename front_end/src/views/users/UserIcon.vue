@@ -94,29 +94,29 @@
     right: auto;
   }
   .header_login{
-      width: 72px;
-      height: 30px;
-      line-height: 28px;
-      text-align: center;
-      text-decoration: none;
-      color: #ffff7f;
-      font-size: 16px;
-      margin: 0 12px 0 0;
-      background: #202d40;
-      border-radius: 2px;
-      text-decoration: none;
+      wIdth: 72px;
+      height: 30px;
+      line-height: 28px;
+      text-align: center;
+      text-decoration: none;
+      color: #ffff7f;
+      font-size: 16px;
+      margin: 0 12px 0 0;
+      background: #202d40;
+      border-radius: 2px;
+      text-decoration: none;
   }
   .username{
-	  width: 72px;
-	      height: 30px;
-	      line-height: 28px;
-	      text-align: center;
-	      text-decoration: none;
-	      color: #ffff7f;
-	      font-size: 16px;
-	      margin: 0 12px 0 0;
-	      background: #202d40;
-	      border-radius: 2px;
-	      text-decoration: none;
+	  wIdth: 72px;
+	      height: 30px;
+	      line-height: 28px;
+	      text-align: center;
+	      text-decoration: none;
+	      color: #ffff7f;
+	      font-size: 16px;
+	      margin: 0 12px 0 0;
+	      background: #202d40;
+	      border-radius: 2px;
+	      text-decoration: none;
   }
 </style>

@@ -70,12 +70,12 @@ public class BlogController {
         return blogService.putBlog(blogVO);
     }
 
-    @GetMapping("/{blogID}/delete")
-    public ResponseVO deleteBlogByID(@PathVariable Integer blogID){
-        return blogService.deleteBlogByID(blogID);
+    @GetMapping("/{blogId}/delete")
+    public ResponseVO deleteBlogById(@PathVariable Integer blogId){
+        return blogService.deleteBlogByID(blogId);
     }
 
-    @GetMapping("/{blogID}/patchBlogPageviewAPI")
+    @GetMapping("/{blogID}/patchBlogPage_viewAPI")
     public ResponseVO patchBlogPageview(@PathVariable Integer blogID){
         return blogService.patchBlogPageview(blogID);
     }

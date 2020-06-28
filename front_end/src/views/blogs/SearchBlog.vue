@@ -4,10 +4,8 @@
 	<div>
 	<Header></Header>
   <div class="al" >
-	  <div>
- <a-input-search placeholder="input search text" style="width: 400px" size="large" class="search" @search="onSearch" />
+ <a-input-search placeholder="input search text" style="wIdth: 400px" size="large" class="search" @search="onSearch" />
 	  </div>
-  </div>
   </div>
 
 </template>
@@ -82,6 +80,7 @@
 <style>
 	.search{
 		margin-top: 300px;
+		width: 30%;
 	}
 
  .al{
