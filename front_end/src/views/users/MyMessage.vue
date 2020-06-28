@@ -1,6 +1,6 @@
 <!-- 我的消息界面 -->
 <template>
-	<div>
+	<div class="Mymessage">
 		<Header></Header>
 		  <a-list item-layout="horizontal" :data-source="msgList">
 		    <a-list-item slot="renderItem" slot-scope="item, index">
@@ -53,4 +53,12 @@
 </script>
 
 <style>
+  .Mymessage{
+  	width: 80%;
+  	text-align: left;
+  	padding: 10px 0 20px 0;
+  	background-color: #e1e1e1;
+  	margin: 0 auto;
+  }
+
 </style>
