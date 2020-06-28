@@ -7,7 +7,7 @@
 		<span>{{userDisplay.username}}</span>
 		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'" @click="addFavorHandler"/>
 		<p>{{blogParams.content}}</p>
-		<span>浏览量:{{blogParams.pageView}}</span>
+		<span>浏览量:{{blogParams.page_view}}</span>
 		<Message></Message>
 	</div>
 </template>
@@ -44,7 +44,7 @@
 			...mapGetters([
 				'blogParams',
 				'userDisplay',
-				'pageView',
+				'page_view',
 				'userInfo',
 				'addFavorVisible'
 			])

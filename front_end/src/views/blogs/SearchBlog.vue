@@ -46,7 +46,7 @@
 			...mapMutations([
 				'set_blogList',
 				'set_currentBlogInfo',
-				'set_pageView',
+				'set_page_view',
 				'set_blogListParams',
 				'set_blogParams',
 				'set_queryParams',

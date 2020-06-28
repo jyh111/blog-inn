@@ -7,8 +7,8 @@
 			<a-list-item slot="renderItem" slot-scope="item, index">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">
 				<span>{{item.title}}</span>
-				<span>{{item.pageView}}</span>
-				<a-icon type="heart" :theme="item.infavor=='null'?'twoTone':'filled'"></a-icon>
+				<span>{{item.page_view}}</span>
+				<a-icon v-if="userInfo.userId!=0" type="heart" :theme="item.infavor=='null'?'twoTone':'filled'"></a-icon>
 				</router-link>
 			</a-list-item>
 		</a-list>
@@ -32,7 +32,8 @@ export default{
 	},
 	computed:{
 		...mapGetters([
-			'blogList'
+			'blogList',
+			'userInfo'
 		])
 	},
 	components:{
