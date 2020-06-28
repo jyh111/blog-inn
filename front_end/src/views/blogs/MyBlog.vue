@@ -3,19 +3,22 @@
 	<div >
 		<Header></Header>
 		<div class="my_blog">
-		<a-list v-for="(item, index) in blogFolders" :key="index">
-			<span class="folder_name">{{item.folder_name}}</span>
+		<a-list v-for="(item, index) in blogFolders" :key="index" style="width: 100%; margin: 20px auto;">
+			<span class="folder_name">{{item.folder_name}}
 			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
-			<a-list-item v-for="(item2,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
+			</span>
+			<a-list-item v-for="(item2,index2) in blogList" :key="index2" v-if="index==currentIndex">
+				<div style="width: 100%;">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item2.blogId}}">{{item2.title}}</router-link>
 				<!-- <a-icon type="close" @click="deleteBlogHandler(item2.blogId,item2.folder_name)"/> -->
-				<a-button type="danger" @click="deleteBlogHandler(item2.blogId,item2.folder_name)">删除</a-button>
+				<a-button type="danger" @click="deleteBlogHandler(item2.blogId,item2.folder_name)" class="delete_button">删除</a-button>
 				<!-- <router-link :to="{name:'EditBlog',query:{blogId:item2.blogId}}"style="edit">修改</router-link> -->
-				<a-button type="primary" @click="editHandler(item2.blogId)" class="delete">修改</a-button>
+				<a-button type="primary" @click="editHandler(item2.blogId)" class="edit_button">修改</a-button>
 				<hr style="color: #cacaca;"/>
+				</div>
 			</a-list-item>
 		</a-list>
-		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInMyBlog" v-if="blogListWithoutFolderInMyBlog.length>0">
+		<a-list item-layout="horizontal" :data-source="blogListWithoutFolder" v-if="blogListWithoutFolder.length>0">
 		<a-list-item slot="renderItem" slot-scope="item, index">
 	        <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
 			<a-icon type="close" @click="deleteBlogHandler(item.blogId,item.folder_name)"/>
@@ -37,6 +40,8 @@ Vue.prototype.$ajax = axios
 			return {
 				currentIndex:-1,
 				circleType:'up-circle',
+				blogList:[],
+				blogListWithoutFolder:[]
 			}
 		},
 		created(){
@@ -59,6 +64,7 @@ Vue.prototype.$ajax = axios
 					writerId:this.userInfo.userId
 				}
 			this.getBlogsByFolder(data)
+			this.blogListWithoutFolder = this.blogListWithoutFolderInMyBlog
 
 		},
 		components:{
@@ -115,6 +121,7 @@ Vue.prototype.$ajax = axios
 					})
 					this.currentIndex = index
 				}
+				this.blogList = this.blogListInMyBlog
 			},
 			deleteBlogHandler(blogId, folder_name){
 				this.deleteBlog(blogId)
@@ -126,6 +133,13 @@ Vue.prototype.$ajax = axios
 				console.log('删除文章')
 				console.log(data3)
 				this.getBlogsByFolder(data3)
+				console.log(this.blogListWithoutFolderInMyBlog)
+				console.log(this.blogListInMyBlog)
+				if(data3.classification==""){
+					this.blogListWithoutFolder = this.blogListWithoutFolderInMyBlog
+				}else{
+					this.blogList = this.blogListInMyBlog
+				}
 			},
 			editHandler(blogId){
 				this.$router.push({name:'EditBlog',query:{blogId:blogId}})
@@ -136,12 +150,18 @@ Vue.prototype.$ajax = axios
 
 <style>
 	.my_blog{
-		background-color: #FFFFFF;
+		background-color: #dfdfdf;
 		margin: 0px auto;
 		wIdth: 60%;
 		height: 679px;
 	}
 	.folder_name{
-		font-size: 18px;
+		font-size: 24px;
+	}
+	.delete_button{
+		float: right;
+	}
+	.edit_button{
+		float: right;
 	}
 </style>
