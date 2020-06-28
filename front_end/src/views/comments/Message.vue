@@ -31,6 +31,7 @@
 		},
 		mounted() {
 			this.getCommentListByBlogId(this.$route.query.blogId)
+			console.log(this.commentList)
 		},
 	  computed:{
 		  ...mapGetters([

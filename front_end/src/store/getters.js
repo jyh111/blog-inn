@@ -26,7 +26,9 @@ const getters = {
 	addFavorVisble:state=>state.favor.addFavorVisble,
 	favorFolders:state=>state.favor.favorFolders,
 	favorFolderParam:state=>state.favor.favorFolderParam,
-	putFavorBlogId:state=>state.favor.putFavorBlogId
+	putFavorBlogId:state=>state.favor.putFavorBlogId,
+	blogListInFavor:state=>state.favor.blogListInFavor,
+	blogListWithoutFolderInFavor:state=>state.favor.blogListWithoutFolderInFavor
   }
   
   export default getters

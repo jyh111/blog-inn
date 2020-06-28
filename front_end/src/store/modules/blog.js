@@ -87,10 +87,9 @@ const blog = {
 		},
 
 		writeBlog:async({state,commit,dispatch},data)=>{
-			console.log(state.userInfo)
 			commit('set_blogParams',{
 				blogId:0,
-				writerId:state.userInfo.userId,
+				writerId:data.userId,
 				content:data.content,
 				pageView:0,
 				title:data.title,
@@ -109,8 +108,6 @@ const blog = {
 					classification:'null'
 				})
 				message.success('发布成功')
-				dispatch('getBlogList')
-				this.$router.push({name:'MyBlog'})
 			}
 		},
 		

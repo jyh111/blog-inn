@@ -11,6 +11,8 @@ import{
 }from '@/api/favorFolder.js'
 const favor = {
 	state:{
+		blogListWithoutFolderInFavor:[],
+		blogListInFavor:[],
 		putFavorBlogId:0,
 		addFavorVisble:false,
 		favorFolders:[],
@@ -32,8 +34,14 @@ const favor = {
 				...data
 			}
 		},
+		set_blogListWithoutFolderInFavor:function(state,data){
+			state.blogListWithoutFolderInFavor = data
+		},
 		set_putFavorBlogId:function(state,data){
 			state.putFavorBlogId = data
+		},
+		set_blogListInFavor:function(state,data){
+			state.blogListInFavor = data
 		}
 	},
 	actions:{
@@ -75,6 +83,21 @@ const favor = {
 				blogId:state.putFavorBlogId
 			})
 		},
+		getFavor:async({state,commit,dispatch},data)=>{
+			console.log('getFavor:')
+			console.log(data)
+			const res = await getFavorsAPI(data)
+			if(res){
+			if(data.classfication==""){
+				commit('set_blogListWithoutFolderInFavor',res)
+			}else{
+				commit('set_blogListInFavor',res)
+			}
+			}else{
+				message.error("获取收藏失败")
+			}
+			
+		}
 	}
 }
 export default favor

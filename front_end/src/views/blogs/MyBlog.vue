@@ -41,7 +41,6 @@ Vue.prototype.$ajax = axios
 
 		},
 		mounted() {
-			console.log(userInfo)
 			this.getBlogFoldersByUserId(this.userInfo.userId)
 			console.log(this.blogFolders)
 			console.log('MyBlog:'+this.userInfo.userId)

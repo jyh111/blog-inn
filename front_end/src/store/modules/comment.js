@@ -44,8 +44,7 @@ const comment = {
 	actions:{
 		getCommentListByBlogId:async({state,commit,dispatch},blogId)=>{
 			console.log('blogId'+blogId)
-			const res = getCommentByBlogIDAPI(blogId)
-			console.log(res)
+			const res = await getCommentByBlogIDAPI(blogId)
 			if(res){
 				commit('set_commentList',res)
 			}else{
