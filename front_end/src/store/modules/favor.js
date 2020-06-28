@@ -100,6 +100,16 @@ const favor = {
 				message.error("获取收藏失败")
 			}
 			
+		},
+		deleteFavor:async({state,commit,dispatch},data)=>{
+			const res = await putFavorAPI(data)
+			if(res){
+				message.success('取消收藏成功')
+				dispatch('getBlogByBlogId',{
+					userId:data.userId,
+					blogId:data.blogId
+				})
+			}
 		}
 	}
 }

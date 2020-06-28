@@ -55,9 +55,9 @@ export function deleteBlogByIdAPI(blogId){
 
 
 // GET 浏览量加一
-export function patchBlogpage_viewAPI(param){
+export function patchBlogpage_viewAPI(params){
 	return axios({
-		url:`${api.blog}/${param.blogId}/patchBlogpage_viewAPI`,
+		url:`${api.blog}/${params.blogId}/patchBlogPage_viewAPI`,
 		method:'GET'
 	})
 }

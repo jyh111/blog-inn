@@ -57,7 +57,8 @@
 		methods:{
 			...mapActions([
 				'getBlogByBlogId',
-				'getUserDisplay'
+				'getUserDisplay',
+				'deleteFavor'
 			]),
 			...mapMutations([
 				'set_userInfo',
@@ -67,13 +68,21 @@
 				if(this.userInfo.userId==0){
 					message.error('请登录')
 				}else{
-				// if(this.blogParams.isInFavor==false){
+				if(this.blogParams.isInFavor==false){
 				this.set_addFavorVisible(true)
 				console.log('set_addFavorVisible')
 				console.log(this.addFavorVisible)
-				// }else{
-					
-				// }
+				}else{
+					this.deleteFavor({
+						userId:this.userInfo.userId,
+						blogId:this.$route.query.blogId,
+						classification:"null",
+					})
+				}
+				this.getBlogByBlogId({
+					blogId:this.$route.query.blogId,
+					userId:this.userInfo.userId
+				})
 				}
 			}
 		}
