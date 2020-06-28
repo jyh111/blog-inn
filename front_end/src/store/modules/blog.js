@@ -31,7 +31,7 @@ const blog = {
 			title:'',
 			content:'',
 			page_view:0,
-			isInFavor:false,
+			isInFavor:'null',
 			classification:''
 		},
 		queryParams:{
@@ -93,7 +93,7 @@ const blog = {
 				content:data.content,
 				page_view:0,
 				title:data.title,
-				isInFavor:false,
+				isInFavor:'null',
 				classification:''
 			})
 			const res = await putBlogAPI(state.blogParams)
@@ -110,7 +110,7 @@ const blog = {
 					content:'',
 					page_view:0,
 					title:'',
-					isInFavor:false,
+					isInFavor:'null',
 					classification:''
 				})
 				message.success('发布成功')

@@ -123,6 +123,7 @@ Vue.prototype.$ajax = axios
 				}
 			},
 			deleteBlogHandler(blogId, folder_name){
+
 				this.deleteBlog({
 					blogId:blogId,
 					userId:this.userInfo.userId,

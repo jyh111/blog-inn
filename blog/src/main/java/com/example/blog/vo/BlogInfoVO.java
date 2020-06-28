@@ -9,5 +9,5 @@ import lombok.Setter;
 public class BlogInfoVO {
     private Integer blogId;
     private String title;
-    private String inFavor;
+    private String isInFavor;
 }

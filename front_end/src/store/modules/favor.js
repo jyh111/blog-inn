@@ -45,13 +45,11 @@ const favor = {
 		}
 	},
 	actions:{
-		addFavorFolder:async({state,commit,dispatch},folder_name)=>{
-			const res = await putFavorFolderAPI({
-				userId:state.userInfo.userId,
-				folder_name:folder_name
-			})
+		addFavorFolder:async({state,commit,dispatch},param)=>{
+			const res = await putFavorFolderAPI(param)
 			if(res){
 				dispatch('getFavorFoldersByUserId')
+				message.success('新建收藏夹成功')
 			}else{
 				message.error('新建收藏夹失败')
 				console.log('新建收藏夹失败')
