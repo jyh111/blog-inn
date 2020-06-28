@@ -13,7 +13,6 @@ import { message } from 'ant-design-vue'
 
 const blogFolder = {
 	state:{
-		blogListInFolder:[],
 		blogListInMyBlog:[],
 		blogListWithoutFolderInMyBlog:[],
 		blogFolders:[],
@@ -31,6 +30,12 @@ const blogFolder = {
 		},
 		set_blogFolders:function(state,data){
 			state.blogFolders = data
+		},
+		set_blogListInMyBlog:function(state,data){
+			state.blogListInMyBlog = data
+		},
+		set_blogListWithoutFolderInMyBlog:function(state,data){
+			state.blogListWithoutFolderInMyBlog = data
 		}
 	},
 	actions:{
@@ -55,30 +60,16 @@ const blogFolder = {
 			}
 		},
 		getBlogsByFolder:async({state,commit,dispatch},data)=>{
-			const res = await getBlogsByFolderAPI({
-				userId:data.userId,
-				classification:data.classification,
-				writerId:data.writerId,
-			})
+			const res = await getBlogsByFolderAPI(data)
 			if(res){
-				var j, len, isInList=false;
-				var j, len;
-				for(j=0,len=blogListInFolder.length;j<len;j++){
-					if(blogListInFolder[j].folder_name == data.folder_name){
-						isInList = true
-						blogListInFolder[j].blogList = res
-					}
+				console.log(res)
+				if(data.classification==""){
+					commit('set_blogListWithoutFolderInMyBlog',res)
+				}else{
+					commit('set_blogListInMyBlog',res)
 				}
-				if(!isInList){
-					blogListInFolder.push({
-						blogList:res,
-						folder_name:data.classification
-					})
-				}
-				commit('set_blogFolderParams',{
-					userId:0,
-					folder_name:''
-				})
+			}else{
+				message.error('获取文章失败')
 			}
 		},
 		insertIntoFolder:async({state,commit,dispatch},data)=>{

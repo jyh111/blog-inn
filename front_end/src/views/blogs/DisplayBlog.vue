@@ -2,9 +2,10 @@
 <template>
 	<div >
 		<Header></Header>
+		<AddFavor></AddFavor>
 		<a-avatar size="small" :src="userDisplay.userImg"/>
 		<span>{{userDisplay.username}}</span>
-		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'"></a-icon>
+		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'" @click="addFavorHandler"/>
 		<p>{{blogParams.content}}</p>
 		<span>浏览量:{{blogParams.pageView}}</span>
 		<Message></Message>
@@ -14,7 +15,8 @@
 <script>
 	import Vue from 'vue'
 	import Message from '@/views/comments/Message'
-	  import Header from '../../components/Header.vue';
+	  import Header from '../../components/Header.vue'
+	  import AddFavor from '@/views/favors/AddFavor'
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	export default{
 		name:'DisplayBlog',
@@ -25,27 +27,46 @@
 		},
 		components:{
 			Message,
-			Header
+			Header,
+			AddFavor
 		},
-		created() {
-			getBlogByBlogId(this.$route.query.blogId)
+		created(){
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
+		},
+		mounted() {
+			this.getBlogByBlogId({
+				blogId:this.$route.query.blogId,
+				userId:this.userInfo.userId
+				})
+			this.getUserDisplay(this.blogParams.writerId)
 		},
 		computed:{
 			...mapGetters([
 				'blogParams',
 				'userDisplay',
-				'pageView'
+				'pageView',
+				'userInfo',
+				'addFavorVisible'
 			])
 		},
 		methods:{
 			...mapActions([
 				'getBlogByBlogId',
-				
+				'getUserDisplay'
 			]),
 			...mapMutations([
-				'set_userInfo'
-			])
+				'set_userInfo',
+				'set_addFavorVisible',
+			]),
+			addFavorHandler(){
+				// if(this.blogParams.isInFavor==false){
+				this.set_addFavorVisible(true)
+				console.log('set_addFavorVisible')
+				console.log(this.addFavorVisible)
+				// }else{
+					
+				// }
+			}
 		}
 	}
 	// 第一种方式

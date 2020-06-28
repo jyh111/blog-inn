@@ -1,23 +1,26 @@
 <!-- 添加到收藏夹弹窗 -->
 <template>
-	<div>
-		<a-modal :visble="addFavorVisble"
+
+		<a-modal :visible="addFavorVisible"
 		cancelText="取消"
         okText="确定"
         @cancel="cancle"
         @ok="handleSubmit">
 			<a-button type="primary" @click="addFavorFolderHandler">新建文件夹</a-button>
-			<a-list v-for="(item, index) in favorFolders" :key="index" @click="selectFolderHandler(item.folder_name,index)">
+			<a-list v-for="(item, index) in favorFolders" :key="index" :class="{'selected':index==selectedIndex}" @click="selectFolderHandler(item.folder_name,index)">
 				{{item.folder_name}}
 				<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
 			</a-list>
 			<a-input v-modal="newFolderName" v-show="isCreateNewFolder" @keyup.enter.native=""></a-input>
 		</a-modal>
-	</div>
+
 </template>
 
 <script>
+	import Vue from 'vue'
+	import { Modal } from 'ant-design-vue';
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
+	Vue.use(Modal)
 	export default{
 		name:"AddFavor",
 		data(){
@@ -33,9 +36,10 @@
 		},
 		computed:{
 			...mapGetters([
-				'addFavorVisble',
+				'addFavorVisible',
 				'favorFolders',
-				'putFavorBlogId'
+				'putFavorBlogId',
+				'userInfo'
 			])
 		},
 		methods:{
@@ -45,26 +49,31 @@
 				'addFavorFolder'
 			]),
 			...mapMutations([
-				'set_addFavorVisble',
+				'set_addFavorVisible',
 				'set_userInfo'
 			]),
-			deleteFavorFolderHandler:(folder_name)=>{
+			deleteFavorFolderHandler(folder_name){
 				this.deleteFavorFolder(folder_name)
 			},
-			selectFolderHandler:(folder_name,index)=>{
+			selectFolderHandler(folder_name,index){
 				this.selectedFolderName = folder_name,
 				this.selectedIndex = index
 			},
-			handleSubmit:()=>{
-				this.putFavor(this.selectedFolderName)
+			handleSubmit(){
+				this.putFavor({
+					userId:this.userInfo.userId,
+					blogId:this.$route.query.blogId,
+					classification:this.selectedFolderName,
+					})
+				this.set_addFavorVisible(false)
 			},
-			cancle:()=>{
-				this.set_addFavorVisble(false)
+			cancle(){
+				this.set_addFavorVisible(false)
 			},
-			createFolderHandler:()=>{
+			createFolderHandler(){
 				this.isCreateNewFolder = true
 			},
-			addFavorFolderHandler:()=>{
+			addFavorFolderHandler(){
 				if(this.newFolderName==''){
 					this.isCreateNewFolder = false
 					return
@@ -78,4 +87,7 @@
 </script>
 
 <style>
+	.selected{
+		background-color: skyblue;
+	}
 </style>

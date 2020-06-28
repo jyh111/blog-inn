@@ -5,11 +5,11 @@ const api = {
 
 
 // 得到完整的blogVO,传入userId, 如果用户未登录,userId=0
-export function getBlogByBlogIdAPI(param) {
+export function getBlogByBlogIdAPI(params) {
   return axios({
-        url: `${api.blog}/${param.blogId}/detail`,
+        url: `${api.blog}/${params.blogId}/detail`,
         method: 'GET',
-		param
+		params
     })
 }
 

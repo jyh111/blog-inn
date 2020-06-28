@@ -12,11 +12,11 @@ export function getBlogFoldersByUserIdAPI(userId){
 }
 
 // writerId userId classification
-export function getBlogsByFolderAPI(param){
+export function getBlogsByFolderAPI(params){
 	return axios({
 		url: `${api.blog}/getBlogsByFolder`,
 		method: 'GET',
-		param
+		params
 	})
 }
 

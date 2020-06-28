@@ -4,13 +4,13 @@
 		<Header></Header>
 		<a-list v-for="(item, index) in blogFolders" :key="index">
 			{{item.folder_name}}
-			<a-icon :type="index==currentIndex?circleType:'down-circle'" @click="showBlogs(item.folder_name, index)" />
-			<a-list-item v-for="(item,index) in blogList" :key="index" v-if="index==currentIndex">
+			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
+			<a-list-item v-for="(item,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
 				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
 			</a-list-item>
 		</a-list>
-		<a-list item-layout="horizontal" :data-source="blogListWithoutFolder">
+		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInMyBlog">
 		<a-list-item slot="renderItem" slot-scope="item, index">
 	        <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
 			<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
@@ -30,9 +30,7 @@ Vue.prototype.$ajax = axios
 		data(){
 			return {
 				currentIndex:-1,
-				blogList:[],
 				circleType:'up-circle',
-				blogListWithoutFolder:[]
 			}
 		},
 		created(){
@@ -54,11 +52,7 @@ Vue.prototype.$ajax = axios
 					classification:'',
 					writerId:this.userInfo.userId					
 				}
-			var res = axios({
-				url:`/api/blogFolders/getBlogsByFolder`,
-				method:'GET',
-				data
-			})
+			this.getBlogsByFolder(data)
 			
 		},
 		components:{
@@ -68,17 +62,20 @@ Vue.prototype.$ajax = axios
 			...mapGetters([
 				'blogFolders',
 				'userInfo',
+				'blogListWithoutFolderInMyBlog',
+				'blogListInMyBlog'
 			])
 		},
 		methods:{
 			...mapActions([
 				'deleteBlog',
-				'getBlogFoldersByUserId'
+				'getBlogFoldersByUserId',
+				'getBlogsByFolder'
 			]),
 			...mapMutations([
 				'set_userInfo'
 			]),
-			showBlogs:(folder_name, index)=>{
+			showBlogs(folder_name, index){
 				// this.$axios.get('/api/blogs/'+this.$router.query.writerId+'/getBlogsByFolder',{
 				// 	// writerId userId classification
 				// 	userId:this.userInfo.userId,
@@ -89,18 +86,19 @@ Vue.prototype.$ajax = axios
 				// }).catch(Error=>{
 				// 	console.log(Error)
 				// })
-				var data2 = {
+				if(this.circleType=='up-circle'){
+					this.circleType = 'down-circle'
+					var data2 = {
 						userId:this.userInfo.userId,
 						classification:folder_name,
 						writerId:this.userInfo.userId
+					}
+					this.getBlogsByFolder(data2)
+					this.currentIndex = index
+				}else{
+					this.circleType = 'up-circle'
+					this.currentIndex = -1
 				}
-				var res = axios({
-					url:`/api/blogFolders/getBlogsByFolder`,
-					method:'GET',
-					data2
-				})
-				this.blogList = res
-				this.currentIndex = index
 			},
 			deleteBlogHandler:(blogId)=>{
 				this.deleteBlog(blogId)

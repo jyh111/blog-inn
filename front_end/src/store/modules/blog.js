@@ -111,10 +111,10 @@ const blog = {
 			}
 		},
 		
-		getBlogByBlogId:async({state,commit,dispatch},blogId)=>{
+		getBlogByBlogId:async({state,commit,dispatch},data)=>{
 			const res = await getBlogByBlogIdAPI({
-				blogId:blogId,
-				userId:state.userInfo.userId
+				blogId:data.blogId,
+				userId:data.userId
 			})
 			if(res){
 				commit('set_blogParams',res)
