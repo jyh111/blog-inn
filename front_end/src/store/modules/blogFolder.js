@@ -14,6 +14,8 @@ import { message } from 'ant-design-vue'
 const blogFolder = {
 	state:{
 		blogListInFolder:[],
+		blogListInMyBlog:[],
+		blogListWithoutFolderInMyBlog:[],
 		blogFolders:[],
 		blogFolderParams:{
 			userId:0,

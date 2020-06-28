@@ -5,8 +5,8 @@
 		<a-list v-for="(item, index) in favorFolders" :key="index">
 			<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
 			{{item.folder_name}}
-			<a-icon :type="index==currentIndex?'up-circle':'down-circle'" @click="showBlogs(item.folder_name, index)" />
-			<a-list-item v-for="(item,index) in blogListInFavor" :key="index" v-if="index==currentIndex">
+			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
+			<a-list-item v-for="(item,index2) in blogListInFavor" :key="index2" v-if="index==currentIndex">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
 				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
 			</a-list-item>
@@ -30,6 +30,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 		data(){
 			return {
 				currentIndex:-1,
+				circleType:'up-circle'
 			}
 		},
 		created() {
@@ -69,7 +70,8 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 				'getFavor'
 			]),
 			...mapMutations([
-				'set_userInfo'
+				'set_userInfo',
+				'set_blogListInFavor'
 			]),
 			showBlogs(folder_name, index){
 				// this.$axios.get('/api/favors/'+this.userInfo.userId+'/getFavor',{
@@ -81,14 +83,20 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 				// }).catch(Error=>{
 				// 	console.log('获取收藏夹列表失败')
 				// })
-				var  data2 = {
+				if(this.circleType=="up-circle"){
+					this.circleType = "down-circle"
+					var  data2 = {
 						userId:this.userInfo.userId,
 						classification:folder_name
+					}
+					this.getFavor(data2)
+					console.log('blogListInFavor')
+					console.log(this.blogListInFavor)
+					this.currentIndex = index
+				}else{
+					this.circleType="up-circle"
+					this.currentIndex = -1
 				}
-				this.getFavor(data2)
-				console.log('blogListInFavor')
-				console.log(this.blogListInFavor)
-				this.currentIndex = index
 			},
 			deleteBlogHandler:(blogId)=>{
 				this.deleteBlog(blogId)
