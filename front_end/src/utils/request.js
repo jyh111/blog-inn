@@ -18,7 +18,7 @@ console.log(process.env.NODE_ENV)
     const token = Vue.ls.get('ACCESS_TOKEN')
     if (error.response.status === 403) {
       notification.error({
-        message: 'Forbidden',
+        message: 'ForbIdden',
         description: data.message
       })
     }

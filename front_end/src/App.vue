@@ -1,14 +1,14 @@
 <template>
 
-  <div id="app">
+  <div Id="app">
 	<router-view/>
 
-<!--  <div id="al">
-    <div id="app">
+<!--  <div Id="al">
+    <div Id="app">
      <div class="header">
     	<Header></Header>
     </div>
-    <div id="content">
+    <div Id="content">
     	<router-view/>
     </div>
     </div> -->
@@ -56,7 +56,7 @@ sessionStorage.setItem("store",JSON.stringify(this.$store.state))
 	background-size: cover;
 }
 .header{
-	width: 100%;
+	wIdth: 100%;
 	margin-top: 5px;
 	margin-right: 1px;
 	position: fixed;
@@ -69,7 +69,7 @@ sessionStorage.setItem("store",JSON.stringify(this.$store.state))
     background-attachment: fixed;
     background-repeat:no-repeat;
     background-size: cover;
-    width:100%;
+    wIdth:100%;
     height:200%;
   }
 </style>

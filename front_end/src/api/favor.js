@@ -2,7 +2,7 @@ import { axios } from '@/utils/request.js'
 const api = {
     favor: '/api/favors'
 };
-// POST 收藏文章 分类:params.classification string 博客ID params.blogId Integer userId:Integer
+// POST 收藏文章 分类:params.classification string 博客Id params.blogId Integer userId:Integer
 // 没有分类"null" 默认分类"" 自定义分类"自定义类名"
 export function putFavorAPI(data){
 	return axios({

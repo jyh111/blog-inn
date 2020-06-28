@@ -8,7 +8,7 @@
 			<a-list-item v-for="(item,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
 				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
-				<router-link :to="{name:'EditBlog',query:{blogId:item.blogId}}"></router-link>
+				<router-link :to="{name:'EditBlog',query:{blogId:item.blogId}}">修改</router-link>
 			</a-list-item>
 		</a-list>
 		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInMyBlog" v-if="blogListWithoutFolderInMyBlog.length>0">

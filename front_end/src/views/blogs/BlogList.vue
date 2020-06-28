@@ -10,7 +10,7 @@
 				<a-icon v-if="userInfo.userId!=0" type="heart" :theme="item.infavor=='null'?'twoTone':'filled'"></a-icon>
 				</router-link>
 			</a-list-item>
-			<hr style="width: 100%;color: #000000;"/>
+			<hr style="wIdth: 100%;color: #000000;"/>
 		</a-list>
 		</div>
 	</div>
@@ -57,11 +57,11 @@ export default{
 .content{
 	background-color: #FFFFFF;
 	margin: 0px auto;
-	width: 60%;
+	wIdth: 60%;
 	height: 679px;
 }
 .list_item{
-	width: 100%;
+	wIdth: 100%;
 	/* margin: auto auto; */
 	text-align: left;
 	padding-left: 20px;
@@ -69,7 +69,7 @@ export default{
 	height: 100%;
 }
 .list_item_link{
-	width: 100%;
+	wIdth: 100%;
 	text-decoration: none;
 	color: #000000;
 	background-color: #FFFFFF;

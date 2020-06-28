@@ -4,7 +4,7 @@
     <span
       slot="actions"
       key="comment-basic-reply-to"
-      @click="handlReply(comment.id, comment.recipient)"
+      @click="handlReply(comment.Id, comment.recipient)"
     >
     </span>
     <a slot="author" style="font-size: 15px">{{comment.reviewer.username}}</a>

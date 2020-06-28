@@ -1,6 +1,6 @@
 <!-- 留言区域组件,由多个留言组件组成 -->
 <template>
-	  <div id="commentMsg">
+	  <div Id="commentMsg">
 	    <div v-if="isEmpty(commentList)" class="head-message">暂无留言内容</div>
 	    <div v-else class="head-message">留言内容</div>
 	    <comment

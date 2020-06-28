@@ -26,7 +26,7 @@ const router =  new Router({
 		name:'MyBlog'
 	},
 	// 	children:[
-	// 		path:'/:blogID'
+	// 		path:'/:blogId'
 	// 	]
 	// },
 	{
