@@ -5,7 +5,7 @@ import {
 	patchBlogContentAPI,
 	putBlogAPI,
 	deleteBlogByIDAPI,
-	patchBlogPageviewAPI,
+	patchBlogpage_viewAPI,
 	patchBlogClassification
 } from '@/api/blog.js'
 import {
@@ -49,8 +49,8 @@ const blog = {
 				...data
 			}
 		},
-		set_pageView:function(state,data){
-			state.pageView = data
+		set_page_view:function(state,data){
+			state.page_view = data
 		},
 		set_blogListParams:function(state,data){
 			state.blogListParams={

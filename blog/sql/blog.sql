@@ -394,10 +394,14 @@ INSERT INTO `Comment` VALUES (14,3,'你的文章我好喜欢，放入我的收�
 INSERT INTO `Comment` VALUES (15,5,'你的文章我好喜欢，放入我的收藏夹喜欢  15  了',5,1);
 
 CREATE TABLE `Message`(
+    `messageId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `commentId` INTEGER,
+    `blogId` INTEGER,
     `sender` INTEGER,
     `recipient` INTEGER,
-    CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId)
+    `content` VARCHAR(255),
+    CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId),
+    CONSTRAINT blog_ref_from_message FOREIGN KEY(`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `Message` VALUES (1,1,2);
 INSERT INTO `Message` VALUES (2,1,2);

@@ -51,13 +51,13 @@ span.writeIcon{
 }
 
 .location{
-	background-color: #00aaff;
+	background-color: #00ff7f;
 	height: 40px;
 }
 
 .header_title{
 	color: #ffff7f;
-	background-color: #00ff7f;
+	background-color: #00ffff;
 	padding: 5px;
 	float: left;
 	margin-top: 5px;
