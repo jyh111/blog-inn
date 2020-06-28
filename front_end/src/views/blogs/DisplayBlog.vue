@@ -7,7 +7,7 @@
 		<h2>{{blogParams.title}}</h2>
 		<a-avatar size="small" src="../../static/image/default_logo.jpg"/>
 		<span>{{userDisplay.username}}</span>
-		<a-icon type="heart" :theme="blogParams.isInFavor==false?'twoTone':'filled'" @click="addFavorHandler" style="float: right; width: 30px;"/>
+		<a-icon type="heart" :theme="blogParams.isInFavor==false?'twoTone':'filled'" @click="addFavorHandler" style="float: right; wIdth: 30px;"/>
 		<p>{{blogParams.content}}</p>
 		<span class="page_view">浏览量:{{blogParams.page_view}}</span>
 		</div>
@@ -88,7 +88,7 @@
 <a-button></a-button>
 <style>
 	.display_blog_content{
-		width: 80%;
+		wIdth: 80%;
 		text-align: left;
 		padding: 10px 0 20px 0;
 		background-color: #e1e1e1;

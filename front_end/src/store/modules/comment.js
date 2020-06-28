@@ -2,7 +2,7 @@ import store from '@/store'
 import { message } from 'ant-design-vue'
 import {
 	putCommentAPI,
-	getCommentByBlogIDAPI
+	getCommentByBlogIdAPI
 } from '@/api/comment.js'
 const comment = {
 	state:{
@@ -35,7 +35,7 @@ const comment = {
 			}
 		},
 		set_blogId:function(state,data){
-			state.blogID = data
+			state.blogId = data
 		},
 		set_replyModalVisible(state,data){
 			state.replyModalVisible = data
@@ -44,7 +44,7 @@ const comment = {
 	actions:{
 		getCommentListByBlogId:async({state,commit,dispatch},blogId)=>{
 			console.log('blogId'+blogId)
-			const res = await getCommentByBlogIDAPI(blogId)
+			const res = await getCommentByBlogIdAPI(blogId)
 			if(res){
 				commit('set_commentList',res)
 			}else{

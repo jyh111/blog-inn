@@ -5,7 +5,7 @@
 	<Header></Header>
   <div class="al" >
 	  <div>
- <a-input-search placeholder="input search text" style="width: 400px" size="large" class="search" @search="onSearch" />
+ <a-input-search placeholder="input search text" style="wIdth: 400px" size="large" class="search" @search="onSearch" />
 	  </div>
   </div>
   </div>
@@ -88,7 +88,7 @@
    background-attachment: fixed;
    background-repeat:no-repeat;
    background-size:cover;
-   width:100%;
+   wIdth:100%;
  }
 
 </style>

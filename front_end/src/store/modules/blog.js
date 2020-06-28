@@ -4,7 +4,7 @@ import {
     getBlogsByQueryAPI,
 	patchBlogContentAPI,
 	putBlogAPI,
-	deleteBlogByIDAPI,
+	deleteBlogByIdAPI,
 	patchBlogpage_viewAPI,
 	patchBlogClassification
 } from '@/api/blog.js'
@@ -26,7 +26,7 @@ const blog = {
 		},
 		blogListLoading:true,
 		blogParams:{
-			blogID:0,
+			blogId:0,
 			writerId:0,
 			title:'',
 			content:'',
@@ -79,7 +79,7 @@ const blog = {
 				commit('set_blogList',res)
 				commit('set_queryParams',{
 					keyword:'',
-					userID:'',
+					userId:'',
 				})
 			}
 			console.log(res)
@@ -105,8 +105,8 @@ const blog = {
 					}
 				dispatch('getBlogsByFolder',param);
 				commit('set_blogParams',{
-					blogID:'',
-					writerID:'',
+					blogId:'',
+					writerId:'',
 					content:'',
 					page_view:0,
 					title:'',
@@ -136,14 +136,17 @@ const blog = {
 				title:data.title
 			})
 			if(res){
-				dispatch('getBlogByBlogId',data.blogId)
+				dispatch('getBlogByBlogId',{
+					blogId:data.blogId,
+					userId:data.userId
+				})
 			}else{
-				message.error('删除文章失败')
 				console.log('更新文章失败')
 			}
 		},
 		
 		deleteBlog:async({state,commit,dispatch},blogId)=>{
+
 			const res = await deleteBlogByIDAPI(blogId)
 			console.log(blogId)
 			console.log(res)

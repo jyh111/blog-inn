@@ -88,8 +88,8 @@ const user = {
             const res = await loginAPI(userData)
             if(res){
 				console.log('登录成功')
-                // setToken(res.id)
-                // commit('set_userId', res.id)
+                // setToken(res.Id)
+                // commit('set_userId', res.Id)
                 // dispatch('getUserInfo')
                 // router.push('/hotel/hotelList')
 				console.log(res)
@@ -134,7 +134,7 @@ const user = {
 		},
         updateUserInfo: async({ state, dispatch }, data) => {
             const params = {
-                id: state.userId,
+                Id: state.userId,
                 ...data,
             }
             const res = await updateUserInfoAPI(params)

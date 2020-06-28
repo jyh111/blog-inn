@@ -62,7 +62,7 @@
 <style>
 	.comment{
 		background-color: #dedede;
-		width: 80%;
+		wIdth: 80%;
 		margin: auto auto;
 	}
 </style>

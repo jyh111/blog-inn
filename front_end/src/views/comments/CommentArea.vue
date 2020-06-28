@@ -1,11 +1,11 @@
 <!-- 添加留言或回复的表单组件 -->
 <template>
   <div>
-    <a-comment id="comment-area">
+    <a-comment Id="comment-area">
       <a-avatar slot="avatar" src="../../static/image/default_logo.jpg" alt="Han Solo" />
       <div slot="content">
         <a-form-item>
-          <a-textarea id="my-textarea" :rows="4" v-model="content" />
+          <a-textarea Id="my-textarea" :rows="4" v-model="content" />
         </a-form-item>
         <a-form-item>
           <a-button
