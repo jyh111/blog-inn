@@ -394,23 +394,27 @@ INSERT INTO `Comment` VALUES (14,3,'你的文章我好喜欢，放入我的收�
 INSERT INTO `Comment` VALUES (15,5,'你的文章我好喜欢，放入我的收藏夹喜欢  15  了',5,1);
 
 CREATE TABLE `Message`(
+    `messageId` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `commentId` INTEGER,
+    `blogId` INTEGER,
     `sender` INTEGER,
     `recipient` INTEGER,
-    CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId)
+    `content` VARCHAR(255),
+    CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId),
+    CONSTRAINT blog_ref_from_message FOREIGN KEY(`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `Message` VALUES (1,1,2);
-INSERT INTO `Message` VALUES (2,1,2);
-INSERT INTO `Message` VALUES (3,1,2);
-INSERT INTO `Message` VALUES (4,2,3);
-INSERT INTO `Message` VALUES (5,2,3);
-INSERT INTO `Message` VALUES (6,2,3);
-INSERT INTO `Message` VALUES (7,3,4);
-INSERT INTO `Message` VALUES (8,3,4);
-INSERT INTO `Message` VALUES (9,3,4);
-INSERT INTO `Message` VALUES (10,4,5);
-INSERT INTO `Message` VALUES (11,4,5);
-INSERT INTO `Message` VALUES (12,4,5);
-INSERT INTO `Message` VALUES (13,5,1);
-INSERT INTO `Message` VALUES (14,5,1);
-INSERT INTO `Message` VALUES (15,5,1);
+INSERT INTO `Message` VALUES (1,1,10,1,2,'你的文章我好喜欢，放入我的收藏夹喜欢  1  了');
+INSERT INTO `Message` VALUES (2,2,12,1,2,'你的文章我好喜欢，放入我的收藏夹喜欢  2  了');
+INSERT INTO `Message` VALUES (3,3,14,1,2,'你的文章我好喜欢，放入我的收藏夹喜欢  3  了');
+INSERT INTO `Message` VALUES (4,4,19,2,3,'你的文章我好喜欢，放入我的收藏夹喜欢  4  了');
+INSERT INTO `Message` VALUES (5,5,21,2,3,'你的文章我好喜欢，放入我的收藏夹喜欢  5  了');
+INSERT INTO `Message` VALUES (6,6,23,2,3,'你的文章我好喜欢，放入我的收藏夹喜欢  6  了');
+INSERT INTO `Message` VALUES (7,7,28,3,4,'你的文章我好喜欢，放入我的收藏夹喜欢  7  了');
+INSERT INTO `Message` VALUES (8,8,30,3,4,'你的文章我好喜欢，放入我的收藏夹喜欢  8  了');
+INSERT INTO `Message` VALUES (9,9,32,3,4,'你的文章我好喜欢，放入我的收藏夹喜欢  9  了');
+INSERT INTO `Message` VALUES (10,10,37,4,5,'你的文章我好喜欢，放入我的收藏夹喜欢  10  了');
+INSERT INTO `Message` VALUES (11,11,39,4,5,'你的文章我好喜欢，放入我的收藏夹喜欢  11  了');
+INSERT INTO `Message` VALUES (12,12,41,4,5,'你的文章我好喜欢，放入我的收藏夹喜欢  12  了');
+INSERT INTO `Message` VALUES (13,13,1,5,1,'你的文章我好喜欢，放入我的收藏夹喜欢  13  了');
+INSERT INTO `Message` VALUES (14,14,3,5,1,'你的文章我好喜欢，放入我的收藏夹喜欢  14  了');
+INSERT INTO `Message` VALUES (15,15,5,5,1,'你的文章我好喜欢，放入我的收藏夹喜欢  15  了');

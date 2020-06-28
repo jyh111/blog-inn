@@ -28,7 +28,7 @@ public class MessageController {
 		List<MessageVO> messageVOList = new ArrayList<>();
 		for (Message message : messageList) {
 			MessageVO messageVO = new MessageVO(message, userService);
-
+			messageVOList.add(messageVO);
 		}
 
 		return ResponseVO.buildSuccess(messageVOList);
