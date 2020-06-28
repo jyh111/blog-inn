@@ -16,6 +16,8 @@ public interface FavorMapper {
 
     void putFavor(Favor favor);
 
+    void annulFavor(@Param("userId") int userId,@Param("blogId") int blogId);
+
     String inFavor(@Param("userId") int userId,@Param("blogId") int blogId);
 
 }

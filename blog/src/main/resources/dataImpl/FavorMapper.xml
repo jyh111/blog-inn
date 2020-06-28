@@ -12,5 +12,8 @@
     <select id="inFavor" resultType="String">
         select classification from `favor` where userId=#{userId} and blogId=#{blogId}
     </select>
+    <delete id="annulFavor" parameterType="int">
+        delete from favor where userId=#{userId} and blogId=#{blogId}
+    </delete>
 
 </mapper>
