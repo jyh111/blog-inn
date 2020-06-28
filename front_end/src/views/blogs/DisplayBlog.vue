@@ -3,9 +3,10 @@
 	<div >
 		<Header></Header>
 		<AddFavor></AddFavor>
-		<a-avatar size="small" :src="userDisplay.userImg"/>
+		<h2>{{blogParams.title}}</h2>
+		<a-avatar size="small" src="../../static/image/default_logo.jpg"/>
 		<span>{{userDisplay.username}}</span>
-		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'" @click="addFavorHandler"/>
+		<a-icon type="heart" :theme="blogParams.isInFavor==false?'twoTone':'filled'" @click="addFavorHandler" style="float: right; width: 30px;"/>
 		<p>{{blogParams.content}}</p>
 		<span>浏览量:{{blogParams.page_view}}</span>
 		<Message></Message>
@@ -15,6 +16,7 @@
 <script>
 	import Vue from 'vue'
 	import Message from '@/views/comments/Message'
+	import {message} from 'ant-design-vue'
 	  import Header from '../../components/Header.vue'
 	  import AddFavor from '@/views/favors/AddFavor'
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
@@ -38,6 +40,7 @@
 				blogId:this.$route.query.blogId,
 				userId:this.userInfo.userId
 				})
+			
 			this.getUserDisplay(this.blogParams.writerId)
 		},
 		computed:{
@@ -59,6 +62,9 @@
 				'set_addFavorVisible',
 			]),
 			addFavorHandler(){
+				if(this.userInfo.userId==0){
+					message.error('请登录')
+				}else{
 				// if(this.blogParams.isInFavor==false){
 				this.set_addFavorVisible(true)
 				console.log('set_addFavorVisible')
@@ -66,6 +72,7 @@
 				// }else{
 					
 				// }
+				}
 			}
 		}
 	}
