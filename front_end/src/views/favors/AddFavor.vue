@@ -80,10 +80,11 @@
 					this.isCreateNewFolder = false
 					return
 				}
-				console.log(this.newFolderName)
-				console.log(this.userInfo.userId)
-				var user_id=this.userInfo.userId;
-				this.addFavorFolder(this.newFolderName,Number(user_id))
+				const param={
+					userId:this.userInfo.userId,
+					folder_name:this.newFolderName
+				}
+				this.addFavorFolder(param)
 				this.newFolderName = '新建文件夹'
 				this.isCreateNewFolder = false
 			}
