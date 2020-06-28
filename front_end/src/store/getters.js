@@ -19,11 +19,12 @@ const getters = {
 	//message
 	msgList:state=>state.message.msgList,
 	//blogFolder
-	blogListInFolder:state=>state.blogFolder.blogListInFolder,
+	blogListInMyBlog:state=>state.blogFolder.blogListInMyBlog,
+	blogListWithoutFolderInMyBlog:state=>state.blogFolder.blogListWithoutFolderInMyBlog,
 	blogFolders:state=>state.blogFolder.blogFolders,
 	blogFolderParams:state=>state.blogFolder.blogFolders,
 	//favor
-	addFavorVisble:state=>state.favor.addFavorVisble,
+	addFavorVisible:state=>state.favor.addFavorVisible,
 	favorFolders:state=>state.favor.favorFolders,
 	favorFolderParam:state=>state.favor.favorFolderParam,
 	putFavorBlogId:state=>state.favor.putFavorBlogId,

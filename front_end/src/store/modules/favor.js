@@ -14,7 +14,7 @@ const favor = {
 		blogListWithoutFolderInFavor:[],
 		blogListInFavor:[],
 		putFavorBlogId:0,
-		addFavorVisble:false,
+		addFavorVisible:false,
 		favorFolders:[],
 		favorFolderParam:{
 			userId:0,
@@ -22,8 +22,8 @@ const favor = {
 		}
 	},
 	mutations:{
-		set_addFavorVisble:function(state,data){
-			state.addFavorVisble = data
+		set_addFavorVisible:function(state,data){
+			state.addFavorVisible = data
 		},
 		set_favorFolders:function(state,data){
 			state.favorFolders = data
@@ -76,12 +76,15 @@ const favor = {
 				console.log('删除收藏夹失败')
 			}
 		},
-		putFavor:async({state,commit,dispatch},classification)=>{
-			const res = await putFavorAPI({
-				userId:state.userInfo.userId,
-				classification:classification,
-				blogId:state.putFavorBlogId
-			})
+		putFavor:async({state,commit,dispatch},data)=>{
+			const res = await putFavorAPI(data)
+			if(res){
+				message.success('收藏成功')
+				dispatch('getBlogByBlogId',{
+					userId:data.userId,
+					blogId:data.blogId
+				})
+			}
 		},
 		getFavor:async({state,commit,dispatch},data)=>{
 			console.log('getFavor:')

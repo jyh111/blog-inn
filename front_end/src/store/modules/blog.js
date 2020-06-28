@@ -30,7 +30,7 @@ const blog = {
 			writerId:0,
 			title:'',
 			content:'',
-			pageView:0,
+			page_view:0,
 			isInFavor:false,
 			classification:''
 		},
@@ -91,10 +91,10 @@ const blog = {
 				blogId:0,
 				writerId:data.userId,
 				content:data.content,
-				pageView:0,
+				page_view:0,
 				title:data.title,
 				isInFavor:false,
-				classification:'null'
+				classification:''
 			})
 			const res = await putBlogAPI(state.blogParams)
 			if(res){
@@ -102,19 +102,19 @@ const blog = {
 					blogID:'',
 					writerID:'',
 					content:'',
-					pageView:0,
+					page_view:0,
 					title:'',
 					isInFavor:false,
-					classification:'null'
+					classification:''
 				})
 				message.success('发布成功')
 			}
 		},
 		
-		getBlogByBlogId:async({state,commit,dispatch},blogId)=>{
+		getBlogByBlogId:async({state,commit,dispatch},data)=>{
 			const res = await getBlogByBlogIdAPI({
-				blogId:blogId,
-				userId:state.userInfo.userId
+				blogId:data.blogId,
+				userId:data.userId
 			})
 			if(res){
 				commit('set_blogParams',res)
