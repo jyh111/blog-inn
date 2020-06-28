@@ -147,7 +147,7 @@ const blog = {
 		
 		deleteBlog:async({state,commit,dispatch},blogId)=>{
 
-			const res = await deleteBlogByIDAPI(blogId)
+			const res = await deleteBlogByIdAPI(blogId)
 			console.log(blogId)
 			console.log(res)
 			if(res){
