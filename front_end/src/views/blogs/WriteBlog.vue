@@ -11,8 +11,10 @@
 <script>
 	import Vue from 'vue'
 	import Vuex from 'vuex'
+	import Router from "vue-router"
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
 	  import Header from '../../components/Header.vue';
+	  Vue.use(Router);
 	export default{
 		name:'WriteBlog',
 		data(){
@@ -47,6 +49,9 @@
 					title:this.title,
 					content:this.content
 				})
+				console.log('router:')
+				console.log(this.$router)
+				this.$router.push({name:'MyBlog',query:{userId:this.userInfo.userId}})
 			}
 		}
 	}

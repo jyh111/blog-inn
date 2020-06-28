@@ -28,8 +28,8 @@ public class BlogFolderController {
         return ResponseVO.buildSuccess(blogFolderService.getBlogFoldersByUserId(userId));
     }
 
-    @GetMapping("/{writerId}/getBlogsByFolder")
-    public ResponseVO getBlogsByFolder(@RequestParam Integer userId, @RequestParam String classification, @PathVariable Integer writerId){
+    @GetMapping("/getBlogsByFolder")
+    public ResponseVO getBlogsByFolder(@RequestParam Integer userId, @RequestParam String classification, @RequestParam Integer writerId){
         List<Blog> blogList=blogFolderService.getBlogsByFolder(writerId,classification);
         List<BlogInfoVO> blogInfoVOS=new ArrayList<>();
         for(Blog blog:blogList){

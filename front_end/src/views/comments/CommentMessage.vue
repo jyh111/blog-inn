@@ -27,7 +27,7 @@
 	import Vue from "vue";
 	
 	export default {
-	  name: "CommentMessage",
+	  name: 'CommentMessage',
 	  components: {
 	    Comment
 	  },

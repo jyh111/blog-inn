@@ -1,7 +1,8 @@
 import store from '@/store'
 import { message } from 'ant-design-vue'
 import{
-	getMessageByUserIdAPI
+	getMessageByUserIdAPI,
+	addMessageAPI
 } from '@/api/message.js'
 const msg = {
 	state:{
@@ -13,17 +14,19 @@ const msg = {
 		}
 	},
 	actions:{
-		getMsgList:async({state,commit,dispatch})=>{
+		getMsgList:async({state,commit,dispatch},userId)=>{
 			const res = await getMessageByUserIdAPI({
-				userId:state.userInfo.userId
+				userId:userId
 			})
 			if(res){
 				commit('set_msgList',res)
 			}
 		},
-		addMessage:async({state,commit,dispatch})=>{
-			
-		}
+		// addMessage:async({state,commit,dispatch},data)=>{
+		// 	const res = await addMessageAPI({
+		// 		sender:
+		// 	})
+		// }
 	}
 }
 export default msg

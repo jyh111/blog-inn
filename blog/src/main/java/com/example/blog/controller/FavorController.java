@@ -7,6 +7,7 @@ import com.example.blog.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
@@ -21,13 +22,13 @@ public class FavorController {
         return favorService.putFavor(favorVO);
     }
 
-    @GetMapping("/{userId}/getFavor")
-    public ResponseVO getFavors(@RequestParam String classification,@PathVariable Integer userId){
+    @GetMapping("/getFavor")
+    public ResponseVO getFavors( @RequestParam Integer userId,@RequestParam String classification){
         List<BlogInfoVO> blogInfoVOS=favorService.getFavors(userId,classification);
         if(blogInfoVOS==null){
-            return ResponseVO.buildFailure("");
+            return ResponseVO.buildFailure("获取收藏文章失败");
         }
-        return null;
+        return ResponseVO.buildSuccess(blogInfoVOS);
     }
 
 }

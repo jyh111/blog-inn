@@ -63,7 +63,7 @@
 				'getBlogList',
 			]),
 
-			onSearch:(value)=>{
+			onSearch(value){
 				console.log('searching')
 				var userId = 0
 				if(typeof(this.userInfo)=="undefined"){
@@ -75,6 +75,8 @@
 					keyword:value,
 					userId:userId
 				})
+				console.log(userId)
+				console.log(value)
 				this.getBlogListByQuery()
 				this.$router.push({name:'BlogList'})
 				// this.$router.push({name:'SearchBlog'})
