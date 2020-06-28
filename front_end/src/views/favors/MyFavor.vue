@@ -2,14 +2,23 @@
 <template>
 	<div>
 		<Header></Header>
-		<a-list v-for="(item, index) in favorFolders" :key="index">
-			<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
+		<div class="my_favor">
+		<a-list v-for="(item, index) in favorFolders" :key="index" style=" margin: 20px auto;">
+			<span style="font-size: 24px;">
 			{{item.folder_name}}
+
 			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
+			<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" style="float: right;"/>
+			</span>
+			<div style="width: 100%">
 			<a-list-item v-for="(item,index2) in blogListInFavor" :key="index2" v-if="index==currentIndex">
+				<div style="width: 100%;">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
-				<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
+				<a-icon type="close" @click="deleteBlogHandler(item.blogId,item.inFavor)" style="float: right;"/>
+				<hr style="color: #000000;"/>
+				</div>
 			</a-list-item>
+			</div>
 		</a-list>
 		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInFavor" v-if="blogListWithoutFolderInFavor.length>0">
 		<a-list-item slot="renderItem" slot-scope="item, index">
@@ -17,6 +26,7 @@
 			<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
 		</a-list-item>
 		</a-list>
+		</div>
 	</div>
 </template>
 
@@ -67,7 +77,8 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 			...mapActions([
 				'getFavorFoldersByUserId',
 				'deleteFavorFolder',
-				'getFavor'
+				'getFavor',
+				'deleteFavor'
 			]),
 			...mapMutations([
 				'set_userInfo',
@@ -83,6 +94,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 				// }).catch(Error=>{
 				// 	console.log('获取收藏夹列表失败')
 				// })
+				if(index==this.currentIndex){
 				if(this.circleType=="up-circle"){
 					this.circleType = "down-circle"
 					var  data2 = {
@@ -96,18 +108,37 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 				}else{
 					this.circleType="up-circle"
 					this.currentIndex = -1
+				}}else{
+					this.circleType = "down-circle"
+					this.getFavor({
+						userId:this.userInfo.userId,
+						classification:folder_name
+					})
+					this.currentIndex = index
 				}
 			},
-			deleteBlogHandler:(blogId)=>{
-				this.deleteBlog(blogId)
-				
+			deleteBlogHandler(blogId,folder_name){
+				this.deleteFavor({
+					blogId:blogId,
+					userId:this.userInfo.userId,
+					classification:folder_name
+				})				
 			},
-			deleteFavorFolderHandler:(folder_name)=>{
-				this.deleteFavorFolder(folder_name)
+			deleteFavorFolderHandler(folder_name){
+				this.deleteFavorFolder({
+					folder_name:folder_name,
+					userId:this.userInfo.userId
+				})
 			}
 		}
 	}
 </script>
 
 <style>
+	.my_favor{
+		background-color: #dfdfdf;
+		margin: 0px auto;
+		width: 60%;
+		height: 679px;
+	}
 </style>

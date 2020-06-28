@@ -65,13 +65,13 @@ const favor = {
 				console.log('获取收藏夹列表失败')
 			}
 		},
-		deleteFavorFolder:async({state,commit,dispatch},folder_name)=>{
+		deleteFavorFolder:async({state,commit,dispatch},data)=>{
 			const res = await deleteFavorFolderAPI({
-				userId:state.userInfo.userId,
-				folder_name:folder_name
+				userId:data.userId,
+				folder_name:data.folder_name
 			})
 			if(res){
-				dispatch('getFavorFoldersByUserId')
+				dispatch('getFavorFoldersByUserId',data.userId)
 			}else{
 				console.log('删除收藏夹失败')
 			}

@@ -145,11 +145,18 @@ const blog = {
 			}
 		},
 		
-		deleteBlog:async({state,commit,dispatch},blogId)=>{
+		deleteBlog:async({state,commit,dispatch},data)=>{
 
-			const res = await deleteBlogByIdAPI(blogId)
+			const res = await deleteBlogByIdAPI(data.blogId)
 			if(res){
-				message.success('删除文章成功')
+				dispatch('getBlogsByFolder',{
+					userId:data.userId,
+					classification:data.classification,
+					writerId:data.writerId
+				})
+				message.success('删除成功')
+			}else{
+				message.error('删除失败')
 			}
 		},
 		
