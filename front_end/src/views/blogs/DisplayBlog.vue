@@ -7,7 +7,7 @@
 		<h2>{{blogParams.title}}</h2>
 		<a-avatar size="small" src="../../static/image/default_logo.jpg"/>
 		<span>{{userDisplay.username}}</span>
-		<a-icon type="heart" :theme="blogParams.isInFavor==false?'twoTone':'filled'" @click="addFavorHandler" style="float: right; wIdth: 30px;"/>
+		<a-icon type="heart" :theme="blogParams.isInFavor=='null'?'twoTone':'filled'" @click="addFavorHandler" style="float: right; wIdth: 30px;"/>
 		<p>{{blogParams.content}}</p>
 		<span class="page_view">浏览量:{{blogParams.page_view}}</span>
 		</div>
@@ -70,7 +70,7 @@
 				if(this.userInfo.userId==0){
 					message.error('请登录')
 				}else{
-				if(this.blogParams.isInFavor==false){
+				if(this.blogParams.isInFavor=='null'){
 				this.set_addFavorVisible(true)
 				console.log('set_addFavorVisible')
 				console.log(this.addFavorVisible)

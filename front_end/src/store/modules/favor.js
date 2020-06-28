@@ -45,9 +45,11 @@ const favor = {
 		}
 	},
 	actions:{
-		addFavorFolder:async({state,commit,dispatch},folder_name)=>{
+		addFavorFolder:async({state,commit,dispatch},folder_name,user_id)=>{
+			console.log(folder_name)
+			console.log(user_id)
 			const res = await putFavorFolderAPI({
-				userId:state.userInfo.userId,
+				userId:user_id,
 				folder_name:folder_name
 			})
 			if(res){

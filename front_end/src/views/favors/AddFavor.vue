@@ -6,12 +6,12 @@
         okText="确定"
         @cancel="cancle"
         @ok="handleSubmit">
-			<a-button type="primary" @click="addFavorFolderHandler">新建文件夹</a-button>
+			<a-button type="primary" @click="createFolderHandler">新建文件夹</a-button>
 			<a-list v-for="(item, index) in favorFolders" :key="index" :class="{'selected':index==selectedIndex}" @click="selectFolderHandler(item.folder_name,index)">
 				{{item.folder_name}}
 				<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
 			</a-list>
-			<a-input v-modal="newFolderName" v-show="isCreateNewFolder" @keyup.enter.native=""></a-input>
+			<a-input v-model="newFolderName" v-show="isCreateNewFolder" @keyup.enter.native="addFavorFolderHandler"></a-input>
 		</a-modal>
 
 </template>
@@ -27,7 +27,7 @@
 			return {
 				selectedFolderName:'',
 				selectedIndex:-1,
-				newFolderName:'',
+				newFolderName:'新建文件夹',
 				isCreateNewFolder:false
 			}
 		},
@@ -68,6 +68,8 @@
 				this.set_addFavorVisible(false)
 			},
 			cancle(){
+				this.newFolderName = '新建文件夹'
+				this.isCreateNewFolder = false
 				this.set_addFavorVisible(false)
 			},
 			createFolderHandler(){
@@ -78,8 +80,11 @@
 					this.isCreateNewFolder = false
 					return
 				}
-				this.addFavorFolder(this.newFolderName)
-				this.newFolderName = ''
+				console.log(this.newFolderName)
+				console.log(this.userInfo.userId)
+				var user_id=this.userInfo.userId;
+				this.addFavorFolder(this.newFolderName,Number(user_id))
+				this.newFolderName = '新建文件夹'
 				this.isCreateNewFolder = false
 			}
 		}

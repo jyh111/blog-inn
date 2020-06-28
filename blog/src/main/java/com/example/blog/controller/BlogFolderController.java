@@ -7,7 +7,6 @@ import com.example.blog.vo.BlogFolderVO;
 import com.example.blog.vo.BlogInfoVO;
 import com.example.blog.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class BlogFolderController {
             BlogInfoVO blogInfoVO=new BlogInfoVO();
             blogInfoVO.setBlogId(blog.getBlogId());
             blogInfoVO.setTitle(blog.getTitle());
-            blogInfoVO.setInFavor(favorService.inFavor(userId,blog.getBlogId()));
+            blogInfoVO.setIsInFavor(favorService.inFavor(userId,blog.getBlogId()));
             blogInfoVOS.add(blogInfoVO);
         }
         return ResponseVO.buildSuccess(blogInfoVOS);

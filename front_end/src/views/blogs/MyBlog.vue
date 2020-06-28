@@ -125,7 +125,7 @@ Vue.prototype.$ajax = axios
 			},
 			deleteBlogHandler(blogId, folder_name){
 				this.deleteBlog(blogId)
-				var data3 = {					
+				var data3 = {
 					userId:this.userInfo.userId,
 					classification:typeof(folder_name)=="undefined"?"":folder_name,
 					writerId:this.userInfo.userId,

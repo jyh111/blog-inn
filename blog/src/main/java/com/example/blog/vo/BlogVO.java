@@ -9,7 +9,7 @@ public class BlogVO {
     private Integer blogId;
     private Integer writerId;
     //"null"表示没有收藏，""表示收藏后没有手动添加别的分类，"自定义类别"表示收藏后添加到了自定义的收藏夹里
-    private String inFavor="";
+    private String isInFavor ="";
     private Integer page_view;
     private String content;
     private String title;
@@ -18,7 +18,7 @@ public class BlogVO {
     public String toString(){
         return "blogId: "+blogId+"/n"+
                 "writerId: "+writerId+"/n"+
-                "inFavor "+inFavor+"/n"+
+                "inFavor "+ isInFavor +"/n"+
                 "page_view "+page_view+"/n"+
                 "classification"+classification+"/n"+
                 "title: "+title+"/n"+

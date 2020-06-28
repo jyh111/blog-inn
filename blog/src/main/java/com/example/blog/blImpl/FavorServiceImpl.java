@@ -10,7 +10,6 @@ import com.example.blog.vo.FavorVO;
 import com.example.blog.vo.ResponseVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class FavorServiceImpl implements FavorService {
             BlogInfoVO blogInfoVO=new BlogInfoVO();
             blogInfoVO.setBlogId(blog.getBlogId());
             blogInfoVO.setTitle(blog.getTitle());
-            blogInfoVO.setInFavor(classification);
+            blogInfoVO.setIsInFavor(classification);
             blogInfoVOS.add(blogInfoVO);
         }
         return blogInfoVOS;

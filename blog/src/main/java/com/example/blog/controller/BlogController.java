@@ -39,7 +39,7 @@ public class BlogController {
         blogVO.setTitle(blog.getTitle());
         blogVO.setWriterId(blog.getWriterId());
         blogVO.setPage_view(blog.getPage_view());
-        blogVO.setInFavor(favorService.inFavor(userId,blog.getBlogId()));
+        blogVO.setIsInFavor(favorService.inFavor(userId,blog.getBlogId()));
         return ResponseVO.buildSuccess(blogVO);
     }
 
@@ -53,8 +53,8 @@ public class BlogController {
             blogInfoVO.setTitle(blog.getTitle());
             //用户处于未登录状态，则前端返回的userId为0
             int i=searchRecordVO.getUserId();
-            if(i==0)blogInfoVO.setInFavor("null");
-            else blogInfoVO.setInFavor(favorService.inFavor(searchRecordVO.getUserId(),blog.getBlogId()));
+            if(i==0)blogInfoVO.setIsInFavor("null");
+            else blogInfoVO.setIsInFavor(favorService.inFavor(searchRecordVO.getUserId(),blog.getBlogId()));
             blogInfos.add(blogInfoVO);
         }
         return ResponseVO.buildSuccess(blogInfos);
