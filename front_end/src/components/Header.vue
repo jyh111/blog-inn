@@ -51,13 +51,15 @@ span.writeIcon{
 }
 
 .location{
-	background-color: #00ff7f;
+  background-image: url(../../static/image/back3.jpg);
+  background-repeat:no-repeat;
+  background-size:cover;
 	height: 40px;
 }
 
 .header_title{
 	color: #ffff7f;
-	background-color: #00ffff;
+	background-color:#13C2C2;
 	padding: 5px;
 	float: left;
 	margin-top: 5px;
