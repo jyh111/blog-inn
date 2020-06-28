@@ -1,5 +1,5 @@
 SET NAMES utf8mb4;
-
+SET FOREIGN_KEY_CHECKS = FALSE;
 DROP DATABASE IF EXISTS `Blog`;
 CREATE DATABASE `Blog`;
 USE `Blog`;
@@ -34,15 +34,15 @@ CREATE TABLE `Blog`(
     `page_view` INTEGER DEFAULT 0,
     `classification` VARCHAR(64) DEFAULT '',
     `content` VARCHAR(8192) DEFAULT NULL,
-    `title` VARCHAR(64) DEFAULT NULL,
-    CONSTRAINT user_ref_from_blog FOREIGN KEY(`writerId`) REFERENCES `User`(userId)
+    `title` VARCHAR(64) DEFAULT NULL
+#    CONSTRAINT user_ref_from_blog FOREIGN KEY(`writerId`) REFERENCES `User`(userId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE `FavorFolder`(
     `userId` INTEGER,
-    `folder_name` VARCHAR(64) DEFAULT '',
-    CONSTRAINT user_ref_from_favorFolder FOREIGN KEY (`userId`) REFERENCES `User`(userId)
+    `folder_name` VARCHAR(64) DEFAULT ''
+ #   CONSTRAINT user_ref_from_favorFolder FOREIGN KEY (`userId`) REFERENCES `User`(userId)
 )ENGINE = InnoDB DEFAULT CHARSET =utf8mb4;
 INSERT INTO `FavorFolder` VALUES (1,'喜欢1');
 INSERT INTO `FavorFolder` VALUES (1,'喜欢2');
@@ -310,8 +310,8 @@ INSERT INTO `Blog` VALUES(45,5,0,'创作15','流岚飞雾，峰峙崖端，山�
 更要善于欣赏自己——善于欣赏自己，他才可以临危不惧，棋出高筹。船欣赏了帆，船以远行；箭欣赏了弓，箭以远射。更多地欣赏生活，生活更多地欣赏他。 善于欣赏，便是善于真正地生活。','欣赏');
 CREATE TABLE `BlogFolder`(
          `userId` INTEGER,
-        `folder_name` VARCHAR(64) DEFAULT '',
-        CONSTRAINT user_ref_from_blogFolder FOREIGN KEY (`userId`) REFERENCES `User`(userId)
+        `folder_name` VARCHAR(64) DEFAULT ''
+  #      CONSTRAINT user_ref_from_blogFolder FOREIGN KEY (`userId`) REFERENCES `User`(userId)
 )ENGINE = InnoDB DEFAULT CHARSET =utf8mb4;
 
 INSERT INTO `BlogFolder` VALUES (1,'创作1');
@@ -333,9 +333,9 @@ INSERT INTO `BlogFolder` VALUES (5,'创作15');
 CREATE TABLE `Favor`(
     `userId` INTEGER,
     `blogId` INTEGER,
-    `classification` VARCHAR(64) DEFAULT '',
-    CONSTRAINT user_ref_from_favor FOREIGN KEY (`userId`) REFERENCES `User`(userId),
-    CONSTRAINT blog_ref_from_favor FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
+    `classification` VARCHAR(64) DEFAULT ''
+    #CONSTRAINT user_ref_from_favor FOREIGN KEY (`userId`) REFERENCES `User`(userId),
+    #CONSTRAINT blog_ref_from_favor FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `Favor` VALUES (1,10,'喜欢1');
@@ -374,8 +374,8 @@ CREATE TABLE `Comment`(
     `blogId` INTEGER,
     `content` VARCHAR(1024) DEFAULT NULL,
     `reviewer` INTEGER,
-    `recipient` INTEGER,
-    CONSTRAINT blog_ref_from_comment FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
+    `recipient` INTEGER
+  #  CONSTRAINT blog_ref_from_comment FOREIGN KEY (`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `Comment` VALUES (1,10,'你的文章我好喜欢，放入我的收藏夹喜欢  1  了',1,2);
 INSERT INTO `Comment` VALUES (2,12,'你的文章我好喜欢，放入我的收藏夹喜欢  2  了',1,2);
@@ -399,9 +399,9 @@ CREATE TABLE `Message`(
     `blogId` INTEGER,
     `sender` INTEGER,
     `recipient` INTEGER,
-    `content` VARCHAR(255),
-    CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId),
-    CONSTRAINT blog_ref_from_message FOREIGN KEY(`blogId`) REFERENCES `Blog`(blogId)
+    `content` VARCHAR(255)
+  #  CONSTRAINT comment_ref_from_message FOREIGN KEY(`commentId`) REFERENCES `Comment`(commentId),
+   # CONSTRAINT blog_ref_from_message FOREIGN KEY(`blogId`) REFERENCES `Blog`(blogId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `Message` VALUES (1,1,10,1,2,'你的文章我好喜欢，放入我的收藏夹喜欢  1  了');
 INSERT INTO `Message` VALUES (2,2,12,1,2,'你的文章我好喜欢，放入我的收藏夹喜欢  2  了');

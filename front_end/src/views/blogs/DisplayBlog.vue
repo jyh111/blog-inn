@@ -36,6 +36,7 @@
 		},
 		created(){
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
+			this.patchBlogpage_view(this.$route.query.blogId);
 		},
 		mounted() {
 			this.getBlogByBlogId({
@@ -58,7 +59,8 @@
 			...mapActions([
 				'getBlogByBlogId',
 				'getUserDisplay',
-				'deleteFavor'
+				'deleteFavor',
+				'patchBlogpage_view'
 			]),
 			...mapMutations([
 				'set_userInfo',
