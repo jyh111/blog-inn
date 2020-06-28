@@ -71,7 +71,7 @@ Vue.prototype.$ajax = axios
 			...mapActions([
 				'deleteBlog',
 				'getBlogFoldersByUserId',
-				'getBlogsByFolder'
+				'getBlogsByFolder',
 			]),
 			...mapMutations([
 				'set_userInfo'

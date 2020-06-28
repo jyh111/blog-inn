@@ -71,7 +71,7 @@ public class BlogController {
     }
 
     @GetMapping("/{blogId}/delete")
-    public ResponseVO deleteBlogByID(@PathVariable Integer blogId){
+    public ResponseVO deleteBlogById(@PathVariable Integer blogId){
         return blogService.deleteBlogByID(blogId);
     }
 
