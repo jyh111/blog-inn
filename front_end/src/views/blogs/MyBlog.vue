@@ -48,13 +48,13 @@ Vue.prototype.$ajax = axios
 			// 	classification:'',
 			// 	writerId:this.userInfo.userId
 			// })
-			const data = {			
+			const data = {
 					userId:this.userInfo.userId,
 					classification:'',
-					writerId:this.userInfo.userId					
+					writerId:this.userInfo.userId
 				}
 			this.getBlogsByFolder(data)
-			
+
 		},
 		components:{
 			Header
@@ -101,7 +101,7 @@ Vue.prototype.$ajax = axios
 					this.currentIndex = -1
 				}
 			},
-			deleteBlogHandler:(blogId)=>{
+			deleteBlogHandler(blogId){
 				this.deleteBlog(blogId)
 			}
 		}

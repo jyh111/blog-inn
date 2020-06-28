@@ -38,7 +38,7 @@
 		methods:{
 			...mapActions([
 				'writeBlog',
-				
+
 			]),
 			...mapMutations([
 				'set_userInfo'

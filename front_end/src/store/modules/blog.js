@@ -98,6 +98,12 @@ const blog = {
 			})
 			const res = await putBlogAPI(state.blogParams)
 			if(res){
+				const param = {
+						userId:data.userId,
+						classification:'',
+						writerId:data.userId					
+					}
+				dispatch('getBlogsByFolder',param);
 				commit('set_blogParams',{
 					blogId:'',
 					writerId:'',
@@ -140,7 +146,10 @@ const blog = {
 		},
 		
 		deleteBlog:async({state,commit,dispatch},blogId)=>{
-			const res = await deleteBlogByIdAPI(blogId)
+
+			const res = await deleteBlogByIDAPI(blogId)
+			console.log(blogId)
+			console.log(res)
 			if(res){
 				dispatch('getBlogByBlogId',blogId)
 			}else{
