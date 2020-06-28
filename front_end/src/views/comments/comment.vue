@@ -6,7 +6,6 @@
       key="comment-basic-reply-to"
       @click="handlReply(comment.id, comment.recipient)"
     >
-      <a href="#my-textarea">回复</a>
     </span>
     <a slot="author" style="font-size: 15px">{{comment.reviewer.username}}</a>
     <a
@@ -14,8 +13,8 @@
       slot="author"
       class="reply-to"
     >@{{comment.recipient.username}}</a>
-    <a-avatar slot="avatar" src="@/assets/default_logo.jpg" alt />
-    <p slot="content">{{comment.content}}</p>
+    <a-avatar slot="avatar" src="../../static/image/default_logo.jpg" alt />
+    <p slot="content" style="float: left;margin-left: 10px;">{{comment.content}}</p>
 <!--    <a-tooltip slot="datetime">
       <span>{{comment.date}}</span>
     </a-tooltip> -->

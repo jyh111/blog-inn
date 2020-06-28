@@ -52,24 +52,11 @@ const comment = {
 			}
 		},
 		addComment:async({state,commit,dispatch},data)=>{
+			console.log('addComment')
+			console.log(data)
 			const res = await putCommentAPI(data)
 			if(res){
 				dispatch('getCommentListByBlogId',data.blogId)
-			    commit('set_commentParams', {
-					commentId:0,
-					content:'',
-					reviewer:{
-						userId:0,
-						username:'',
-						userimg:''
-					},
-					recipient:{
-						userId:0,
-						username:'',
-						userImg:''
-					},
-					blogId:0
-			    })
 			    message.success('评论成功')				
 			}else{
 			    message.error('评论失败')

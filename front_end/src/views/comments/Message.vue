@@ -1,6 +1,6 @@
 <!-- 主视图 -->
 <template>
-	 <div>
+	 <div class="comment">
 	    <comment-message @handleReply="handleReply" :commentList="commentList"></comment-message>
 	    <comment-area @reload="reload" :commentId="commentId" :recipientDisplay="recipientDisplay"></comment-area>
   </div>
@@ -60,4 +60,9 @@
 </script>
 	
 <style>
+	.comment{
+		background-color: #dedede;
+		width: 80%;
+		margin: auto auto;
+	}
 </style>

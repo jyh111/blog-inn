@@ -48,7 +48,7 @@ sessionStorage.setItem("store",JSON.stringify(this.$store.state))
   text-align: center;
   color: #2c3e50;
   margin: 0 auto;
-  height: 100%;
+  height: 150%;
 	margin: 0 auto;
 	/* height: 440px; */
 	background-image:url("../static/image/back.jpg");

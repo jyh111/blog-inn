@@ -2,7 +2,7 @@
 <template>
   <div>
     <a-comment id="comment-area">
-      <a-avatar slot="avatar" src="@/assets/default_logo.jpg" alt="Han Solo" />
+      <a-avatar slot="avatar" src="../../static/image/default_logo.jpg" alt="Han Solo" />
       <div slot="content">
         <a-form-item>
           <a-textarea id="my-textarea" :rows="4" v-model="content" />
@@ -60,8 +60,9 @@ export default {
       if (!this.content) {
         return;
       }
+	  var blogId = this.$route.query.blogId
 	  this.addComment({
-		  commentId:'',
+		  commentId:0,
 		  content:this.content,
 		  reviewer:{
 		  	userId:this.userInfo.userId,
@@ -73,7 +74,7 @@ export default {
 		  	username:this.recipientDisplay.username,
 		  	userImg:this.recipientDisplay.userImg
 		  },
-		  blogId:this.$route.query.blgoId
+		  blogId:blogId
 	  })
       // this.submitting = true;
       // insertMsg(this.content, this.parentMsgId, this.$store.state.userId).then(res => {
