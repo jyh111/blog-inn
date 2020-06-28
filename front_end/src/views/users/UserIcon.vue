@@ -3,12 +3,12 @@
 
 	<div class="userIcon">
 	    <router-link :to="{name:'Login'}" v-if="!isLogin">
-			<a-avatar icon="user" size="large"></a-avatar>
-			<span class="login">登录</span>
+			<a-avatar src="../../static/image/default_logo.jpg" size="large"></a-avatar>
+			<span class="header_login">登录</span>
 		</router-link>
 		<a-dropdown v-if="isLogin">
 		    <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-		       <a-avatar :src="userInfo.userImg" />{{userInfo.username}}
+		       <a-avatar src="../../static/image/default_logo.jpg" size="large"/>{{userInfo.username}}
 		    </a>
 		    <a-menu slot="overlay">
 		      <a-menu-item>
@@ -91,5 +91,18 @@
 	}
   .al{
     right: auto;
+  }
+  .header_login{
+      width: 72px;
+      height: 30px;
+      line-height: 28px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      margin: 0 12px 0 0;
+      background: #202d40;
+      border-radius: 2px;
+      text-decoration: none;
   }
 </style>
