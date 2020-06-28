@@ -4,9 +4,9 @@
 
 
 	<div class="location">
-		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin"><span class="writeIcon">创作</span></router-link>
+		<router-link :to="{name:'SearchBlog'}"><span class="header_title">博客馆</span></router-link>
 		<UserIcon></UserIcon>
-
+		<router-link :to="{name:'WriteBlog',query:{userId:userInfo.userId}}" v-if="isLogin"><span class="writeIcon">创作</span></router-link>
 	</div>
 </template>
 
@@ -26,7 +26,7 @@
 				'isLogin'
 			])
 		},
-		created:()=>{
+		created(){
 		},
 		methods:{
 			...mapActions([
@@ -42,9 +42,24 @@
 <style>
 
 span.writeIcon{
-	background-color: #00ffff;
-	color: #FFFFFF;
+	background-color: #ffff7f;
+	color: #000000;
 	padding: 5px;
+	float: right;
+	margin-right: 10px;
+	margin-top: 5px;
 }
 
+.location{
+	background-color: #00aaff;
+	height: 40px;
+}
+
+.header_title{
+	color: #ffff7f;
+	background-color: #00ff7f;
+	padding: 5px;
+	float: left;
+	margin-top: 5px;
+}
 </style>

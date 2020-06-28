@@ -5,13 +5,7 @@
 	<Header></Header>
   <div class="al" >
 	  <div>
-	  	<a-input-search
-	  	      placeholder="input search text"
-	  	      enter-button="Search"
-	  	      size="large"
-	  	      @search="onSearch"
-	  		    class="search"
-	  	    />
+ <a-input-search placeholder="input search text" style="width: 400px" size="large" class="search" @search="onSearch" />
 	  </div>
   </div>
   </div>
@@ -87,9 +81,7 @@
 
 <style>
 	.search{
-		padding-top: 150px;
-		width: 40%;
-		margin-top: 150px;
+		margin-top: 300px;
 	}
 
  .al{

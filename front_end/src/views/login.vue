@@ -2,13 +2,12 @@
 	<div class= "all">
 	  <img src="../../static/image/imac.png" alt="A frame for login and register." class="p2" />
 	  <div class ="loginAndReg">
-	    <h1>登录界面</h1>
 	    <input type="email" placeholder="请输入邮箱" v-model="email" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />
 	    <button v-on:click="loginHandler">登&nbsp;&nbsp;录</button>
 	
 	    <p>
-	      <router-link to="/register">没有账号？马上注册</router-link>
+	      <router-link to="/register" style="color: #FFFFFF;">没有账号？马上注册</router-link>
 	    </p>
 	    <!-- <p v-on:click="ToRegister">没有账号？马上注册</p> -->
 	    <br />
