@@ -42,16 +42,27 @@ export default {
   },
   computed:{
 	  ...mapGetters([
-		  'userInfo'
+		  'userInfo',
+		  'blogParams',
+		  'userDisplay'
 	  ])
   },
   created() {
   	this.set_userInfo(sessionStorage.getItem('userInfo'))
   },
+  mounted() {
+  	this.getBlogByBlogId({
+		blogId:this.$route.query.blogId,
+		userId:this.userInfo.userId
+	})
+	this.getUserDisplay(this.blogParams.writerId)
+  },
   methods: {
 	...mapActions([
 		'addComment',
-		'addMesage'
+		'addMesage',
+		'getBlogByBlogId',
+		'getUserDisplay',
 	]),
 	...mapMutations([
 		'set_userInfo'
@@ -70,9 +81,9 @@ export default {
 		  	userimg:this.userInfo.userImg
 		  },
 		  recipient:{
-		  	userId:this.recipientDisplay.userId,
-		  	username:this.recipientDisplay.username,
-		  	userImg:this.recipientDisplay.userImg
+		  	userId:this.userDisplay.userId,
+		  	username:this.userDisplay.username,
+		  	userImg:this.userDisplay.userImg
 		  },
 		  blogId:blogId
 	  })

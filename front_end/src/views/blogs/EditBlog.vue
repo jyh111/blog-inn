@@ -4,7 +4,7 @@
 		<Header></Header>
 		<div class="edit_blog">
 		<a-input v-model="title"></a-input>
-		<a-textarea v-model="content" :rows="10" />
+		<a-textarea v-model="content" :rows="18" />
 		<a-button type="danger" @click="reset">重置</a-button>
 		<a-button type="primary" @click="submit">提交</a-button>
 		</div>
@@ -71,4 +71,10 @@ export default{
 </script>
 
 <style>
+	.edit_blog{
+		width: 80%;
+		margin: 100px auto;
+		padding: 10px 0 20px 0;
+		background-color: #e1e1e1;
+	}
 </style>

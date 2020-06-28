@@ -1,10 +1,12 @@
 <!-- 写文章界面 -->
 <template>
 	<div>
-		<Header></Header>
+	<Header></Header>
+	<div class="write_blog">
 	<a-input v-model="title"></a-input>
-	<a-textarea :value="content" :rows="10" />
+	<a-textarea :value="content" :rows="18" />
 	<a-button type="primary" @click="submit">提交</a-button>
+	</div>
 	</div>
 </template>
 
@@ -13,7 +15,7 @@
 	import Vuex from 'vuex'
 	import Router from "vue-router"
 	import { mapGetters, mapMutations, mapActions } from 'vuex'
-	  import Header from '../../components/Header.vue';
+	  import Header from '@/components/Header.vue';
 	  Vue.use(Router);
 	export default{
 		name:'WriteBlog',
@@ -32,7 +34,7 @@
 				'userInfo'
 			])
 		},
-		comments:{
+		components:{
 			Header
 		},
 		methods:{
@@ -58,4 +60,10 @@
 </script>
 
 <style>
+	.write_blog{
+		width: 80%;
+		margin: 100px auto;
+		padding: 10px 0 20px 0;
+		background-color: #e1e1e1;
+	}
 </style>
