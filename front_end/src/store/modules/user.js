@@ -133,11 +133,7 @@ const user = {
 		    })
 		},
         updateUserInfo: async({ state, dispatch }, data) => {
-            const params = {
-                Id: state.userId,
-                ...data,
-            }
-            const res = await updateUserInfoAPI(params)
+            const res = await updateUserInfoAPI(data)
             if(res){
                 message.success('修改成功')
                 dispatch('getUserInfo')

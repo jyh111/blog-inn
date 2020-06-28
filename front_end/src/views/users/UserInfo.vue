@@ -9,40 +9,31 @@
           </header>
           <section>
               <ul class="userInfoBox">
-                  <li class="avatarlist">
-                      <span class="leftTitle">用户头像</span>
-                      <el-upload
-                        class="avatar-uploader"
-                        :action="this.$store.state.host+'Userinfo/UploadImg'"
-                        :show-file-list="false"
-                        :on-success="handleAvatarSuccess"
-                        :before-upload="beforeAvatarUpload">
-                        <img v-if="userInfoObj.avatar" :src="userInfoObj.avatar?wwwHost+userInfoObj.avatar:'static/img/example.png'"   :onerror="$store.state.errorImg" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                        <div slot="tip" class="el-upload__tip">点击上传头像，只能上传jpg/png文件</div>
-                      </el-upload>
-                  </li>
-
-                  <li class="username">
-                      <span class="leftTitle">用户名</span>
-                      <el-input v-model="userInfoObj.username" placeholder="用户名"></el-input>
+                  <li>
+                      <span >用户头像</span>
+					  <a-avatar src="../../../static/image/default_logo.jpg"/>
                   </li>
 
                   <li>
-                      <span class="leftTitle">电子邮件</span>
-                      <span>{{userInfoObj.email}}</span>
+                      用户名:
+                      <a-input v-model="username" placeholder="用户名" style="width: 40%;"></a-input>
                   </li>
 
                   <li>
-                      <span class="leftTitle">个人介绍</span>
-                      <el-input v-model="userInfoObj.self_introduction" placeholder="简单介绍下自己..."></el-input>
+                      <span>电子邮件</span>
+                      <a-input v-model="useremail"style="width: 40%;"></a-input>
+                  </li>
+
+                  <li>
+                      <span>个人介绍</span>
+                      <a-textarea v-model="self_introduction" :rows="4"></a-textarea>
                   </li>
 
               </ul>
 
               <div class=" saveInfo">
-                  <a class="tcolors-bg"  href="javascript:voId(0);" @click="isEdit=!isEdit">返&nbsp;&nbsp;回</a>
-                  <a class="tcolors-bg" href="javascript:voId(0);" @click="saveInfo">保&nbsp;&nbsp;存</a>
+                  <a-button type="default" @click="isEdit=!isEdit">返&nbsp;&nbsp;回</a-button>
+                  <a-button type="primary" @click="saveInfo">保&nbsp;&nbsp;存</a-button>
               </div>
           </section>
       </div>
@@ -56,26 +47,24 @@
           </header>
           <section>
               <ul class="userInfoBox">
-                  <li class="avatarlist">
-                      <span class="leftTitle">用户头像</span>
-                      <div class="avatar-uploader">
-                          <img  :src="userInfoObj.avatar?wwwHost+userInfoObj.avatar:''"   :onerror="$store.state.errorImg" class="avatar">
-                      </div>
-                  </li>
-
-                  <li class="username">
-                      <span class="leftTitle">用户名</span>
-                      <span>{{userInfoObj.username?userInfoObj.username:"NULL"}}</span>
+                  <li>
+                      <span>用户头像:  </span>
+                       <a-avatar src="../../../static/image/default_logo.jpg"/>
                   </li>
 
                   <li>
-                      <span class="leftTitle">电子邮件</span>
-                      <span>{{userInfoObj.email}}</span>
+                      <span >用户名:  </span>
+                      <span>{{username}}</span>
                   </li>
 
                   <li>
-                      <span class="leftTitle">个人介绍</span>
-                      <span>{{userInfoObj.label?userInfoObj.label:"此人什么也没有说"}}</span>
+                      <span >电子邮件:  </span>
+                      <span>{{useremail}}</span>
+                  </li>
+
+                  <li>
+                      <span >个人介绍:  </span>
+                      <span>{{self_introduction}}</span>
                   </li>
               </ul>
           </section>
@@ -96,7 +85,9 @@
     data() { //选项 / 数据
       return {
         isEdit: false,
-        userInfoObj:'',//用户的信息
+        username:'',
+		useremail:'',
+		self_introduction:''
       };
     },
     computed:{
@@ -116,35 +107,32 @@
   		  'userInfo',
   	  ])
     },
+	mounted() {
+		this.username = this.userInfo.username,
+		this.useremail = this.userInfo.email,
+		this.self_introduction = this.userInfo.self_introduction
+	},
     methods: {
 		...mapMutations([
 			'set_userInfo'
 		]),
-      handleAvatarSuccess(res, file) {//上传头像
-          if(res.code==1001){//存储
-              this.userInfoObj.avatar = res.image_name;
-              this.userInfoObj.head_start = 1;
-          }else{
-              this.$message.error('上传图片失败');
-          }
-      },
-      beforeAvatarUpload(file) {//判断头像大小
-          const isJPG = file.type == 'image/png'||file.type=='image/jpg'||file.type=='image/jpeg';
-          const isLt21M = file.size / 1024 / 1024 < 1;
-          if (!isJPG) {
-            this.$message.error('上传头像图片只能为 JPG/JPEG/PNG 格式!');
-          }
-          if (!isLt21M) {
-            this.$message.error('上传头像图片大小不能超过 1MB!');
-          }
-          return isJPG && isLt21M;
-      },
-      saveInfoFun: function(){//保存编辑的用户信息
-          var that = this;
-          UserInfoSave(that.userInfoObj,function(result){//保存信息接口，返回
-              that.$message.success( '保存成功！');
-              that.isEdit = false;
-          })
+		...mapActions([
+			'updateUserInfo'
+		]),
+      saveInfo: function(){//保存编辑的用户信息
+          // var that = this;
+          // UserInfoSave(that.userInfoObj,function(result){//保存信息接口，返回
+          //     that.$message.success( '保存成功！');
+          //     that.isEdit = false;
+          // })
+		  this.updateUserInfo({
+			  userId:this.userInfo.userId,
+			  username:this.username,
+			  email:this.useremail,
+			  userImg:'',
+			  password:'',
+			  self_introduction:this.self_introduction
+		  })
       },
 
     }
@@ -153,37 +141,6 @@
 </script>
 
 <style>
-  .userInfoBox .avatarlist{
-      position: relative;
-  }
-
-  .avatar-uploader {
-      display: inline-block;
-      vertical-align: top;
-  }
-  .avatar-uploader .el-upload {
-      border: 1px dashed #d9d9d9;
-      border-radius: 50%;
-      cursor: pointer;
-      position: relative;
-      overflow: hIdden;
-      wIdth: 120px;
-      height: 120px;
-    }
-    .avatar-uploader .el-upload:hover {
-      border-color: #20a0ff;
-    }
-    .avatar-uploader-icon {
-      font-size: 28px;
-      color: #8c939d;
-      wIdth: 120px;
-      height: 120px;
-      line-height: 120px;
-      text-align: center;
-      position: absolute;
-      top:0;
-      left:0;
-    }
     .avatar {
       wIdth: 120px;
       height: 120px;

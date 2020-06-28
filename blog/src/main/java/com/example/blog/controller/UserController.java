@@ -43,9 +43,9 @@ public class UserController {
         return ResponseVO.buildSuccess(user);
     }
 
-    @PostMapping("/{id}/userInfo/update")
-    public ResponseVO updateUserInfo(@RequestBody UserVO userVO,@PathVariable Integer id){
-        return userService.updateUserInfo(id,userVO.getEmail(),userVO.getUsername(),userVO.getUserImg(),userVO.getPassword(),userVO.getSelf_introduction());
+    @PostMapping("/{userId}/userInfo/update")
+    public ResponseVO updateUserInfo(@RequestBody UserVO userVO,@PathVariable Integer userId){
+        return userService.updateUserInfo(userId,userVO.getEmail(),userVO.getUsername(),userVO.getUserImg(),userVO.getPassword(),userVO.getSelf_introduction());
     }
 
     @GetMapping("/{id}/getUserDisplay")

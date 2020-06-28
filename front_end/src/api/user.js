@@ -29,7 +29,7 @@ export function getUserInfoAPI(Id){
 
 export function updateUserInfoAPI(data) {
     return axios({
-        url: `${api.userPre}/${data.Id}/userInfo/update`,
+        url: `${api.userPre}/${data.userId}/userInfo/update`,
         method: 'POST',
         data
     })
