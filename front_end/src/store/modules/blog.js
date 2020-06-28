@@ -148,8 +148,16 @@ const blog = {
 		deleteBlog:async({state,commit,dispatch},blogId)=>{
 
 			const res = await deleteBlogByIdAPI(blogId)
-			console.log(blogId)
-			console.log(res)
+			if(res){
+				message.success('删除文章成功')
+			}
+		},
+		
+		patchBlogpage_view: async({},blogId)=>{
+			const res= await patchBlogpage_viewAPI(blogId);
+			if(!res){
+				message.error('浏览量增加失败')
+			}
 		}
     }
 }
