@@ -46,13 +46,13 @@
 				'set_userInfo'
 			]),
 			submit(){
+				console.log('这是content')
+				console.log(this.content);
 				this.writeBlog({
 					userId:this.userInfo.userId,
 					title:this.title,
 					content:this.content
 				})
-				console.log('router:')
-				console.log(this.$router)
 				this.$router.push({name:'MyBlog',query:{userId:this.userInfo.userId}})
 			}
 		}

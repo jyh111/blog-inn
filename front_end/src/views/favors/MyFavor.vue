@@ -1,7 +1,16 @@
-<!-- ÊÕ²ØÏêÇé½çÃæ ¹¦ÄÜ: É¾ÎÄÕÂ, ¸Ä·ÖÀà-->
+<!-- ï¿½Õ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: É¾ï¿½ï¿½ï¿½ï¿½, ï¿½Ä·ï¿½ï¿½ï¿½-->
 <template>
 	<div>
 		<Header></Header>
+		<a-button type="primary" @click="createFolderHandler">æ–°å»ºæ–‡ä»¶å¤¹</a-button>
+		<a-modal :visible="isCreateNewFolder"
+		cancelText="å–æ¶ˆ"
+		okText="ç¡®å®š"
+		@cancel="cancelNewFolder"
+		@ok="addFavorFolderHandler"
+		>
+			<a-input v-model="newFolderName" @keyup.enter.native="addFavorFolderHandler"></a-input>
+		</a-modal>
 		<div class="my_favor">
 		<a-list v-for="(item, index) in favorFolders" :key="index" style=" margin: 20px auto;">
 			<span style="font-size: 24px;">
@@ -34,16 +43,19 @@
 </template>
 
 <script>
-import Vue from 'vue'
-  import Header from '../../components/Header.vue';
-import { mapGetters, mapMutations, mapActions } from 'vuex'
-
+	import Vue from 'vue'
+	import Header from '../../components/Header.vue';
+	import { Modal } from 'ant-design-vue';
+	import { mapGetters, mapMutations, mapActions } from 'vuex'
+	Vue.use(Modal)
 	export default{
 		name:"MyFavor",
 		data(){
 			return {
 				currentIndex:-1,
-				circleType:'up-circle'
+				circleType:'up-circle',
+				newFolderName:'æ–°å»ºæ–‡ä»¶å¤¹',
+				isCreateNewFolder:false
 			}
 		},
 		created() {
@@ -57,7 +69,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 			// }).then(res=>{
 			// 	this.blogListWithoutFolder = res
 			// }).catch(Error=>{
-			// 	console.log('»ñÈ¡Ä¬ÈÏÊÕ²ØÎÄÕÂÊ§°Ü')
+			// 	console.log('ï¿½ï¿½È¡Ä¬ï¿½ï¿½ï¿½Õ²ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½')
 			// })
 			var data = {
 					userId:this.userInfo.userId,
@@ -81,7 +93,8 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 				'getFavorFoldersByUserId',
 				'deleteFavorFolder',
 				'getFavor',
-				'deleteFavor'
+				'deleteFavor',
+				'addFavorFolder'
 			]),
 			...mapMutations([
 				'set_userInfo',
@@ -95,7 +108,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 				// 	this.blogList = res
 				// 	this.currentIndex = index
 				// }).catch(Error=>{
-				// 	console.log('»ñÈ¡ÊÕ²Ø¼ÐÁÐ±íÊ§°Ü')
+				// 	console.log('ï¿½ï¿½È¡ï¿½Õ²Ø¼ï¿½ï¿½Ð±ï¿½Ê§ï¿½ï¿½')
 				// })
 				if(index==this.currentIndex){
 				if(this.circleType=="up-circle"){
@@ -132,6 +145,26 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 					folder_name:folder_name,
 					userId:this.userInfo.userId
 				})
+			},
+			cancelNewFolder(){
+				this.newFolderName = 'æ–°å»ºæ–‡ä»¶å¤¹'
+				this.isCreateNewFolder = false
+			},
+			createFolderHandler(){
+				this.isCreateNewFolder = true
+			},
+			addFavorFolderHandler(){
+				if(this.newFolderName==''){
+					this.isCreateNewFolder = false
+					return
+				}
+				const param={
+					userId:this.userInfo.userId,
+					folder_name:this.newFolderName
+				}
+				this.addFavorFolder(param)
+				this.newFolderName = 'æ–°å»ºæ–‡ä»¶å¤¹'
+				this.isCreateNewFolder = false
 			}
 		}
 	}
