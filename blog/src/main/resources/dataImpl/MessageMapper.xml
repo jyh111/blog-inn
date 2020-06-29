@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.data.MessageMapper">
-    <insert id="addMessage" parameterType="com.example.blog.po.Message" useGeneratedKeys="true" keyProperty="messageId">
+    <insert id="addMessage" parameterType="com.example.blog.po.Message" useGeneratedKeys="true">
         insert into `Message`(sender,recipient,blogId,content)
         values (#{sender},#{recipient},#{blogId},#{content})
     </insert>
