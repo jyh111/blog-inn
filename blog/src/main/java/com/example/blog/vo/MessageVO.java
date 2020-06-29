@@ -14,13 +14,11 @@ public class MessageVO {
 	private UserDisplayVO recipient;
 	private Integer blogId;
 	private String content;
-	private Integer commentId;
 	private Integer messageId;
 
 
 	public MessageVO(Message msg, UserService userService) {
 		this.messageId = msg.getMessageId();
-		this.commentId = msg.getCommentId();
 		this.blogId = msg.getBlogId();
 		this.content = msg.getContent();
 
