@@ -7,7 +7,7 @@
 			<a-list-item slot="renderItem" slot-scope="item, index" class="list_item">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}" class="list_item_link">
 				<span>{{item.title}}</span>
-				<a-icon v-if="userInfo.userId!=0" type="heart" :theme="item.infavor=='null'?'twoTone':'filled'"></a-icon>
+				<a-icon v-if="userInfo.userId!=0" type="heart" :theme="item.infavor=='null'?'twoTone':'filled'" style="float: right; wIdth: 30px;"></a-icon>
 				</router-link>
 			</a-list-item>
 			<hr style="wIdth: 100%;color: #000000;"/>

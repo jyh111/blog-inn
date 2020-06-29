@@ -40,8 +40,9 @@
 					email:this.email,
 					password:this.password
 				})
-				this.$router.push({name:'SearchBlog'})
 				sessionStorage.setItem('userInfo',this.userInfo)
+				this.$router.push({name:'SearchBlog'})
+				
 			}
 		}
 	}

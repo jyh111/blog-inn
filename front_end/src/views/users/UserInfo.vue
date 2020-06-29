@@ -133,6 +133,7 @@
 			  password:this.userInfo.password,
 			  self_introduction:this.self_introduction
 		  })
+		  this.isEdit = false
       },
 
     }

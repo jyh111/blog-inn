@@ -18,7 +18,7 @@ public class MessageVO {
 
 
 	public MessageVO(Message msg, UserService userService) {
-		this.messageId = msg.getMessageId();
+//		this.messageId = msg.getMessageId();
 		this.blogId = msg.getBlogId();
 		this.content = msg.getContent();
 
