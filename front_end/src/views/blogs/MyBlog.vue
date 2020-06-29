@@ -23,9 +23,9 @@
 			<div style="width: 100%;">
 	        <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
 			<!-- <a-icon type="close" @click="deleteBlogHandler(item.blogId,item.folder_name)"/> -->
-			<a-button type="danger" @click="deleteBlogHandler(item2.blogId,item2.folder_name)" class="delete_button">删除</a-button>
+			<a-button type="danger" @click="deleteBlogHandler(item.blogId,item.folder_name)" class="delete_button">删除</a-button>
 			<!-- <router-link :to="{name:'EditBlog',query:{blogId:item2.blogId}}"style="edit">修改</router-link> -->
-			<a-button type="primary" @click="editHandler(item2.blogId)" class="edit_button">修改</a-button>
+			<a-button type="primary" @click="editHandler(item.blogId)" class="edit_button">修改</a-button>
 			<hr style="color: #cacaca;"/>
 			</div>
 	    </a-list-item>
