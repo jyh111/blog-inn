@@ -47,8 +47,9 @@ const favor = {
 	actions:{
 		addFavorFolder:async({state,commit,dispatch},param)=>{
 			const res = await putFavorFolderAPI(param)
+			console.log(param)
 			if(res){
-				dispatch('getFavorFoldersByUserId')
+				dispatch('getFavorFoldersByUserId',param.userId)
 				message.success('新建收藏夹成功')
 			}else{
 				message.error('新建收藏夹失败')
@@ -60,7 +61,7 @@ const favor = {
 			if(res){
 				commit('set_favorFolders',res)
 			}else{
-				console.log('获取收藏夹列表失败')
+				message.error('获取收藏夹列表失败')
 			}
 		},
 		deleteFavorFolder:async({state,commit,dispatch},data)=>{
@@ -82,6 +83,7 @@ const favor = {
 					userId:data.userId,
 					blogId:data.blogId
 				})
+				
 			}
 		},
 		getFavor:async({state,commit,dispatch},data)=>{
@@ -107,6 +109,11 @@ const favor = {
 					userId:data.userId,
 					blogId:data.blogId
 				})
+				const param={
+					userId: data.userId,
+					classfication: data.folder_name
+				}
+				dispatch('getFavor',data)
 			}
 		}
 	}

@@ -134,10 +134,15 @@
 				}
 			},
 			deleteBlogHandler(blogId,folder_name){
+				if(this.circleType=="up-circle"){
+					this.circleType="down-circle"
+				}else{
+					this.circleType="up-circle"
+				}
 				this.deleteFavor({
 					blogId:blogId,
 					userId:this.userInfo.userId,
-					classification:folder_name
+					classification:'null'
 				})				
 			},
 			deleteFavorFolderHandler(folder_name){
@@ -155,6 +160,7 @@
 			},
 			addFavorFolderHandler(){
 				if(this.newFolderName==''){
+					this.newFolderName='新建文件夹'
 					this.isCreateNewFolder = false
 					return
 				}
