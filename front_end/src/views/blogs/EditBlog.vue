@@ -56,14 +56,12 @@ export default{
 			'set_userInfo'
 		]),
 		submit(){
-			console.log(this.blogParams)
 			this.updateBlog({
 				blogId:this.blogParams.blogId,
-				content:this.blogParams.content,
-				title:this.blogParams.title,
+				content:this.content,
+				title:this.title,
 				userId:this.userInfo.userId
 			})
-			message.success('修改成功')
 			this.$router.push({name:'MyBlog',query:{writerId:this.userInfo.userId}})
 		}
 	}
