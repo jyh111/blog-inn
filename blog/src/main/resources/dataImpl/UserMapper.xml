@@ -13,7 +13,7 @@
     </select>
     <update id="updateUserInfo">
         update `user` set email=#{email},username=#{username},userImg=#{userImg},password=#{password},self_introduction=#{self_introduction}
-        where userId=#{userId}
+        where userId=#{id}
     </update>
 
 
