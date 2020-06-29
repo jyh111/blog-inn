@@ -144,9 +144,9 @@ Vue.prototype.$ajax = axios
 			},
 			deleteBlogHandler(blogId, folder_name){
 				if(this.circleType=="down-circle"){
-					this.circle="up-circle"
+					this.circleType="up-circle"
 				}else{
-					this.circle="down-circle"
+					this.circleType="down-circle"
 				}
 				this.deleteBlog({
 					blogId:blogId,

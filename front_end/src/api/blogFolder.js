@@ -23,7 +23,7 @@ export function getBlogsByFolderAPI(params){
 // blogFolderVO
 export function putBlogFolderAPI(data){
 	return axios({
-		url:`$(api.blog)/${data.userId}/putBlogFolder`,
+		url:`${api.blog}/${data.userId}/putBlogFolder`,
 		method:'POST',
 		data
 	})
@@ -41,7 +41,7 @@ export function putBlogFolderAPI(data){
 // folder_name userId
 export function deleteBlogFolderAPI(param){
 	return axios({
-		url:`$(api.blog)/$(data.userId)/deleteBlogFolder`,
+		url:`$(api.blog)/$(param.userId)/deleteBlogFolder`,
 		method:'GET',
 		param
 	})
