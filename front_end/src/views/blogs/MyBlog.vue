@@ -5,13 +5,14 @@
 		<div class="my_blog">
 		<a-list v-for="(item, index) in blogFolders" :key="index" style="width: 100%; margin: 20px auto;">
 			<span class="folder_name">{{item.folder_name}}
+			<a-button  type="danger" @click="deleteBlogFolderHandler(item.folder_name)" style="width: 90px; padding:4px;float: right; margin-right: 60px;">删除文件夹</a-button>
 			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
 			</span>
 			<a-list-item v-for="(item2,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
 				<div style="width: 100%;">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item2.blogId}}">{{item2.title}}</router-link>
 				<!-- <a-icon type="close" @click="deleteBlogHandler(item2.blogId,item2.folder_name)"/> -->
-				<a-button type="danger" @click="deleteBlogHandler(item2.blogId,item2.folder_name)" class="delete_button">删除</a-button>
+				<a-button type="danger" @click="deleteBlogHandler(item2.blogId,item.folder_name)" class="delete_button">删除</a-button>
 				<!-- <router-link :to="{name:'EditBlog',query:{blogId:item2.blogId}}"style="edit">修改</router-link> -->
 				<a-button type="primary" @click="editHandler(item2.blogId)" class="edit_button">修改</a-button>
 				<hr style="color: #cacaca;"/>
@@ -89,6 +90,7 @@ Vue.prototype.$ajax = axios
 				'deleteBlog',
 				'getBlogFoldersByUserId',
 				'getBlogsByFolder',
+				'deleteBlogFolder'
 			]),
 			...mapMutations([
 				'set_userInfo'
@@ -139,6 +141,12 @@ Vue.prototype.$ajax = axios
 			},
 			editHandler(blogId){
 				this.$router.push({name:'EditBlog',query:{blogId:blogId}})
+			},
+			deleteBlogFolderHandler(folder_name){
+				this.deleteBlogFolder({
+					userId:this.userInfo.userId,
+					folder_name:folder_name
+				})
 			}
 		}
 	}

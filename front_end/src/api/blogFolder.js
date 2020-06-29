@@ -39,10 +39,10 @@ export function putBlogFolderAPI(data){
 // }
 
 // folder_name userId
-export function deleteBlogFolderAPI(param){
+export function deleteBlogFolderAPI(params){
 	return axios({
-		url:`$(api.blog)/$(data.userId)/deleteBlogFolder`,
+		url:`${api.blog}/${params.userId}/deleteBlogFolder`,
 		method:'GET',
-		param
+		params
 	})
 }

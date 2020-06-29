@@ -88,13 +88,13 @@ const blogFolder = {
 				})
 			}
 		},
-		deleteBlogFolder:async({state,commit,dispatch},folder_name)=>{
+		deleteBlogFolder:async({state,commit,dispatch},data)=>{
 			const res = await deleteBlogFolderAPI({
-				userId:state.userInfo.userId,
-				folder_name:folder_name
+				userId:data.userId,
+				folder_name:data.folder_name
 			})
 			if(res){
-				dispatch('getBlogFoldersByUserId',state.userInfo.userId)
+				dispatch('getBlogFoldersByUserId',data.userId)
 			}else{
 				message.error("删除文件夹失败")
 			}
