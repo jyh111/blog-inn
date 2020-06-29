@@ -114,6 +114,7 @@ export default {
 		  content:this.content,
 		  messageId:0
 	  })
+	  this.content = ''
     },
     handleChange(e) {
       this.value = e.target.value;
