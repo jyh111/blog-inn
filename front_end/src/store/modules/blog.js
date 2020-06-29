@@ -140,6 +140,7 @@ const blog = {
 					blogId:data.blogId,
 					userId:data.userId
 				})
+				message.success('修改成功')
 			}else{
 				console.log('更新文章失败')
 			}
