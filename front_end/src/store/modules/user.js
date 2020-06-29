@@ -102,6 +102,7 @@ const user = {
 			return 0
         },
         register: async({ commit }, data) => {
+			console.log(data)
             const res = await registerAPI(data)
             if(res){
                 message.success('注册成功')

@@ -6,7 +6,7 @@
 		  <a-list item-layout="horizontal" :data-source="msgList">
 		    <a-list-item slot="renderItem" slot-scope="item, index">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">
-					<span>来自{{ item.recipient.username }}:</span>
+					<span>来自{{ item.sender.username }}:</span>
 					{{ item.content }}
 				</router-link>
 		    </a-list-item>

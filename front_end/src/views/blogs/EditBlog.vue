@@ -27,9 +27,10 @@ export default{
 		this.getBlogByBlogId({
 			blogId:this.$route.query.blogId,
 			userId:this.userInfo.userId
-		})
+		}).then(val=>{
 		this.content = this.blogParams.content
 		this.title = this.blogParams.title
+		})
 	},
 	created(){
 		this.set_userInfo(sessionStorage.getItem('userInfo'))

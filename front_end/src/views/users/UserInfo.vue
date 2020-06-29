@@ -21,16 +21,18 @@
 
 					<li>
 						原密码:
-						<a-input v-model="originPassword"  style="width: 40%;" @blur="handlePasswordBlur"></a-input>
+						<a-input-password v-model="originPassword" placeholder="input password" style="width: 40%;" @blur="handlePasswordBlur"/>
+						<!-- <a-input v-model="originPassword"  style="width: 40%;" @blur="handlePasswordBlur"></a-input> -->
 						<p style="color: red;">{{msg}}</p>
 					</li>
 					<li>
 						新密码:
-						<a-input v-model="newPassword"  style="width: 40%;"></a-input>
+						<a-input-password v-model="newPassword" placeholder="input password" style="width: 40%;"/>
+						<!-- <a-input v-model="newPassword"  type="password" style="width: 40%;"></a-input> -->
 					</li>
                   <li>
                       <span>电子邮件</span>
-                      <a-input v-model="useremail"style="width: 40%;"></a-input>
+                      <a-input v-model="useremail" style="width: 40%;"></a-input>
                   </li>
 
                   <li>

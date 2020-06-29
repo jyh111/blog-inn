@@ -10,7 +10,7 @@
 	    <!-- <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert> -->
 		<p style="color: red;" v-show="npassword2Err">重复密码错误</p>
 	    <!-- <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中"> -->
-        <button v-on:click="register">注&nbsp;&nbsp;册</button>
+        <button v-on:click="RegisterHandler">注&nbsp;&nbsp;册</button>
       </div>
 
 
@@ -27,7 +27,6 @@
   	import { mapGetters, mapMutations, mapActions } from 'vuex'
     export default{
     	name:'Register',
-
     	data(){
     		return{
 				username:'',
@@ -54,9 +53,11 @@
 					this.npassword2Err = false
 				}
     			this.register({
-					username:this.name,
+					username:this.username,
     				email:this.email,
-    				password:this.password
+    				password:this.password,
+					userImg:'',
+					self_introduction:''
     			})
 				this.$router.push({name:'Login'})
     		},
