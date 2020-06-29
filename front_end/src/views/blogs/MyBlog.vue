@@ -2,12 +2,22 @@
 <template>
 	<div >
 		<Header></Header>
+		<a-button type="primary" @click="createFolderHandler">新建文件夹</a-button>
+		<a-modal :visible="isCreateNewFolder"
+		cancelText="取消"
+		okText="确定"
+		@cancel="cancelNewFolder"
+		@ok="addBlogFolderHandler"
+		>
+			<a-input v-model="newFolderName" @keyup.enter.native="addBlogFolderHandler"></a-input>
+		</a-modal>
 		<div class="my_blog">
 		<a-list v-for="(item, index) in blogFolders" :key="index" style="width: 100%; margin: 20px auto;">
 			<span class="folder_name">{{item.folder_name}}
 			<a-button  type="danger" @click="deleteBlogFolderHandler(item.folder_name)" style="width: 90px; padding:4px;float: right; margin-right: 60px;">删除文件夹</a-button>
 			<a-icon :type="index==currentIndex?circleType:'up-circle'" @click="showBlogs(item.folder_name, index)" />
 			</span>
+			<div style="width: 100%">
 			<a-list-item v-for="(item2,index2) in blogListInMyBlog" :key="index2" v-if="index==currentIndex">
 				<div style="width: 100%;">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item2.blogId}}">{{item2.title}}</router-link>
@@ -18,6 +28,7 @@
 				<hr style="color: #cacaca;"/>
 				</div>
 			</a-list-item>
+			</div>
 		</a-list>
 		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInMyBlog" v-if="blogListWithoutFolderInMyBlog.length>0">
 		<a-list-item slot="renderItem" slot-scope="item, index">
@@ -37,10 +48,12 @@
 
 <script>
 import Vue from 'vue'
+import { Modal } from 'ant-design-vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { axios } from '@/utils/request.js'
 import {message} from 'ant-design-vue'
   import Header from '../../components/Header.vue';
+Vue.use(Modal)
 Vue.prototype.$ajax = axios
 	export default{
 		name:'MyBlog',
@@ -50,6 +63,8 @@ Vue.prototype.$ajax = axios
 				circleType:'up-circle',
 				// blogList:[],
 				// blogListWithoutFolder:[]
+				newFolderName:'新建文件夹',
+				isCreateNewFolder:false,
 			}
 		},
 		created(){
@@ -90,7 +105,9 @@ Vue.prototype.$ajax = axios
 				'deleteBlog',
 				'getBlogFoldersByUserId',
 				'getBlogsByFolder',
-				'deleteBlogFolder'
+				'deleteBlogFolder',
+				'addFolder'
+
 			]),
 			...mapMutations([
 				'set_userInfo'
@@ -137,16 +154,39 @@ Vue.prototype.$ajax = axios
 					writerId:this.userInfo.userId,
 					classification:typeof(folder_name)=="undefined"?"":folder_name
 				})
-				window.location.reload()
 			},
 			editHandler(blogId){
 				this.$router.push({name:'EditBlog',query:{blogId:blogId}})
 			},
+
 			deleteBlogFolderHandler(folder_name){
 				this.deleteBlogFolder({
 					userId:this.userInfo.userId,
 					folder_name:folder_name
 				})
+			},
+
+			cancelNewFolder(){
+				this.newFolderName = '新建文件夹'
+				this.isCreateNewFolder = false
+			},
+			createFolderHandler(){
+				this.isCreateNewFolder=true
+			},
+			addBlogFolderHandler(){
+				if(this.newFolderName==''){
+					this.newFolderName='新建文件夹'
+					this.isCreateNewFolder = false
+					return
+				}
+				const param={
+					userId:this.userInfo.userId,
+					folder_name:this.newFolderName
+				}
+				this.addFolder(param)
+				this.newFolderName = '新建文件夹'
+				this.isCreateNewFolder = false
+
 			}
 		}
 	}

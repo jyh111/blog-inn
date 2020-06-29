@@ -23,7 +23,7 @@ export function getBlogsByFolderAPI(params){
 // blogFolderVO
 export function putBlogFolderAPI(data){
 	return axios({
-		url:`$(api.blog)/${data.userId}/putBlogFolder`,
+		url:`${api.blog}/${data.userId}/putBlogFolder`,
 		method:'POST',
 		data
 	})

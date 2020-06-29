@@ -8,7 +8,7 @@
         @ok="handleSubmit">
 			<a-list v-for="(item, index) in favorFolders" :key="index" :class="{'selected':index==selectedIndex}" @click="selectFolderHandler(item.folder_name,index)">
 				{{item.folder_name}}
-				<a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" />
+				<!-- <a-icon type="close" @click="deleteFavorFolderHandler(item.folder_name)" /> -->
 			</a-list>
 		</a-modal>
 
@@ -42,7 +42,6 @@
 			...mapActions([
 				'deleteFavorFolder',
 				'putFavor',
-				'addFavorFolder'
 			]),
 			...mapMutations([
 				'set_addFavorVisible',

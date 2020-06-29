@@ -49,14 +49,11 @@ const blogFolder = {
 				message.error('获取博客失败')
 			}
 		},
-		addFolder:async({state,commit,dispatch},folder_name)=>{
-			const res = await putBlogFolderAPI({
-				userId:state.userInfo.userId,
-				folder_name:folder_name,
-			})
+		addFolder:async({state,commit,dispatch},param)=>{
+			const res = await putBlogFolderAPI(param)
 			if(res){
-				console.log('添加成功')
-				dispatch('getBlogFoldersByUserId',state.userInfo.userId)
+				message.success('添加成功')
+				dispatch('getBlogFoldersByUserId',param.userId)
 			}
 		},
 		getBlogsByFolder:async({state,commit,dispatch},data)=>{
