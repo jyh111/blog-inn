@@ -22,11 +22,9 @@ const msg = {
 				commit('set_msgList',res)
 			}
 		},
-		// addMessage:async({state,commit,dispatch},data)=>{
-		// 	const res = await addMessageAPI({
-		// 		sender:
-		// 	})
-		// }
+		addMessage:async({state,commit,dispatch},data)=>{
+			const res = await addMessageAPI(data)
+		}
 	}
 }
 export default msg

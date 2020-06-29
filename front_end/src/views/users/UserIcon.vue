@@ -24,6 +24,9 @@
 			  <a-menu-item>
 			    <router-link :to="{name:'MyFavor',query:{userId:userInfo.userId}}">我的收藏</router-link>
 			  </a-menu-item>
+			  <a-menu-item @click="logoutHandler">
+				  退出登录
+			  </a-menu-item>
 		    </a-menu>
 		  </a-dropdown>
 	</div>
@@ -67,11 +70,32 @@
 			  'set_userInfo'
 		  ]),
 		  ...mapActions([
-
+			'resetUserInfo'
 		  ]),
 		  handleMenuClick(){
 
-		  }
+		  },
+		  logoutHandler(){
+			  console.log('logout')
+			  this.resetUserInfo()
+			  sessionStorage.setItem('userInfo',this.userInfo)
+			  this.set_isLogin(false)
+			  // var originInfo = {
+			  // 	userId: 0,
+			  // 	email:'',
+			  // 	username:'',
+			  // 	userImg:'',
+			  // 	password:'',
+			  // 	self_introduction:''
+			  // }
+			  // console.log(sessionStorage.getItem('userInfo'))
+			  // sessionStorage.setItem('userInfo',originInfo)
+			  // this.set_userInfo(window.sessionStorage.getItem('userInfo'))
+			  // console.log(sessionStorage.getItem('userInfo'))
+			  // console.log(this.userInfo)
+			  // // window.location.reload()
+			  // this.$router.push('/')
+		  },
 	  },
 
 

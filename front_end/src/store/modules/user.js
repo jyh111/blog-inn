@@ -151,6 +151,16 @@ const user = {
                 resolve()
             })
         },
+		resetUserInfo({state,commit,dispatch}){
+			commit('set_userInfo',{
+				userId: 0,
+				email:'',
+				username:'',
+				userImg:'',
+				password:'',
+				self_introduction:''
+			})
+		}
     }
 }
 

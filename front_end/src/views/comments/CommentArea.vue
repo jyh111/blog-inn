@@ -60,7 +60,7 @@ export default {
   methods: {
 	...mapActions([
 		'addComment',
-		'addMesage',
+		'addMessage',
 		'getBlogByBlogId',
 		'getUserDisplay',
 	]),
@@ -99,7 +99,7 @@ export default {
       //   console.log(err);
       //   this.$router.push('/500')
       // })
-	  this.addMesage({
+	  this.addMessage({
 		  sender:{
 			  userId:this.userInfo.userId,
 			  userImg:this.userInfo.userImg,
