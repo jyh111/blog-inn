@@ -124,6 +124,7 @@ const blog = {
 			})
 			if(res){
 				commit('set_blogParams',res)
+				dispatch('getUserDisplay',res.writerId)
 			}else{
 				console.log('获取文章失败')
 			}

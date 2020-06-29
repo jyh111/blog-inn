@@ -51,7 +51,7 @@ sessionStorage.setItem("store",JSON.stringify(this.$store.state))
   height: 150%;
 	margin: 0 auto;
 	/* height: 440px; */
-	background-image:url("../static/image/back.jpg");
+	background-image:url("../static/image/back5.jpg");
 	background-repeat:no-repeat;
 	background-size: cover;
 }

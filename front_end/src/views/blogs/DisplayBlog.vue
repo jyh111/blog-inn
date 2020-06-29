@@ -44,7 +44,7 @@
 				userId:this.userInfo.userId
 				})
 			
-			this.getUserDisplay(this.blogParams.writerId)
+			// this.getUserDisplay(this.blogParams.writerId)
 		},
 		computed:{
 			...mapGetters([

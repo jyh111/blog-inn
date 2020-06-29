@@ -50,6 +50,7 @@ public class UserController {
 
     @GetMapping("/{id}/getUserDisplay")
     public ResponseVO getUserDisplay(@PathVariable Integer id){
+        System.out.println(id);
         UserDisplayVO userDisplay = userService.getUserDisplay(id);
         if(userDisplay==null){
             return ResponseVO.buildFailure(ACCOUNT_NOT_EXIST);

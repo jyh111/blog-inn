@@ -22,19 +22,19 @@ console.log(process.env.NODE_ENV)
         description: data.message
       })
     }
-    if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
-      notification.error({
-        message: 'Unauthorized',
-        description: 'Authorization verification failed'
-      })
-      if (token) {
-        store.dispatch('Logout').then(() => {
-          setTimeout(() => {
-            window.location.reload()
-          }, 1500)
-        })
-      }
-    }
+    // if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
+    //   notification.error({
+    //     message: 'Unauthorized',
+    //     description: 'Authorization verification failed'
+    //   })
+    //   if (token) {
+    //     store.dispatch('Logout').then(() => {
+    //       setTimeout(() => {
+    //         window.location.reload()
+    //       }, 1500)
+    //     })
+    //   }
+    // }
   }
   return Promise.reject(error)
  }
@@ -58,8 +58,8 @@ service.interceptors.response.use((response) => {
       break
     case 404:
       return false
-    default:
-      message.error(response.data.message)
+    // default:
+    //   message.error(response.data.message)
   }
 })
 

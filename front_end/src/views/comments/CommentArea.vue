@@ -21,6 +21,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { message } from 'ant-design-vue'
 export default {
 	name:'CommentArea',
   data() {
@@ -55,7 +56,7 @@ export default {
 		blogId:this.$route.query.blogId,
 		userId:this.userInfo.userId
 	})
-	this.getUserDisplay(this.blogParams.writerId)
+	// this.getUserDisplay(this.blogParams.writerId)
   },
   methods: {
 	...mapActions([
@@ -71,7 +72,12 @@ export default {
       if (!this.content) {
         return;
       }
+	  if(typeof(this.userInfo)=="undefined" || this.userInfo.userId==0){
+		  message.error('请登录')
+		  return
+	  }
 	  var blogId = this.$route.query.blogId
+	  this.getUserDisplay(this.blogParams.writerId)
 	  this.addComment({
 		  commentId:0,
 		  content:this.content,

@@ -81,6 +81,8 @@
 	.search{
 		margin-top: 300px;
 		width: 30%;
+		border-radius: 5px;
+		border-color: #000000;
 	}
 
  .al{
