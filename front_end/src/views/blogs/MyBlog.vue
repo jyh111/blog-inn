@@ -2,6 +2,15 @@
 <template>
 	<div >
 		<Header></Header>
+		<a-button type="primary" @click="createFolderHandler">新建文件夹</a-button>
+		<a-modal :visible="isCreateNewFolder"
+		cancelText="取消"
+		okText="确定"
+		@cancel="cancelNewFolder"
+		@ok="addBlogFolderHandler"
+		>
+			<a-input v-model="newFolderName" @keyup.enter.native="addBlogFolderHandler"></a-input>
+		</a-modal>
 		<div class="my_blog">
 		<a-list v-for="(item, index) in blogFolders" :key="index" style="width: 100%; margin: 20px auto;">
 			<span class="folder_name">{{item.folder_name}}
@@ -36,10 +45,12 @@
 
 <script>
 import Vue from 'vue'
+import { Modal } from 'ant-design-vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { axios } from '@/utils/request.js'
 import {message} from 'ant-design-vue'
   import Header from '../../components/Header.vue';
+Vue.use(Modal)
 Vue.prototype.$ajax = axios
 	export default{
 		name:'MyBlog',
@@ -49,6 +60,8 @@ Vue.prototype.$ajax = axios
 				circleType:'up-circle',
 				// blogList:[],
 				// blogListWithoutFolder:[]
+				newFolderName:'新建文件夹',
+				isCreateNewFolder:false,
 			}
 		},
 		created(){
@@ -89,6 +102,7 @@ Vue.prototype.$ajax = axios
 				'deleteBlog',
 				'getBlogFoldersByUserId',
 				'getBlogsByFolder',
+				'addFolder'
 			]),
 			...mapMutations([
 				'set_userInfo'
@@ -129,16 +143,41 @@ Vue.prototype.$ajax = axios
 				}
 			},
 			deleteBlogHandler(blogId, folder_name){
+				if(this.circleType=="down-circle"){
+					this.circle="up-circle"
+				}else{
+					this.circle="down-circle"
+				}
 				this.deleteBlog({
 					blogId:blogId,
 					userId:this.userInfo.userId,
 					writerId:this.userInfo.userId,
 					classification:typeof(folder_name)=="undefined"?"":folder_name
 				})
-				window.location.reload()
 			},
 			editHandler(blogId){
 				this.$router.push({name:'EditBlog',query:{blogId:blogId}})
+			},
+			cancelNewFolder(){
+				this.newFolderName = '新建文件夹'
+				this.isCreateNewFolder = false
+			},
+			createFolderHandler(){
+				this.isCreateNewFolder=true
+			},
+			addBlogFolderHandler(){
+				if(this.newFolderName==''){
+					this.newFolderName='新建文件夹'
+					this.isCreateNewFolder = false
+					return
+				}
+				const param={
+					userId:this.userInfo.userId,
+					folder_name:this.newFolderName
+				}
+				this.addFolder(param)
+				this.newFolderName = '新建文件夹'
+				this.isCreateNewFolder = false
 			}
 		}
 	}
