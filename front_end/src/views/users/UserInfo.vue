@@ -130,7 +130,7 @@
 			  username:this.username,
 			  email:this.useremail,
 			  userImg:'',
-			  password:'',
+			  password:this.userInfo.password,
 			  self_introduction:this.self_introduction
 		  })
       },
