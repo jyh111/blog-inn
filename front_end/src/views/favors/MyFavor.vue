@@ -137,7 +137,7 @@
 				this.deleteFavor({
 					blogId:blogId,
 					userId:this.userInfo.userId,
-					classification:folder_name
+					classification:'null'
 				})				
 			},
 			deleteFavorFolderHandler(folder_name){
@@ -155,6 +155,7 @@
 			},
 			addFavorFolderHandler(){
 				if(this.newFolderName==''){
+					this.newFolderName='新建文件夹'
 					this.isCreateNewFolder = false
 					return
 				}
