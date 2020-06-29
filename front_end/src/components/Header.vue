@@ -27,11 +27,16 @@
 			])
 		},
 		created(){
+			this.set_userInfo(sessionStorage.getItem('userInfo'))
+			console.log(this.userInfo)
 		},
 		methods:{
 			...mapActions([
 
-			])
+			]),
+			...mapMutations([
+				'set_userInfo'
+			]),
 		},
 		components:{
 			UserIcon

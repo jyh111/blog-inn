@@ -15,16 +15,12 @@ import MyFavor from '@/views/favors/MyFavor'
 Vue.use(Router)
 
 const router =  new Router({
+	mode:'history',
   routes: [
     {
 		path:'/',
 		redirect:'/searchBlog'
     },
-	{
-		path:'/myBlog',
-		component:MyBlog,
-		name:'MyBlog'
-	},
 	// 	children:[
 	// 		path:'/:blogId'
 	// 	]
@@ -40,7 +36,7 @@ const router =  new Router({
 		component:BlogList
 	},
 	{
-		path:'/:blogId/displayBlog',
+		path:'/displayBlog',
 		name:'DisplayBlog',
 		component:DisplayBlog
 	},
@@ -50,7 +46,7 @@ const router =  new Router({
 		component:Login
 	},
 	{
-		path:'/:blogId/editBlog',
+		path:'/editBlog',
 		name:'EditBlog',
 		component:EditBlog
 	},
@@ -60,27 +56,27 @@ const router =  new Router({
     component:Register
   },
   {
-	  path:'/:userId/writeBlog',
+	  path:'/writeBlog',
 	  name:'WriteBlog',
 	  component:WriteBlog
   },
   {
-	  path:'/:userId/userInfo',
+	  path:'/userInfo',
 	  name:'UserInfo',
 	  component:UserInfo
   },
   {
-	  path:'/:writerId/myBlog',
+	  path:'/myBlog',
 	  name:'MyBlog',
 	  component:MyBlog
   },
   {
-	  path:'/:userId/myMessage',
+	  path:'/myMessage',
 	  name:'MyMessage',
 	  component:MyMessage
   },
   {
-	  path:'/:userId/MyFavor',
+	  path:'/myFavor',
 	  name:'MyFavor',
 	  component:MyFavor
   }

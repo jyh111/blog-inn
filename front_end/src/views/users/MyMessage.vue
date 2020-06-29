@@ -1,7 +1,8 @@
 <!-- 我的消息界面 -->
 <template>
-	<div class="Mymessage">
+	<div>
 		<Header></Header>
+		<div class="Mymessage">
 		  <a-list item-layout="horizontal" :data-source="msgList">
 		    <a-list-item slot="renderItem" slot-scope="item, index">
 				<router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">
@@ -10,6 +11,7 @@
 				</router-link>
 		    </a-list-item>
 		  </a-list>
+		  </div>
 	</div>
 </template>
 

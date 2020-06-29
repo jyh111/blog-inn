@@ -16,7 +16,7 @@
 		        <router-link :to="{name:'UserInfo',query:{userId:userInfo.userId}}">个人信息</router-link>
 		      </a-menu-item>
 		      <a-menu-item>
-		        <router-link :to="{name:'MyBlog',query:{userId:userInfo.userId}}">我的博客</router-link>
+		        <router-link :to="{name:'MyBlog',query:{writerId:userInfo.userId}}">我的博客</router-link>
 		      </a-menu-item>
 		      <a-menu-item>
 		        <router-link :to="{name:'MyMessage',query:{userId:userInfo.userId}}">我的消息</router-link>
