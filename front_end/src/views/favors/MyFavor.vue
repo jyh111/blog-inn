@@ -22,8 +22,11 @@
 		</a-list>
 		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInFavor" v-if="blogListWithoutFolderInFavor.length>0">
 		<a-list-item slot="renderItem" slot-scope="item, index">
+			<div style="width: 100%;">
 		    <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
-			<a-icon type="close" @click="deleteBlogHandler(item.blogId)"/>
+			<a-icon type="close" @click="deleteBlogHandler(item.blogId,item.inFavor)" style="float: right;"/>
+			<hr style="color: #000000;"/>
+			</div>
 		</a-list-item>
 		</a-list>
 		</div>

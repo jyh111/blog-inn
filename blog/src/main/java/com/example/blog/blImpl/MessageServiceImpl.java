@@ -25,7 +25,7 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public ResponseVO addMessage(MessageVO messageVO) {
 		Message message = new Message();
-		message.setMessageId(messageVO.getMessageId());
+//		message.setMessageId(messageVO.getMessageId());
 		message.setCommentId(messageVO.getCommentId());
 		message.setSender(messageVO.getSender().getUserId());
 		message.setRecipient(messageVO.getRecipient().getUserId());

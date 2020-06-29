@@ -4,7 +4,7 @@
 	<Header></Header>
 	<div class="write_blog">
 	<a-input v-model="title"></a-input>
-	<a-textarea :value="content" :rows="18" />
+	<a-textarea v-model="content" :rows="18" />
 	<a-button type="primary" @click="submit">提交</a-button>
 	</div>
 	</div>

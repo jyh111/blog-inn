@@ -99,6 +99,21 @@ export default {
       //   console.log(err);
       //   this.$router.push('/500')
       // })
+	  this.addMesage({
+		  sender:{
+			  userId:this.userInfo.userId,
+			  userImg:this.userInfo.userImg,
+			  username:this.userInfo.username
+		  },
+		  recipient:{
+			  userId:this.userDisplay.userId,
+			  username:this.userDisplay.username,
+			  userImg:this.userDisplay.userImg
+		  },
+		  blogId:blogId,
+		  content:this.content,
+		  messageId:0
+	  })
     },
     handleChange(e) {
       this.value = e.target.value;

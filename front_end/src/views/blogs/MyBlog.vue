@@ -20,8 +20,14 @@
 		</a-list>
 		<a-list item-layout="horizontal" :data-source="blogListWithoutFolderInMyBlog" v-if="blogListWithoutFolderInMyBlog.length>0">
 		<a-list-item slot="renderItem" slot-scope="item, index">
+			<div style="width: 100%;">
 	        <router-link :to="{name:'DisplayBlog',query:{blogId:item.blogId}}">{{item.title}}</router-link>
-			<a-icon type="close" @click="deleteBlogHandler(item.blogId,item.folder_name)"/>
+			<!-- <a-icon type="close" @click="deleteBlogHandler(item.blogId,item.folder_name)"/> -->
+			<a-button type="danger" @click="deleteBlogHandler(item2.blogId,item2.folder_name)" class="delete_button">删除</a-button>
+			<!-- <router-link :to="{name:'EditBlog',query:{blogId:item2.blogId}}"style="edit">修改</router-link> -->
+			<a-button type="primary" @click="editHandler(item2.blogId)" class="edit_button">修改</a-button>
+			<hr style="color: #cacaca;"/>
+			</div>
 	    </a-list-item>
 		</a-list>
 		</div>
@@ -123,7 +129,6 @@ Vue.prototype.$ajax = axios
 				}
 			},
 			deleteBlogHandler(blogId, folder_name){
-
 				this.deleteBlog({
 					blogId:blogId,
 					userId:this.userInfo.userId,
