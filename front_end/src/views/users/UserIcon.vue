@@ -94,7 +94,7 @@
 			  // console.log(sessionStorage.getItem('userInfo'))
 			  // console.log(this.userInfo)
 			  // // window.location.reload()
-			  // this.$router.push('/')
+			  this.$router.push('/')
 		  },
 	  },
 

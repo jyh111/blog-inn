@@ -19,6 +19,15 @@
                       <a-input v-model="username" placeholder="用户名" style="width: 40%;"></a-input>
                   </li>
 
+					<li>
+						原密码:
+						<a-input v-model="originPassword"  style="width: 40%;" @blur="handlePasswordBlur"></a-input>
+						<p style="color: red;">{{msg}}</p>
+					</li>
+					<li>
+						新密码:
+						<a-input v-model="newPassword"  style="width: 40%;"></a-input>
+					</li>
                   <li>
                       <span>电子邮件</span>
                       <a-input v-model="useremail"style="width: 40%;"></a-input>
@@ -61,7 +70,6 @@
                       <span >电子邮件:  </span>
                       <span>{{useremail}}</span>
                   </li>
-
                   <li>
                       <span >个人介绍:  </span>
                       <span>{{self_introduction}}</span>
@@ -87,7 +95,10 @@
         isEdit: false,
         username:'',
 		useremail:'',
-		self_introduction:''
+		self_introduction:'',
+		originPassword:'',
+		newPassword:'',
+		msg:''
       };
     },
     computed:{
@@ -119,18 +130,34 @@
 		...mapActions([
 			'updateUserInfo'
 		]),
+		handlePasswordBlur(){
+			console.log('handleblur')
+			if(this.originPassword==''){
+				this.msg=''
+				return
+			}
+			if(this.originPassword!=this.userInfo.password){
+				this.msg='please confirm your password'
+			}else{
+				this.msg=''
+			}
+		},
       saveInfo: function(){//保存编辑的用户信息
           // var that = this;
           // UserInfoSave(that.userInfoObj,function(result){//保存信息接口，返回
           //     that.$message.success( '保存成功！');
           //     that.isEdit = false;
           // })
+		  var pass = this.userInfo.password
+		  if(this.originPassword==this.userInfo.password && this.newPassword!=''){
+			  pass = this.newPassword
+		  }
 		  this.updateUserInfo({
 			  userId:this.userInfo.userId,
 			  username:this.username,
 			  email:this.useremail,
 			  userImg:'',
-			  password:this.userInfo.password,
+			  password:pass,
 			  self_introduction:this.self_introduction
 		  })
 		  this.isEdit = false
