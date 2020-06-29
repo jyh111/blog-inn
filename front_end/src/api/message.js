@@ -25,9 +25,9 @@ const api = {
 //     private Integer commentId;
 //     private Integer messageId;
 // }
-export function getMessageByUserIdAPI(param){
+export function getMessageByUserIdAPI(params){
 	return axios({
-		url:`${api.msg}/${param.userId}/getMessages`,
+		url:`${api.msg}/${params.userId}/getMessages`,
 		method:'GET'
 	})
 }

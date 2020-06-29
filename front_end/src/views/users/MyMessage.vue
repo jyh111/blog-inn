@@ -30,6 +30,8 @@
 			this.set_userInfo(sessionStorage.getItem('userInfo'))
 		},
 		mounted() {
+			console.log('message')
+			console.log(this.userInfo.userId)
 			this.getMsgList(this.userInfo.userId)
 		},
 		computed:{

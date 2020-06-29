@@ -19,6 +19,7 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public List<Message> getMessageByUserID(int userId) {
+		System.out.println(this.messageMapper.getMessageByUserID(userId));
 		return this.messageMapper.getMessageByUserID(userId);
 	}
 

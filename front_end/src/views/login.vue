@@ -7,7 +7,7 @@
 	    <button v-on:click="loginHandler">登&nbsp;&nbsp;录</button>
 	
 	    <p>
-	      <router-link to="/register" style="color: #FFFFFF;">没有账号？马上注册</router-link>
+	      <router-link to="/register" style="color: #000000;">没有账号？马上注册</router-link>
 	    </p>
 	    <!-- <p v-on:click="ToRegister">没有账号？马上注册</p> -->
 	    <br />

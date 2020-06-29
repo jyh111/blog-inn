@@ -17,7 +17,7 @@ const getters = {
 	commentParams:state=>state.comment.commentParams,
 	blogId:state=>state.comment.blogId,
 	//message
-	msgList:state=>state.message.msgList,
+	msgList:state=>state.msg.msgList,
 	//blogFolder
 	blogListInMyBlog:state=>state.blogFolder.blogListInMyBlog,
 	blogListWithoutFolderInMyBlog:state=>state.blogFolder.blogListWithoutFolderInMyBlog,

@@ -6,9 +6,10 @@
 	    <input type="text" placeholder="请输入您的邮箱" v-model="email" />
 	    <input type="text" placeholder="请输入用户名" v-model="username" />
 	    <input type="password" placeholder="请输入密码" v-model="password" />
-	    <input type="password" placeholder="确认密码" v-model="password2" />
-	    <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert>
-	    <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">
+	    <input type="password" placeholder="确认密码" v-model="password2" @blur="blurHandler"/>
+	    <!-- <el-alert v-show="npassword2Err" title="重复密码错误" type="error" show-icon:closable="false"> </el-alert> -->
+		<p style="color: red;" v-show="npassword2Err">重复密码错误</p>
+	    <!-- <div @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中"> -->
         <button v-on:click="register">注&nbsp;&nbsp;册</button>
       </div>
 
@@ -26,7 +27,7 @@
   	import { mapGetters, mapMutations, mapActions } from 'vuex'
     export default{
     	name:'Register',
-      fullscreenLoading: false,//全屏loading
+
     	data(){
     		return{
 				username:'',
@@ -34,6 +35,7 @@
     			password:'',
 				password2:'',
 				npassword2Err:false,
+				fullscreenLoading: false,//全屏loading
     		}
     	},
     	computed:{
@@ -57,7 +59,14 @@
     				password:this.password
     			})
 				this.$router.push({name:'Login'})
-    		}
+    		},
+			blurHandler(){
+				if(this.password!=this.password2){
+					this.npassword2Err=true
+				}else{
+					this.npassword2Err = false
+				}
+			}
     	}
     }
 </script>
