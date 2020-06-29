@@ -134,6 +134,11 @@
 				}
 			},
 			deleteBlogHandler(blogId,folder_name){
+				if(this.circleType=="up-circle"){
+					this.circleType="down-circle"
+				}else{
+					this.circleType="up-circle"
+				}
 				this.deleteFavor({
 					blogId:blogId,
 					userId:this.userInfo.userId,
